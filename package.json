@@ -1,0 +1,11 @@
+{
+  "name": "xebooking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
