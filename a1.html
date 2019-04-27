@@ -27,15 +27,19 @@
     <div class="container-fluid bg-1 text-center">
         <h1>BOOK BUS TICKET</h1>
 
-        <div class="container" id="a1-form">
+        <div class="container justify-content-center align-content-center" id="a1-form">
             <div class="row">
-                <div class="col-12">
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="my-control-input custom-control-input" id="customRadio-OneWay"
+                            name="a1-type-trip" value="1">
+                        <label class="custom-control-label" for="customRadio-OneWay">One Way</label>
+                    </div>
+                </div>
+                <div class="col-2">
                     <form class="form-horizontal">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="my-control-input custom-control-input" id="customRadio-OneWay"
-                                name="a1-type-trip" value="1">
-                            <label class="custom-control-label" for="customRadio-OneWay">One Way</label>
-                        </div>
+
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" class="my-control-input custom-control-input" id="customRadio-RoundTrip"
                                 name="a1-type-trip" value="2">
@@ -43,39 +47,36 @@
                     </form>
                 </div>
                 <br>
-                <div class="row align-content-center justify-content-center">
-                    <div class="col-2">
-                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                            placeholder="From">
-                    </div>
-                    <div class="col-1">
-                        <i class="fas fa-exchange-alt" aria-hidden="true"></i>
-
-                    </div>
-                    <div class="col-2">
-                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text" placeholder="To">
-
-                    </div>
-                    <div class="col-2">
-                        <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control">
-
-                    </div>
-                    <div class="col-2">
-                        <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control">
-
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-
-
             </div>
         </div>
+        <div id="a1-row-div-form" class="row align-content-center justify-content-center">
+            <div class="col-md-2 col-sm-4">
+                <input type="text" class="form-control-plaintext control-inline my-inpyt-text" placeholder="From">
+            </div>
+            <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
+            <div class="col-md-2 col-sm-4">
+                <input type="text" class="form-control-plaintext control-inline my-inpyt-text" placeholder="To">
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <label class="form-check-label" for="bday">Departure Day</label>
+                <input type="date" id="departureday" max="3000-12-31" min="1000-01-01" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <label class="form-check-label" for="bday">Return Day</label>
+                <input type="date" name="returnday" max="3000-12-31" min="1000-01-01" class="form-control">
+
+            </div>
+            <div class="col-md-1 col-sm-5">
+                <button id="a1-search-button" type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
 
     </div>
     <br>
-    <h2>Offer</h2>
+    <h2 style="text-align: center">Offer</h2>
 
     <div class="container mt-3">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
