@@ -1,15 +1,18 @@
 {
-  "name": "test",
+  "name": "xebooking",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
     "handlebars": "^4.1.2",
     "jquery": "^3.4.0",
     "popper.js": "^1.15.0"
