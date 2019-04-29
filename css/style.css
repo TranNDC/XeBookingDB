@@ -123,17 +123,3 @@ span{
   border-radius: 50%;
   margin-right: 16px !important;
 }
-
-.form-check-label{
-  font-size:12px !important;
-  color:#999999 !important;
-  text-align: left !important;
-  width: 100%;
-  position: absolute;
-  top: -10%;
-  left: 10%;
-}
-
-#departureday, #returnday{
-  position: relative;
-}
