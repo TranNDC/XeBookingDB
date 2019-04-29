@@ -26,3 +26,7 @@ input[type=password] {
     margin-top: 79px;
    
 }
+
+.b1-form {
+    padding-bottom: 5px !important;
+}
