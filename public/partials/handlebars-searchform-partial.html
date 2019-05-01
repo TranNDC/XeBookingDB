@@ -1,0 +1,44 @@
+<script id="searchform-detail-template" type="text/x-handlebars-template">
+    <div class="container justify-content-center align-content-center" id="searchform">
+        <div class="row">
+            <div class="col-md-1 col-sm-0 "></div>
+            <div class="col-lg-2 col-md-3 col-sm-6 text-center">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="my-control-input custom-control-input" id="customRadio-OneWay"
+                        name="searchform-type-trip" value="1" checked>
+                    <label class="custom-control-label" for="customRadio-OneWay">One Way</label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 ">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="my-control-input custom-control-input" id="customRadio-RoundTrip"
+                        name="searchform-type-trip" value="2">
+                    <label class="custom-control-label" for="customRadio-RoundTrip">Round Trip</label>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="searchform-row-div-form" class="row align-content-center justify-content-center">
+            <div class="col-md-2 col-sm-4 mb-3">
+                <input type="text" class="form-control-plaintext control-inline my-inpyt-text" placeholder="From">
+            </div>
+            <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
+            <div class="col-md-2 col-sm-4">
+                <input type="text" class="form-control-plaintext control-inline my-inpyt-text" placeholder="To">
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <label class="form-check-label" for="bday">Departure Day</label>
+                <input id="searchform-departureday" type="date" id="departureday" max="3000-12-31" min="1000-01-01" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <label class="form-check-label" for="bday">Return Day</label>
+                <input id="searchform-returnday" type="date" name="returnday" max="3000-12-31" min="1000-01-01" class="form-control" disabled>
+
+            </div>
+            <div class="col-lg-1 col-m-2 col-sm-5 d-flex justify-content-center">
+                <button id="searchform-search-button" type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+
+    </div>
+</script>

@@ -20,4 +20,3 @@ $('#carouselExample').on('slide.bs.carousel', function (e) {
 });
 
 $('.dropdown-toggle').dropdown();
-

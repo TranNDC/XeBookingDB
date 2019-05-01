@@ -45,6 +45,8 @@ h1 {
 
 .custom-control-input:focus~.custom-control-label::before {
   box-shadow: 0 0 0 0.2rem rgba(9, 9, 9, 0.25) !important;
+  outline: none !important;
+
 }
 
 .btn:focus,
@@ -57,6 +59,7 @@ h1 {
   color: #fff;
   border-color: #494949 !important;
   background-color: #494949 !important;
+  outline: none !important;
 }
 
 .my-inpyt-text {
@@ -69,26 +72,13 @@ h1 {
   border-bottom: #494949 1.5px solid!important;
 }
 
-#a1-form {
+#searchform {
   background-color: white;
   border: 1px solid #494949;
   border-radius: 5px;
-  padding: 48px 30px !important;
+  padding: 16px 8px 8px 8px !important;
 }
 
-.a1-overlay {
-  background-image: url("../img/A1/backgr.jpg");
-  background-size: cover;
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  opacity: 0.4;
-}
 
 button.dropdown-toggle:focus-within{
   border:none !important;
@@ -116,6 +106,7 @@ span{
   padding: 0;
 }
 
+
 #user-avatar{
   width: 30px;
   height:30px; 
@@ -128,12 +119,129 @@ span{
   font-size:12px !important;
   color:#999999 !important;
   text-align: left !important;
-  width: 100%;
   position: absolute;
-  top: -10%;
+  background-color: white;
+  top: -10px;
   left: 10%;
 }
 
 #departureday, #returnday{
   position: relative;
+}
+
+#searchform-row-div-form{
+  margin:0px !important;
+}
+
+
+
+#searchform-row-div-form div{
+  margin:10px 0px;
+  padding:1% !important;
+}
+
+
+#searchform-search-button{
+  width: 100% auto;
+}
+
+
+
+.border{
+  border: 1px solid #494949 !important;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.sleeper-rec {
+  position: absolute;
+  left: 85.42%;
+  right: 8.33%;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  height: 8px;
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+
+}
+
+.sleeper {
+  display:inline-block;
+    width:48px;
+    height:18px;
+    border:#999 solid 1px;
+    position: relative;
+    border-radius: 3px;
+    margin:auto !important;
+}
+
+.sleeper-rec {
+  display: inline-block;
+  position: absolute;
+  left: 85.42%;
+  right: 8.33%;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  height: 8px;
+  background: #FFFFFF;
+  border: 1px solid inherit;
+ 
+}
+
+.hidden{
+  display: none;
+}
+
+.sleeper-active {
+  border-color: #56C568;
+  color: #56C568;
+}
+
+.sleeper:hover {
+  border-color: #56C568;
+}
+
+#sleeper-table td{
+  width:52px;
+  height: 18px !important;
+  padding: 0 2px;
+}
+
+#sleeper-table tbody{
+  display: inline;  
+}
+
+#sleeper-div-lower, #sleeper-div-upper{
+  padding: 16px;
+  padding-left: 20px;
+  padding-bottom: 8px ;
+  border: #494949 solid 1px;
+  display: inline-block !important;
+  position: relative;
+}
+
+#sleeper-div-lower p,#sleeper-div-upper p{
+  position: absolute;
+  transform: rotate(-90deg) translate(-100%);
+  left: -12px;
+}
+
+#sleeper-div #title{
+  margin: 0;
+  font-size: 12px;
+  color: #999999;
+  text-align: left;
+}
+
+.label{
+  color: #999999;
+  font-size: 12px;
+}
+
+#ticket-info{
+  transform: translateX(24px);
+  padding: 10px 24px;
 }
