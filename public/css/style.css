@@ -143,6 +143,7 @@ span{
 
 #searchform-search-button{
   width: 100% auto;
+  margin-bottom: 4px;
 }
 
 
@@ -151,94 +152,21 @@ span{
   border: 1px solid #494949 !important;
   border-radius: 5px;
   padding: 8px;
+  background-color:white;
 }
-
-.sleeper-rec {
-  position: absolute;
-  left: 85.42%;
-  right: 8.33%;
-  top: 25%;
-  bottom: 25%;
-  width: 3px;
-  height: 8px;
-  background: #FFFFFF;
-  border: 1px solid #999999;
-  box-sizing: border-box;
-
-}
-
-.sleeper {
-  display:inline-block;
-    width:48px;
-    height:18px;
-    border:#999 solid 1px;
-    position: relative;
-    border-radius: 3px;
-    margin:auto !important;
-}
-
-.sleeper-rec {
-  display: inline-block;
-  position: absolute;
-  left: 85.42%;
-  right: 8.33%;
-  top: 25%;
-  bottom: 25%;
-  width: 3px;
-  height: 8px;
-  background: #FFFFFF;
-  border: 1px solid inherit;
- 
-}
-
 .hidden{
   display: none;
 }
 
-.sleeper-active {
-  border-color: #56C568;
-  color: #56C568;
-}
-
-.sleeper:hover {
-  border-color: #56C568;
-}
-
-#sleeper-table td{
-  width:52px;
-  height: 18px !important;
-  padding: 0 2px;
-}
-
-#sleeper-table tbody{
-  display: inline;  
-}
-
-#sleeper-div-lower, #sleeper-div-upper{
-  padding: 16px;
-  padding-left: 20px;
-  padding-bottom: 8px ;
-  border: #494949 solid 1px;
-  display: inline-block !important;
-  position: relative;
-}
-
-#sleeper-div-lower p,#sleeper-div-upper p{
-  position: absolute;
-  transform: rotate(-90deg) translate(-100%);
-  left: -12px;
-}
-
-#sleeper-div #title{
-  margin: 0;
-  font-size: 12px;
-  color: #999999;
-  text-align: left;
-}
 
 .label{
   color: #999999;
   font-size: 12px;
+}
+
+.big-label{
+  color: #494949;
+  font-size: 18px;
 }
 
 #ticket-info{

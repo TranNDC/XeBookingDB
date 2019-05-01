@@ -1,5 +1,102 @@
+body{
+  background-color:#fcfcfc!important;
+}
+.a2-overlay {
+  background-image: url("../img/A1/backgr.jpg");
+  background-size: cover;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.4;
+}
 .a2-searchform{
     justify-content: center;
+}
+
+.sleeper-rec {
+  position: absolute;
+  left: 85.42%;
+  right: 8.33%;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  height: 8px;
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+
+}
+
+.sleeper {
+  display:inline-block;
+    width:48px;
+    height:18px;
+    border:#999 solid 1px;
+    position: relative;
+    border-radius: 3px;
+    margin:auto !important;
+}
+
+.sleeper-rec {
+  display: inline-block;
+  position: absolute;
+  left: 85.42%;
+  right: 8.33%;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  height: 8px;
+  background: #FFFFFF;
+  border: 1px solid inherit;
+ 
+}
+
+
+
+.sleeper-active {
+  border-color: #56C568;
+  color: #56C568;
+}
+
+.sleeper:hover {
+  border-color: #56C568;
+}
+
+#sleeper-table td{
+  width:52px;
+  height: 18px !important;
+  padding: 0 2px;
+}
+
+#sleeper-table tbody{
+  display: inline;  
+}
+
+#sleeper-div-lower, #sleeper-div-upper{
+  padding: 16px;
+  padding-left: 20px;
+  padding-bottom: 8px ;
+  border: #494949 solid 1px;
+  display: inline-block !important;
+  position: relative;
+}
+
+#sleeper-div-lower p,#sleeper-div-upper p{
+  position: absolute;
+  transform: rotate(-90deg) translate(-100%);
+  left: -12px;
+}
+
+#sleeper-div #title{
+  margin: 0;
+  font-size: 12px;
+  color: #999999;
+  text-align: center;
 }
 
 
@@ -14,13 +111,17 @@
     padding:4px 1% !important;
 }
 
-
+#searchResult-container{
+  padding: 20px 16px;
+}
 
 .table-header{
     background-color:#DDD;
+    margin-bottom: 10px; 
+    cursor: pointer;
 }
 #search-table-result div.row{
-    padding: 8px 16px;
+    padding: 10px 16px;
 }
 
 #search-table-result .table-content div{
@@ -33,6 +134,10 @@
 
 .filter-div{
     margin-top: 24px;
+}
+
+.active-filter{
+  font-weight: bold;
 }
 
 .noUi-target,.noUi-target * {
