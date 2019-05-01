@@ -3,7 +3,7 @@ $(document).ready(() => {
     let navTemplates = $("#searchform-template").html();
     console.log(navTemplates);
     let compilednavTemplates = Handlebars.compile(navTemplates);
-    $.ajax("/public/partials/handlebars-searchform-partial.html").done((navDetail) => {
+    $.ajax("/partials/handlebars-searchform-partial.html").done((navDetail) => {
         $("body").append(navDetail);
         Handlebars.registerPartial("searchformPartial", $("#searchform-detail-template").html());
 

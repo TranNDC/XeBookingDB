@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     let navTemplates = $("#navbar-guess-template").html();
     let compilednavTemplates = Handlebars.compile(navTemplates);
-    $.ajax("/public/partials/handlebars-navbar-guess-partial.html").done((navDetail) => {
+    $.ajax("/partials/handlebars-navbar-guess-partial.html").done((navDetail) => {
         $("body").append(navDetail);
         Handlebars.registerPartial("navbarGuessPartial", $("#navbar-guess-detail-template").html());
 
