@@ -1,0 +1,174 @@
+.panel-right {
+    margin-left: -60px;
+}
+
+
+
+.a3-title {
+    margin-top: 45px !important;
+    margin-bottom: 45px !important;
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.b3-options {
+    align-content: center;
+    justify-content: space-around;
+    margin-left: 0px !important;
+    margin-right: 1px !important;
+
+}
+
+.b3-choice {
+    width: 101%;
+
+    border-bottom: 1px solid #999999;
+    float: left;
+    padding-left: 25%;
+    padding-right: 12%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.b3-chosen {
+    border-right: 4px solid #d70303;
+}
+
+.b3-icon {
+    margin-top: 4px;
+    float: left;
+
+}
+
+.b3-textOpt {
+    color: #494949;
+    float: left;
+    font-size: 22px;
+}
+
+.panel-left {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.a3-form {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.b3-options a:hover {
+    border-right: 4px solid #d70303;
+}
+
+#logout {
+    margin-top: 145%;
+    margin-bottom: 5%;
+    text-align: center;
+    color: #d70303;
+    font-size: 22px;
+}
+
+#b3-logout-icon {
+    width: 36px;
+    height: 27px;
+}
+
+#logout a:hover {
+    color: #d70303;
+    font-size: x-large;
+}
+
+.b3-header-profile {
+    padding-left: 25%;
+    padding-top: 3%;
+    position: relative;
+    display: block;
+}
+
+#b3-header-avatar {
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    float: left;
+}
+
+.box {
+    position:absolute;
+    margin-top: 5%;
+}
+
+.chooser {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+    margin-top: 18%;
+}
+
+#b3-icon-edit-fullname,
+#b3-icon-edit-password,
+#b3-icon-edit-phone,
+#b3-icon-edit-location,
+#b3-icon-edit-email{
+    cursor: pointer;
+    position: absolute;
+    margin-left: -18%;
+    margin-top: 3%;
+}
+
+
+.b3-title-name {
+    margin-left: 35%;
+    font-size: 28px;
+    margin-top: 10%;
+}
+
+.b3-title-location {
+    margin-left: 35%;
+    font-size: 18px;
+}
+
+.b3-icon-edit {
+    border: 1px solid #d70303;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #d70303;
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 35%;
+
+}
+
+.b3-form-edit {
+    margin-top: 7%;
+}
+
+.b3-title-form-opts {
+    margin-left: 9%;
+}
+
+input {
+    width: 80% !important;
+    margin-bottom: 3%;
+    height: 45px !important;
+}
+
+.btn-primary {
+    color: white !important;
+    width: 150px !important;
+    height: 55px !important;
+    font-size: 20px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    margin-top: 3% !important;
+}
+
+input:read-only {
+    background-color: #eeeeee;
+}
