@@ -98,7 +98,7 @@ a:hover {
 }
 
 .box {
-    position:absolute;
+    position: absolute;
     margin-top: 5%;
 }
 
@@ -107,14 +107,14 @@ a:hover {
     z-index: 1;
     opacity: 0;
     cursor: pointer;
-    margin-top: 18%;
+    margin-top: 13%;
 }
 
 #b3-icon-edit-fullname,
 #b3-icon-edit-password,
 #b3-icon-edit-phone,
 #b3-icon-edit-location,
-#b3-icon-edit-email{
+#b3-icon-edit-email {
     cursor: pointer;
     position: absolute;
     margin-left: -18%;
@@ -136,11 +136,11 @@ a:hover {
 .b3-icon-edit {
     border: 1px solid #d70303;
     border-radius: 50%;
-    padding: 5px;
+    padding: 3px;
     background-color: #d70303;
     position: absolute;
-    margin-top: 20%;
-    margin-left: 35%;
+    margin-top: 15%;
+    margin-left: 33%;
 
 }
 
