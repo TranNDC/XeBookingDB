@@ -163,6 +163,41 @@ body{
   font-weight: bold;
 }
 
+
+.a2-nav-link{
+  border:none !important;
+  border-bottom: #999999 1px solid !important;
+  color: #999999;
+}
+
+.a2-nav-link:hover{
+  border:none !important;
+  border-bottom: #999999 1px solid !important;
+  color: #494949;
+}
+
+.a2-nav-link.active{
+  border-bottom: #494949 5px solid !important;
+  color: #494949;
+}
+
+.modal-header{
+  border-bottom:none !important;
+}
+
+.nav-tabs{
+  border:none !important;
+}
+
+#a2-btn-step-3{
+  font-size:16px;
+  padding: 8px 4 !important;
+  width: auto;
+}
+
+
+
+
 .noUi-target,.noUi-target * {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

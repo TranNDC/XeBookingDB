@@ -1,5 +1,36 @@
 // Requires jQuery
 
+function click1(){
+  var check = $('#formhome')[0].checkValidity();
+  console.log(check);
+  if ($("#formhome")[0].checkValidity()) {
+          $('#menu1').addClass('active');
+          $('#home').removeClass('active');
+          $('#menu1').removeClass('fade');
+          $('#home').addClass('fade');
+          $('#amenu1').addClass('active');
+          $('#ahome').removeClass('active');
+  }
+  else{
+      $("#formhome").find(':submit').click();
+  }
+}
+function click2() {
+  var check = $('#formmenu1')[0].checkValidity();
+  console.log(check);
+  if (check) {
+    $('#menu2').addClass('active');
+    $('#menu1').removeClass('active');
+    $('#menu2').removeClass('fade');
+    $('#menu1').addClass('fade');
+    $('#amenu2').addClass('active');
+    $('#amenu1').removeClass('active');
+  } else {
+    $("#formmenu1").find(':submit').click();
+  }
+}
+
+
 function pricerange(){
     $('.noUi-handle').on('click', function() {
         $(this).width(50);
