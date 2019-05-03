@@ -82,21 +82,32 @@ $(document).ready(() => {
         $('.sleeper:not(.sleeper-disabled)').on('click',function(){
             $(this).toggleClass('sleeper-active');
         });
-        function click1(){
-            var check = $('#formhome').checkValidity();
-            console.log(check);
-            if ($("#formhome")[0].checkValidity()) {
-                    $('#menu1').addClass('active');
-                    $('#home').removeClass('active');
-                    $('#menu1').removeClass('fade');
-                    $('#home').addClass('fade');
-                    $('#amenu1').addClass('active');
-                    $('#ahome').removeClass('active');
+
+        $(".page-link").click(function () {
+            let textthis = $(this).text();
+            let text = $(".page-link.active").text();
+            if (textthis === '<') {
+                if (text != 1) {
+                    let tmp = parseInt(text) - 1;
+                    tmp = ".page-link." + tmp;
+                    console.log(tmp);
+                    $(".page-link.active").removeClass('active');
+                    $(tmp).addClass('active');
+                }
+            } else
+            if (textthis == ">") {
+                if (text != 3) {
+                    let tmp = parseInt(text) + 1;
+                    tmp = ".page-link." + tmp;
+                    $(".page-link.active").removeClass('active');
+                    $(tmp).addClass('active');
+                }
+            } else {
+                $(".page-link.active").removeClass('active');
+                $(this).addClass('active');
             }
-            else{
-                $("#formhome").find(':submit').click();
-            }
-        }
+        });
+        
         // $('#a2-btn-step-1').click(function(){
         //     $('#menu1').addClass('active');
         //     $('#home').removeClass('active');

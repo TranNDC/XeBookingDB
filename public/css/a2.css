@@ -17,6 +17,18 @@ body{
 .a2-searchform{
     justify-content: center;
 }
+.page-item .page-link{
+  border:none !important;
+  color: #999999 !important;
+  padding:4px 8px !important;
+  margin:4px;
+}
+
+.page-item  .active{
+  border-bottom:#494949 solid 2px !important;
+  color: #494949 !important;
+}
+
 
 .sleeper-rec {
   position: absolute;
