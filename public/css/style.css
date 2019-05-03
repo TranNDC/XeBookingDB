@@ -20,9 +20,9 @@
   align-items: center;
 }
 
-.nav-item {
+#my-navbar .nav-item {
   margin: 0px 8px;
-  height: 40px;
+  height: 40px !important;
   text-align: center;
   vertical-align: middle;
 
@@ -32,7 +32,7 @@
 #my-navbar {
   background-color: white !important;
   border-bottom: #494949 solid 1px;
-  padding:0px 8px !important;
+  padding:4px 16px !important;
 }
 
 h1 {
@@ -64,6 +64,12 @@ h1 {
 
 .my-inpyt-text {
   border-bottom: #999999 solid 1px !important;
+  padding-bottom: 4px !important;
+  margin: 0 !important;
+}
+
+#my-navbar input{
+  height:38px !important;
 }
 
 .my-inpyt-text:focus {
@@ -99,7 +105,7 @@ button.dropdown-toggle{
   width: 100% !important;
   padding:0 !important;
   display: inline !important;
-
+  margin-right: 64px;
 }
 
 span{

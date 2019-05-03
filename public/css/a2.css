@@ -40,9 +40,10 @@ body{
     position: relative;
     border-radius: 3px;
     margin:auto !important;
+    cursor: pointer;
 }
 
-.sleeper-rec {
+.sleeper div {
   display: inline-block;
   position: absolute;
   left: 85.42%;
@@ -59,12 +60,34 @@ body{
 
 
 .sleeper-active {
-  border-color: #56C568;
+  border-color: #56C568 !important;
   color: #56C568;
 }
 
+.sleeper-active div {
+  border-color: #56C568 !important;
+  color: #56C568;
+}
+
+.sleeper-disabled {
+  border-color: #999999;
+  background-color: #999999;
+}
+
+.sleeper-disabled:hover {
+  border-color: #999999 !important;
+  background-color: #999999;
+  cursor: default;
+}
+
+.sleeper-disabled div {
+  border-color: #999999;
+  background-color: white;
+}
+
 .sleeper:hover {
-  border-color: #56C568;
+  border-color: #494949;
+  color: #494949;
 }
 
 #sleeper-table td{

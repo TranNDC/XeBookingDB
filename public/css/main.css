@@ -2835,7 +2835,8 @@ input[type=button].btn-block {
 }
 
 .dropdown-menu-right {
-  right: 0;
+  top: 40px;
+  right: 72px;
   left: auto;
 }
 

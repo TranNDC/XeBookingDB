@@ -73,14 +73,15 @@ var res={results:[{
 $(document).ready(() => {
 
     let navTemplates = $("#searchResult-template").html();
-    console.log(navTemplates);
     let compilednavTemplates = Handlebars.compile(navTemplates);
     $.ajax("partials/handlebars-search-result-partial.html").done((navDetail) => {
         $("body").append(navDetail);
-        console.log(navDetail);
         Handlebars.registerPartial("searchResultPartial", $("#searchResult-detail-template").html());
         $('#searchResult-container').html(compilednavTemplates(res));
 
+        $('.sleeper:not(.sleeper-disabled)').on('click',function(){
+            $(this).toggleClass('sleeper-active');
+        });
     });
 
 
