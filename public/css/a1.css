@@ -33,7 +33,7 @@
 }
 
 .carousel-control-prev:link{
-    transform: translateX(-50%);
+    transform: translateX(-120%);
     font-size: 250%;
     width:2.5rem;
 
@@ -42,7 +42,7 @@
 }
 
 .carousel-control-prev:hover{
-    transform: translateX(-50%);
+    transform: translateX(-120%);
     color: black !important;
 }
 
