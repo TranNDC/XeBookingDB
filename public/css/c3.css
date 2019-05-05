@@ -1,0 +1,109 @@
+.container-fluid{
+    padding: 20px;
+    padding-left: 75px;
+   
+}
+
+.c3-img{
+    width: 100% !important;
+    height: 24% !important;
+    border-radius: 5px;
+    margin-bottom: 6px;
+}
+
+.nav{
+    margin-top: 10px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    
+}
+.nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    font-size: 16px;
+
+}
+
+.nav-link:hover {
+    border: none;
+}
+
+a{
+    text-decoration: none;
+    color: #999999;
+   
+}
+
+.block-center{
+    height: 100%;
+    margin-left: 0px;
+}
+
+.c3-form{
+    background-color: white;
+    border: 1px solid #494949;
+    border-radius: 5px;
+    padding: 10px 10px !important;
+    z-index: 10;
+}
+
+#date{
+    color: #999999;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.block-right{
+    margin-left: 10px;
+    height: 100%;
+
+}
+
+#revenue{
+    margin-top: 5px;
+}
+
+#num-of-booking{
+    margin-top: 5px;
+}
+
+#bus-type{
+    margin-top: 5px;
+}
+#bus-route{
+    margin-top: 5px;
+}
+
+#chart_donut{
+    width: 80%;
+    height: auto;
+    position: absolute;
+    margin-left: -20%;
+    margin-top: -7%;
+    
+}
+
+#chart_bustype{
+    width: 80%;
+    height: auto;
+    position: absolute;
+    margin-left: -20%;
+    margin-top: -7%;
+}
+
+#chart_busroute{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    margin-left: -15%;
+    margin-top: -5%;
+}
+#paddingbot{
+    padding-bottom: 18px;
+
+}
