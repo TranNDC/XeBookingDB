@@ -16,6 +16,11 @@ $(document).ready(function () {
 
     document.getElementById("date").innerHTML += today;
 
+/*    animateValue("num-signup", 0, 1000000, 1);
+    animateValue("num-sale", 0, 100000, 1);
+    animateValue("num-visit", 0, 100000, 1);
+    animateValue("num-revenue", 0, 1000000, 1);
+*/
     //column chart
     google.charts.load('current', {
         packages: ['corechart', 'bar']
@@ -46,15 +51,18 @@ $(document).ready(function () {
 function drawChartBusRoute() {
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['New York - Dallas',52],
+        ['New York - Dallas', 52],
         ['Ho Chi Minh - Dallas', 24],
         ['Dallas - Ho Chi Minh', 14],
-        ['Other',10]
+        ['Other', 10]
     ]);
 
     var options = {
-        colors: ['#d70303','#56c568','#3fa2f7','#999999'],
+        colors: ['#d70303', '#56c568', '#3fa2f7', '#999999'],
         pieSliceText: "none",
+        legend: {
+            position: 'right'
+        },
         animation: {
             duration: 1000,
             easing: 'in',
@@ -73,13 +81,13 @@ function drawChartBusRoute() {
 function drawChartBusType() {
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Normal',30],
+        ['Normal', 30],
         ['Air', 30],
         ['Sleeper', 40]
     ]);
 
     var options = {
-        colors: ['#999999', '#d70303','#56c568'],
+        colors: ['#999999', '#d70303', '#56c568'],
         pieHole: 0.6,
         legend: "none",
         pieSliceText: "none",
@@ -154,7 +162,7 @@ function drawColColors() {
     ]);
 
     var options = {
-        title: 'Recently revenue',
+        title: 'Revenue from May 1st, 2019 to Now',
         colors: ['#d70303'],
         hAxis: {
             title: 'Day of month',
@@ -177,7 +185,7 @@ function drawColColors() {
 
 function drawChartLine() {
     var data = google.visualization.arrayToDataTable([
-        ['Day', 'Number'],
+        ['Day', 'Unit'],
         ['May 1', 10],
         ['May 2', 14],
         ['May 3', 16],
@@ -190,14 +198,18 @@ function drawChartLine() {
     ]);
 
     var options = {
-        title: 'Recently number of booking bus',
+        title: 'Number of booking bus from May 1st, 2019 to Now',
         colors: ['#d70303'],
         hAxis: {
             title: 'Day of month',
 
         },
+        legend: {
+            line: 2,
+            position: 'right'
+        },
         vAxis: {
-            title: 'Revenue every day'
+            title: 'Number of booking'
         },
         animation: {
             duration: 1000,
@@ -208,4 +220,19 @@ function drawChartLine() {
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_line'));
     chart.draw(data, google.charts.Line.convertOptions(options));
+}
+
+function animateValue(id, start, end, duration) {
+    var range = end - start;
+    var current = start;
+    var increment = end > start ? 10000 : -10000;
+    var stepTime = Math.abs(Math.floor(duration / range));
+    var obj = document.getElementById(id);
+    var timer = setInterval(function () {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
 }

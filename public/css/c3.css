@@ -1,6 +1,6 @@
 .container-fluid{
     padding: 20px;
-    padding-left: 75px;
+    padding-left: 7%;
    
 }
 
@@ -9,6 +9,11 @@
     height: 24% !important;
     border-radius: 5px;
     margin-bottom: 6px;
+
+    
+
+    -webkit-filter: brightness(0.70);
+    filter: brightness(0.70);
 }
 
 .nav{
@@ -30,7 +35,7 @@
 }
 
 .nav-link:hover {
-    border: none;
+    border: transparent;
 }
 
 a{
@@ -94,6 +99,7 @@ a{
     position: absolute;
     margin-left: -20%;
     margin-top: -7%;
+    z-index: 0;
 }
 
 #chart_busroute{
@@ -101,9 +107,64 @@ a{
     height: auto;
     position: absolute;
     margin-left: -15%;
-    margin-top: -5%;
+    margin-top: -4%;
 }
 #paddingbot{
     padding-bottom: 18px;
 
 }
+
+.box{
+    position: relative;
+   
+}
+.box .text{
+    color: white;
+    position: absolute;
+    z-index: 999;
+    left: 5%;
+    bottom: 10%; /* Adjust this value to move the positioned div up and down */
+}
+
+#num-signup,
+#num-sale,
+#num-visit,
+#num-revenue{
+    font-size: 24px;
+}
+
+.col-lg-2 a:hover{
+    -webkit-filter: blur(1px); /* Safari 6.0 - 9.0 */
+    filter: blur(1px);
+
+    -webkit-filter: saturate(7); 
+    filter: saturate(7);
+
+}
+
+.title-donut{
+    font-size: 18px;
+    margin-left: 50%;
+}
+
+.title-chart{
+    border-bottom: 1px solid #494949;
+}
+
+.subtitle-donut{
+    font-size: 14px;
+    margin-left: 50%;
+    color: #999999;
+    margin-bottom: 3px;
+}
+
+.btn-primary{
+    font-size: 12px !important;
+    color: white !important;
+    margin-left: 50% !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 9%;
+    z-index: 9999;
+}
+
