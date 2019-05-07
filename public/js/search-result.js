@@ -107,24 +107,8 @@ $(document).ready(() => {
                 $(this).addClass('active');
             }
         });
-        
-        // $('#a2-btn-step-1').click(function(){
-        //     $('#menu1').addClass('active');
-        //     $('#home').removeClass('active');
-        //     $('#menu1').removeClass('fade');
-        //     $('#home').addClass('fade');
-        //     $('#amenu1').addClass('active');
-        //     $('#ahome').removeClass('active');
-        //   });
-        //   $('#a2-btn-step-2').click(function(){
-        //     $('#menu2').addClass('active');
-        //     $('#menu1').removeClass('active');
-        //     $('#menu2').removeClass('fade');
-        //     $('#menu1').addClass('fade');
-        //     $('#amenu2').addClass('active');
-        //     $('#amenu1').removeClass('active');
-        //   });
+        $('[data-toggle="tooltip"]').tooltip();   
+    
     });
 
-
-})
+});
