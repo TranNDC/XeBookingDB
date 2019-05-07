@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>XeBooking</title>
+    <link rel="icon" href="img/Logo/icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/a1.css">
+    <link rel="stylesheet" href="css/c3.css">
+    <link rel="stylesheet" href="css/c1.css">
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+
+<body id="a1-body">
+    <div class="a1-overlay"></div>
+    <span id="nav-container">
+        <script id="navbar-user-template" type="text/x-handlebars-template">
+            {{> navbarUserPartial}}
+        </script>
+    </span>
+
+    <div class="container ">
+        <div class="row justify-content-center align-content-center">
+            <div class="col-6">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" href="c1_master-data.html">Master Data</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" href="#nav-transaction">Transaction</a>
+                        <a class="nav-item nav-link " id="nav-contact-tab" href="c3_report.html">Report</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="nav-data" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="c3-form">
+                            <h4>TOOL</h4>
+                            <div class="tools">
+                                <a href="#" id="create" class="btn btn-custom">Create</a>
+                                <a href="#" id="import" class="btn btn-custom">Import</a>
+                                <br>
+                                <a href="#" id="export" class="btn btn-custom">Export</a>
+                                <a href="#" id="delete" class="btn btn-custom">Delete selected</a>
+                            </div>
+                        </div>
+                        <div class="c3-form">
+                            <h4>FILTER</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <div class="c3-form">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/handlebars-v4.1.2.js"></script>
+    <script src="js/a1.js"></script>
+    <script src="js/b3.js"></script>
+    <script src="js/c3.js"></script>
+    <script src="js/nav-user-input.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</body>
+
+</html>
