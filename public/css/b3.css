@@ -1,5 +1,9 @@
 .panel-right {
-    margin-left: -60px;
+    margin-left: -3%;
+}
+
+.panel-left {
+    margin-right: -3%;
 }
 
 
@@ -29,10 +33,10 @@ a:hover {
 
     border-bottom: 1px solid #999999;
     float: left;
-    padding-left: 25%;
+    padding-left: 20%;
     padding-right: 12%;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-bottom: 8px !important;
+    padding-top: 8px !important;
 }
 
 .b3-chosen {
@@ -45,10 +49,26 @@ a:hover {
 
 }
 
+.b3-table{
+    position: relative;
+    height: 830px;
+}
+
+
+.b3-fixed-height{
+    height: 100% !important;
+    width: 100%;
+}
+
 .b3-textOpt {
     color: #494949;
     float: left;
     font-size: 22px;
+}
+
+.b3-content-containter{
+    height:90%;
+    overflow: hidden;
 }
 
 .panel-left {
@@ -84,31 +104,45 @@ a:hover {
 }
 
 .b3-header-profile {
-    padding-left: 25%;
-    padding-top: 3%;
+    /* padding-left: 40px;
+    padding-top: 60px;
     position: relative;
-    display: block;
+    display: block; */
+    /* width: 100%;
+    height: auto; */
+    position: relative;
+    width: 100%;
 }
-
+.b3-avatar{
+    /* margin-left:25%; */
+    position: relative;
+    display: inline-block;
+}
 #b3-header-avatar {
-    width: 30%;
+    width: 200px;
     height: auto;
     border-radius: 50%;
     float: left;
+    
 }
 
 .box {
     position: absolute;
-    margin-top: 5%;
+    bottom: 5%;
+    right: -3%;
 }
 
 .chooser {
-    position: absolute;
-    z-index: 1;
     opacity: 0;
-    cursor: pointer;
-    margin-top: 13%;
+    z-index: 20000;
+    cursor: pointer !important;
+    margin:0 !important;
+    padding:0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    transform: translateX(-100%);
 }
+
 
 #b3-icon-edit-fullname,
 #b3-icon-edit-password,
@@ -117,19 +151,20 @@ a:hover {
 #b3-icon-edit-email {
     cursor: pointer;
     position: absolute;
-    margin-left: -18%;
-    margin-top: 3%;
+    right: 15%;
+    bottom: 24px;
 }
 
 
 .b3-title-name {
-    margin-left: 35%;
+    /* float: left; */
     font-size: 28px;
-    margin-top: 10%;
+    /* margin-top: 10%; */
+    /* margin-left: 5%; */
 }
 
 .b3-title-location {
-    margin-left: 35%;
+    /* margin-left: 35%; */
     font-size: 18px;
 }
 
@@ -138,14 +173,15 @@ a:hover {
     border-radius: 50%;
     padding: 3px;
     background-color: #d70303;
-    position: absolute;
-    margin-top: 15%;
-    margin-left: 33%;
+    /* position: absolute;
+    margin-bottom: 15%;
+    margin-left: 33%; */
 
 }
 
 .b3-form-edit {
-    margin-top: 7%;
+    margin: 3%;
+
 }
 
 .b3-title-form-opts {

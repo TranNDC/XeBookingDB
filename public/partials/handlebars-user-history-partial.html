@@ -1,0 +1,37 @@
+<script id="user-history-detail-template" type="text/x-handlebars-template">
+    <div class="container-fluid  text-center d-flex flex-column my-table b3-table" id="search-table-result">
+           <div class="row table-header big-label">
+                    <div class="col-2 active-filter">Date <i class="fas fa-arrow-down"></i></div>
+                    <div class="col-2">Palace License</div>
+                    <div class="col-2">Departure</div>
+                    <div class="col-2">Information</div>
+                    <div class="col-2">Price</div>
+                    <div class="col-2">Status</div>
+            </div>
+            <div class="b3-content-containter">
+                        {{#each results}}
+
+                        <div class="row table-content">
+                                <div class="col-2  active-filter">{{date}}</div>
+                                <div class="col-2">{{liscensePlate}}</div>
+                                <div class="col-2">{{departure}}</div>
+                                <div class="col-2">{{fromLocation}}-{{toLocation}}</div>
+                                <div class="col-2">{{price}}</div>
+                                <div class="col-2">{{#if status}}<i class="fas fa-check-circle" style="color:#56C568"></i>{{else}}<i
+                                                class="far fa-circle" style="color:#999"></i>{{/if}}</div>
+                        </div>
+            
+                        <hr>
+                        {{/each}}
+            </div>
+
+
+            <ul class="pagination d-flex justify-content-center mt-auto">
+                    <li class="page-item"><a class="page-link" href="#">
+                                    <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">></a></li>
+            </ul>
+    </div>
+</script>

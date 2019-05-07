@@ -17,17 +17,7 @@ body{
 .a2-searchform{
     justify-content: center;
 }
-.page-item .page-link{
-  border:none !important;
-  color: #999999 !important;
-  padding:4px 8px !important;
-  margin:4px;
-}
 
-.page-item  .active{
-  border-bottom:#494949 solid 2px !important;
-  color: #494949 !important;
-}
 
 
 .sleeper-rec {
@@ -150,14 +140,7 @@ body{
   padding: 20px 16px;
 }
 
-.table-header{
-    background-color:#DDD;
-    margin-bottom: 10px; 
-    cursor: pointer;
-}
-#search-table-result div.row{
-    padding: 10px 16px;
-}
+
 
 #search-table-result .table-content div{
     margin: auto;
@@ -169,10 +152,6 @@ body{
 
 .filter-div{
     margin-top: 24px;
-}
-
-.active-filter{
-  font-weight: bold;
 }
 
 

@@ -73,4 +73,19 @@ $(document).ready(function()
         $('#b3-icon-edit-location').attr('src','img/icon/baseline-create-24px-grey.svg');    
     }
  });
+
+ $('.b3-choice').click(function(){
+    let id_old_chosen = $('.b3-choice.b3-chosen').attr('id');
+    id_old_chosen = "#b3"+id_old_chosen.slice(7);
+    let id = $(this).attr('id');
+    id = "#b3"+id.slice(7);
+    console.log(id);
+    $(id_old_chosen).addClass('hidden');
+    $(id).removeClass('hidden');
+
+    $('.b3-choice.b3-chosen').removeClass('b3-chosen');
+    $(this).addClass('b3-chosen');
+    
+ });
+
  });
