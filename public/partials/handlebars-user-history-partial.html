@@ -17,8 +17,17 @@
                                 <div class="col-2">{{departure}}</div>
                                 <div class="col-2">{{fromLocation}}-{{toLocation}}</div>
                                 <div class="col-2">{{price}}</div>
-                                <div class="col-2">{{#if status}}<i class="fas fa-check-circle" style="color:#56C568"></i>{{else}}<i
-                                                class="far fa-circle" style="color:#999"></i>{{/if}}</div>
+                                <div class="col-2">
+                                        {{#if status}}
+                                        <a href="#" data-toggle="tooltip" title="Used" data-placement="right" style="cursor:default">
+                                                <i class="fas fa-check-circle" style="color:#56C568"></i>
+                                        </a>
+                                        {{else}}
+                                        <a href="#" data-toggle="tooltip" title="Unused" data-placement="right" style="cursor:default">
+                                                <i class="far fa-circle" style="color:#999"></i>
+                                        </a>
+                                        {{/if}}
+                                </div>
                         </div>
             
                         <hr>

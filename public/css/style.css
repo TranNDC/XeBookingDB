@@ -35,13 +35,69 @@
   padding:4px 16px !important;
 }
 
+#my-navbar.admin-navbar {
+  background-color: #494949 !important;
+  border-bottom: #494949 solid 1px;
+  color:white !important;
+  padding:4px 16px !important;
+}
+
+#my-navbar.admin-navbar .nav-link{
+  color:white !important;
+}
+
+#my-navbar.admin-navbar input{
+  color:white !important;
+}
+
+#my-navbar.admin-navbar .my-inpyt-text {
+  border-bottom: #ddd solid 1px !important;
+  padding-bottom: 4px !important;
+  margin: 0 !important;
+}
+
+#my-navbar.admin-navbar .my-inpyt-text::placeholder {
+  color:#ccc;
+}
+
+#my-navbar.admin-navbar button{
+  color: white !important;
+}
+
+#my-navbar.admin-navbar button:hover{
+  transform: scale(1.1);
+}
+
+
 h1 {
   font-size: 48px !important;
   margin: 24px !important;
 }
 
+h5{
+  font-size: 22px !important;
+}
 
+h4{
+  font-size: 28px !important;
+}
 
+.small-text{
+  font-size: 16px !important;
+}
+
+.lighter-text{
+  color: #999999 !important;
+}
+
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+.modal-content .nav-item{
+  flex: 1 1 0;
+ 
+}
 
 .custom-control-input:focus~.custom-control-label::before {
   box-shadow: 0 0 0 0.2rem rgba(9, 9, 9, 0.25) !important;
