@@ -1,0 +1,51 @@
+<script id="master-data-detail-template" type="text/x-handlebars-template">
+        <div class="container-fluid  text-center d-flex flex-column my-table b3-table" id="search-table-result">
+           <div class="row table-header big-label">
+                    <div class="col-2 active-filter"><a class="action-sm" href="#">
+                                <i class="far fa-circle"></i>
+                        </a> Departure <i class="fas fa-arrow-down"></i></div>
+                    <div class="col-2">Arrival</div>
+                    <div class="col-2">Bus Route</div>
+                    <div class="col-2">Bus ID</div>
+                    <div class="col-2">Price</div>
+                    <div class="col-2">Action</div>
+            </div>
+            <div class="b3-content-containter">
+                        {{#each results}}
+
+                        <div class="row table-content">
+                                <div class="col-2  active-filter"><a class="action" href="#">
+                                                <i class="far fa-circle"></i>
+                                        </a> 
+                                        {{date}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{departure}}</div>
+                                <div class="col-2">{{date}}<br>{{arrival}}</div>
+                                <div class="col-2">{{fromLocation}}-{{toLocation}}</div>
+                                <div class="col-2">{{busID}}</div>
+                                <div class="col-2">{{price}}</div>
+                                <div class="col-2"> 
+                                        <a class="action" href="#">
+                                                <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a class="action" href="#">
+                                                <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a class="action" href="#">
+                                                <i class="fas fa-trash"></i>
+                                        </a>        
+                                </div>
+                        </div>
+            
+                        <hr>
+                        {{/each}}
+            </div>
+
+
+            <ul class="pagination d-flex justify-content-center mt-auto">
+                    <li class="page-item"><a class="page-link" href="#">
+                                    <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">></a></li>
+            </ul>
+    </div>
+</script>
