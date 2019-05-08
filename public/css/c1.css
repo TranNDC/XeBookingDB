@@ -1,0 +1,27 @@
+.tools{
+
+    text-align: center;
+}
+
+#import,#delete{
+    margin-left: 10px;
+}
+
+#create,#import{
+    margin-bottom: 10px;
+}
+
+.btn-custom{
+    width: 110px;
+    font-size: 14px;
+    background-color: #DDDDDD;
+
+}
+
+.tools a:hover{
+    background-color: #494949;
+    color: white;
+}
+.c3-form{
+    margin-bottom: 10px;
+}

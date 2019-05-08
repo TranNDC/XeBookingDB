@@ -16,11 +16,11 @@ $(document).ready(function () {
 
     document.getElementById("date").innerHTML += today;
 
-/*    animateValue("num-signup", 0, 1000000, 1);
-    animateValue("num-sale", 0, 100000, 1);
-    animateValue("num-visit", 0, 100000, 1);
-    animateValue("num-revenue", 0, 1000000, 1);
-*/
+    /*    animateValue("num-signup", 0, 1000000, 1);
+        animateValue("num-sale", 0, 100000, 1);
+        animateValue("num-visit", 0, 100000, 1);
+        animateValue("num-revenue", 0, 1000000, 1);
+    */
     //column chart
     google.charts.load('current', {
         packages: ['corechart', 'bar']
@@ -96,8 +96,7 @@ function drawChartBusType() {
             easing: 'in',
             startup: true
         },
-        backgroundColor: 'transparent'
-
+        backgroundColor: 'transparent',
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_bustype'));

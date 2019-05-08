@@ -1,7 +1,8 @@
 .container-fluid{
     padding: 20px;
-    padding-left: 7%;
-   
+    padding-left: 3%;
+    padding-right: 3%;
+    
 }
 
 .c3-img{
@@ -64,7 +65,7 @@ a{
 }
 
 .block-right{
-    margin-left: 10px;
+   /* margin-left: 10px;*/
     height: 100%;
 
 }
@@ -79,17 +80,20 @@ a{
 
 #bus-type{
     margin-top: 5px;
+    position: relative;
 }
 #bus-route{
     margin-top: 5px;
 }
+
+
 
 #chart_donut{
     width: 80%;
     height: auto;
     position: absolute;
     margin-left: -20%;
-    margin-top: -7%;
+    margin-top: -6%;
     
 }
 
@@ -97,9 +101,9 @@ a{
     width: 80%;
     height: auto;
     position: absolute;
-    margin-left: -20%;
+    margin-left: -18%;
     margin-top: -7%;
-    z-index: 0;
+    z-index: 0 !important;
 }
 
 #chart_busroute{
@@ -107,10 +111,10 @@ a{
     height: auto;
     position: absolute;
     margin-left: -15%;
-    margin-top: -4%;
+    margin-top: -2%;
 }
 #paddingbot{
-    padding-bottom: 18px;
+    padding-bottom: 5%;
 
 }
 
@@ -148,6 +152,7 @@ a{
 }
 
 .title-chart{
+    font-size: 18px;
     border-bottom: 1px solid #494949;
 }
 
@@ -161,10 +166,14 @@ a{
 .btn-primary{
     font-size: 12px !important;
     color: white !important;
-    margin-left: 50% !important;
+    margin-left: 45% !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
-    margin-bottom: 9%;
-    z-index: 9999;
+    margin-bottom: 9% !important;
+    z-index: 9999 !important;
+    position: absolute;
 }
 
+#bus-type .btn-primary{
+    margin-left: 48% !important;
+}

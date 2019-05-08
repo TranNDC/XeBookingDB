@@ -31,12 +31,9 @@
             <div class="col-6">
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-data"
-                            role="tab">Master Data</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-transaction"
-                            role="tab">Transaction</a>
-                        <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" href="#nav-report"
-                            role="tab">Report</a>
+                        <a class="nav-item nav-link " id="nav-home-tab" href="c1_master-data.html">Master Data</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" href="#nav-transaction">Transaction</a>
+                        <a class="nav-item nav-link active" id="nav-contact-tab" href="c3_report.html">Report</a>
                     </div>
                 </nav>
             </div>
@@ -45,9 +42,9 @@
 
 
     <div class="tab-content">
+        <!--
         <div class="tab-pane fade" id="nav-data" role="tabpanel">
             <div class="container-fluid">
-
             </div>
         </div>
 
@@ -55,8 +52,8 @@
             <div class="container-fluid">
 
             </div>
-        </div>
-
+        </div> 
+        -->
         <div class="tab-pane fade show active" id="nav-report" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
@@ -64,7 +61,7 @@
                         <a href="" id="sign-ups" class="box">
                             <img class="c3-img" src="img/C3/1.jpg" alt="">
                             <div class="text">
-                                <div id="num-signup">1.000.000</div>
+                                <div id="num-signup">100.000</div>
                                 Online signups
                             </div>
                         </a>
@@ -85,7 +82,7 @@
                         <a href="" id="total-revenue-month" class="box">
                             <img class="c3-img" src="img/C3/4.jpg" alt="">
                             <div class="text">
-                                <div id="num-revenue">$1.000.000</div>
+                                <div id="num-revenue">$100.000</div>
                                 Total revenue this month
                             </div>
                         </a>
@@ -106,15 +103,15 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 block-right">
+                    <div class="col-lg-5 block-right">
                         <div id="user-visit-book" class="c3-form">
                             <div id="chart_donut"></div>
                             <br>
                             <div class="title-donut">Users visit then book bus</div>
                             <div class="subtitle-donut">Calculated from May 1st to Now</div>
                             <a href="#" class="btn btn-primary">REFRESH</a>
-                            <br>
-                            
+                            <br><br>
+
                         </div>
 
                         <div id="bus-type" class="c3-form">
@@ -123,14 +120,14 @@
                             <div class="title-donut">Bus type used most</div>
                             <div class="subtitle-donut">Calculated from May 1st to Now</div>
                             <a href="#" class="btn btn-primary">REFRESH</a>
-                            <br>
+                            <br><br>
                         </div>
 
                         <div id="bus-route" class="c3-form">
                             <div class="title-chart">Bus route booked most</div>
                             <div id="chart_busroute"></div>
                             <br><br><br><br><br>
-                            <div id="paddingbot" ></div>
+                            <div id="paddingbot"></div>
                         </div>
                     </div>
                 </div>
