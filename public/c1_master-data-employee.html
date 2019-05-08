@@ -60,7 +60,8 @@
                         <div class="c3-form">
                             <h4>FILTER</h4>
                             <div class="btn-group" id="btn-group-dropdown">
-                                <button type="button" id="btn-dropdown" class="btn btn-danger">Booking database</button>
+                                <button type="button" id="btn-dropdown" class="btn btn-danger">Employee
+                                    database</button>
                                 <button type="button" id="toggle"
                                     class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
@@ -74,48 +75,34 @@
                             </div>
 
                             <div class="bus-route-search">
-                                <h5>Bus route</h5>
+                                <h5>Employee ID/name</h5>
                                 <div class="row row-custom">
-                                    <div class="col-5">
-                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                            placeholder="From">
-                                    </div>
-                                    <div class="col-2" id="icon-trans">
-                                        <i style="margin:auto 1px" class="fas fa-exchange-alt" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                            placeholder="To">
+                                    <div class="col-12">
+                                        <input type="text" id="bus-id" placeholder="Example: Lê Thành Công">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bus-route-search">
-                                <h5>Time</h5>
-                                <div class="row row-custom">
-                                    <div class="col-6">
-                                        <div class="input-date">
-                                            <input placeholder="From" id="searchform-departureday" type="text"
-                                            class="datepicker-here" data-language='en' data-multiple-dates="3"
-                                            data-multiple-dates-separator=", " data-position='top left' />
-                                            <i class="far fa-calendar-alt icon-date"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="input-date">
-                                                <input placeholder="To" id="searchform-returnday" type="text"
-                                                class="datepicker-here" data-language='en' data-multiple-dates="3"
-                                                data-multiple-dates-separator=", " data-position='top left' />
-                                                <i class="far fa-calendar-alt icon-date"></i>
-                                        </div>
+                                <h5>Position</h5>
+                                <div class="btn-group" id="btn-group-dropdown">
+                                    <button type="button" id="btn-dropdown-light" class="btn btn-danger">Driver</button>
+                                    <button type="button" id="toggle-light"
+                                        class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right"">
+                                            <a class=" dropdown-item" href="#">Driver</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Assistant</a>
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="bus-route-search">
-                                <h5>Price</h5>
+                                <h5>Salary</h5>
                                 <div class="container">
                                     <div class="container row">
                                         <div class="slider-lables col-2 caption p-0">
@@ -160,9 +147,9 @@
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12">
                         <div class="c3-form">
-                            <div id="masterData-container">
-                                <script id="masterData-template" type="text/x-handlebars-template">
-                                    {{> masterDataPartial}}
+                            <div id="masterDataEmployee-container">
+                                <script id="masterDataEmployee-template" type="text/x-handlebars-template">
+                                    {{> masterDataEmployeePartial}}
                                 </script>
                             </div>
                         </div>
@@ -192,7 +179,7 @@
     <!-- Include English language -->
     <script src="dist/js/i18n/datepicker.en.js"></script>
     <script src="js/a2.js"></script>
-    <script src="js/master-data.js"></script>
+    <script src="js/master-data-employee.js"></script>
 </body>
 
 </html>

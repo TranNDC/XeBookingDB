@@ -38,6 +38,27 @@
     background-color: #d70303;
   
 }
+#btn-dropdown-light{
+    width: 80% !important;
+    margin-left: 5%;
+    color: #494949 !important;
+    border-color: #999999 !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;    
+    background-color: white;
+  
+}
+
+#toggle-light{
+    width: 15% !important;
+    margin-right: 5%;
+    border: 1px solid #999999 !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-left: 1px solid #999999 !important; 
+    background-color: white;
+    color: #494949;
+}
 
 #toggle{
     width: 15% !important;
@@ -126,4 +147,12 @@ a:hover{
     position: absolute;
     top: 20%;
     right: 0;
+}
+
+.action-employ{
+    float: left;
+}
+
+.action-sm-employ{
+    float: left;
 }
