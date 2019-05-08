@@ -5,6 +5,14 @@
     
 }
 
+#search-table-result{
+    padding:0 !important;
+}
+
+#search-table-result .row{
+    margin:0 !important;
+}
+
 .c3-img{
     width: 100% !important;
     height: 24% !important;
@@ -176,4 +184,48 @@ a{
 
 #bus-type .btn-primary{
     margin-left: 48% !important;
+}
+
+
+.c3-my-select{
+    outline: none !important;
+    color: #D70303 !important;
+    border: #D70303 solid 1px !important;
+    background: none;
+    width: 170px !important;
+    height : 2.5rem !important;
+    padding: 4px 8px !important;
+    border-radius: 5px !important;
+}
+
+.c3-my-select:focus{
+    outline: none !important;
+    border: inherit solid 1px !important;
+    background: #D70303 !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+.c3-my-select .c3-my-option{
+    background-color: white !important;
+    color: #494949 !important;
+    height: 40px !important;
+    line-height: 2rem !important;
+    border: #D70303 solid 1px !important;
+    outline-color: #D70303 !important;
+    padding: 4px 6px !important;
+}
+
+.c3-my-select .c3-my-option:hover{
+    box-shadow: none !important;
+    background-color: white !important;
+    color: #D70303 !important;
+}
+
+select.decorated option:hover {
+    box-shadow: none!;
+}
+
+select.form-control{
+  height:auto !important;
 }

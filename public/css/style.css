@@ -69,16 +69,35 @@
 }
 
 
-
-
-
 h1 {
   font-size: 48px !important;
   margin: 24px !important;
 }
 
+h5{
+  font-size: 22px !important;
+}
 
+h4{
+  font-size: 28px !important;
+}
 
+.small-text{
+  font-size: 16px !important;
+}
+
+.lighter-text{
+  color: #999999 !important;
+}
+
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+.modal-content .nav-item{
+  flex: 1 1 0;
+ 
+}
 
 .custom-control-input:focus~.custom-control-label::before {
   box-shadow: 0 0 0 0.2rem rgba(9, 9, 9, 0.25) !important;

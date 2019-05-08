@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>XeBooking</title>
+    <link rel="icon" href="img/Logo/icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/a1.css">
+    <link rel="stylesheet" href="css/a2.css">
+    <link rel="stylesheet" href="css/c3.css">
+
+
+
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+
+<body id="a2-body">
+    <div class="a2-overlay"></div>
+    <span id="nav-container">
+        <script id="navbar-admin-template" type="text/x-handlebars-template">
+            {{> navbarAdminPartial}}
+            </script>
+    </span>
+
+    <div class="container ">
+        <div class="row justify-content-center align-content-center">
+            <div class="col-6">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link a2-nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-data"
+                            role="tab">Master Data</a>
+                        <a class="nav-item nav-link a2-nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-transaction"
+                            role="tab">Transaction</a>
+                        <a class="nav-item nav-link a2-nav-link active" id="nav-contact-tab" data-toggle="tab" href="#nav-report"
+                            role="tab">Report</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+        <div class="container-fluid">
+            <div class="row mt-4 d-flex justify-content-center">
+                <div class="col-3 pl-0">
+                    <div class="container border col-12 ml-0 pt-3 p-3">
+                        <h4>FILTER</h4>
+                        <h5 class="mt-3">Trasaction Time</h5>
+                        <div id="transaction-filter-div" class="filter-div m-3">
+                            <div class="container mt-3">
+                                <div class="row">
+                                    <div class="col-6 pl-0 pr-2">
+                                        <label class="form-check-label" for="bday">From</label>
+                                        <input id="searchform-departureday" type="date" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                    <div class="col-6 pr-0 pl-2">
+                                        <label class="form-check-label ml-3" for="bday">To</label>
+                                        <input id="searchform-departureday" type="date" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <select class="c3-my-select" id="sel1">
+                                        <option class="c3-my-option">Today</optionc3-my-option>
+                                        <option class="c3-my-option">Last 7 days</option>
+                                        <option class="c3-my-option">Last 3 days</option>
+                                        <option class="c3-my-option">All time</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <h5 class="mt-3">Departure Time</h5>
+                        <div id="departure-filter-div" class="filter-div m-3">
+                            <div class="container mt-3">
+                                <div class="row">
+                                    <div class="col-6 pl-0 pr-2">
+                                        <label class="form-check-label" for="bday">From</label>
+                                        <input id="searchform-departureday" type="date" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                    <div class="col-6 pr-0 pl-2">
+                                        <label class="form-check-label ml-3" for="bday">To</label>
+                                        <input id="searchform-departureday" type="date" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <select class="c3-my-select" id="sel1">
+                                        <option class="c3-my-option">Next 24h</option>
+                                        <option class="c3-my-option">Next 7 days</option>
+                                        <option class="c3-my-option">Next 3 days</option>
+                                        <option class="c3-my-option">All time</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="mt-3">Client</h5>
+                        <div id="client-filter-div" class="filter-div m-3">
+                            <div class="container mt-3">
+                                    <label for="usr">Client's phone number</label>
+                                    <input type="text" class="form-control" id="usr" placeholder="Phone">
+                            </div>
+                        </div>
+                        <h5 class="mt-3">Bus</h>
+                        <div id="bus-filter-div" class="filter-div m-3">
+                            <div class="container mt-3">
+                                <div class="row">
+                                    <div class="col-6 pl-0 pr-2">
+                                        <label class="form-check-label" for="bday">Time</label>
+                                        <input id="searchform-departureday" type="time" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                    <div class="col-6 pr-0 pl-2">
+                                        <label class="form-check-label ml-3" for="bday">Date</label>
+                                        <input id="searchform-departureday" type="date" id="departureday"
+                                            max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mt-3 d-flex align-items-center">
+                                    <div class="col-5">
+                                        <input type="text" class="small-text form-control-plaintext control-inline my-inpyt-text"
+                                            placeholder="From">
+                                    </div>
+                                    <div class="col-1 text-centur p-0">
+                                        <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" class="small-text form-control-plaintext control-inline my-inpyt-text"
+                                            placeholder="To">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="transaction-container" class="col-8 border">
+                    <script id="transaction-template" type="text/x-handlebars-template">
+                        {{> transactionPartial}}
+                                </script>
+                </div>
+            </div>
+    </div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/handlebars-v4.1.2.js"></script>
+    <script src="js/nav-admin-input.js"></script>
+    <script src="js/transaction.js"></script>
+</body>
+
+</html>
