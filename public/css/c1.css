@@ -1,8 +1,3 @@
-#nav-tab .nav-link {
-    border-bottom: 1px solid #DDDDDD;
-    background-color: transparent;
-}
-
 .tools{
     padding: 5px;
     text-align: center;
@@ -155,4 +150,12 @@ a:hover{
 
 .action-sm-employ{
     float: left;
+}
+
+.nav-tabs .nav-link {
+    border-color: transparent transparent #DDDDDD !important;   
+}
+
+.nav-link:hover {
+    border-bottom: 1px solid #DDDDDD !important;
 }
