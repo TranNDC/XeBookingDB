@@ -1,8 +1,7 @@
 .container-fluid-custom{
     padding: 20px;
-    padding-left: 3%;
-    padding-right: 3%;
-    
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 #search-table-result{
@@ -35,7 +34,7 @@
     font-size: 16px;
     
 }
-.nav-link {
+a.nav-link {
     border: 1px solid transparent;
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
@@ -44,7 +43,7 @@
 }
 
 .nav-link:hover {
-    border: transparent;
+    border: transparent !important;
 }
 
 a{
@@ -78,51 +77,104 @@ a{
 
 }
 
+#name-ad{
+    
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 11% !important;
+}
+.name-ad-info{
+    position: absolute;
+    width: 100%; 
+    top: 15%;
+    left: 5%;
+}
+
 #revenue{
-    margin-top: 5px;
+    padding-bottom: 50% !important;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+#chart_col{
+    position: absolute;
+    left: 0.5%; 
+    top: 15%;
+    width: 99%; 
 }
 
 #num-of-booking{
-    margin-top: 5px;
-}
-
-#bus-type{
-    margin-top: 5px;
+    padding-bottom: 50% !important;
     position: relative;
-}
-#bus-route{
-    margin-top: 5px;
-}
-
-
-
-#chart_donut{
-    width: 80%;
-    height: auto;
-    position: absolute;
-    margin-left: -20%;
-    margin-top: -6%;
-    
-}
-
-#chart_bustype{
-    width: 80%;
-    height: auto;
-    position: absolute;
-    margin-left: -18%;
-    margin-top: -7%;
-    z-index: 0 !important;
-}
-
-#chart_busroute{
+    display: inline-block;
     width: 100%;
-    height: auto;
+}
+
+#chart_line{
     position: absolute;
-    margin-left: -15%;
-    margin-top: -2%;
+    left: 0.5%; 
+    top: 15%;
+    width: 99%; 
+}
+
+#user-visit-book,
+#bus-type{
+    padding-bottom: 30% !important;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+
+#bus-route{
+    padding-bottom: 46% !important;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.info-chart{
+    position: absolute; 
+    top: 25%;
+    right: 5%;;
+    width: 100%;
+}
+
+#chart_donut,
+#chart_bustype{
+    position: absolute;
+    height: 130% !important;
+    width: 70% !important;
+    margin-top: -7%;
+}
+#chart_busroute{
+    width: 113%;
+    height: 90%;
+    margin: 0 !important;
+    margin-left: -5% !important;
+    position: absolute;
 }
 #paddingbot{
     padding-bottom: 5%;
+
+}
+
+#donut-value{
+    position: absolute;
+    left: 22%;
+    top: 39%;
+    font-size: 26px;
+    color: #D70303;
+    font-weight: bold;
+}
+#bus-type-value{
+    position: absolute;
+    left: 18%;
+    top: 40%;
+    font-size: 22px;
+    color: #56c568;
 
 }
 
@@ -135,7 +187,7 @@ a{
     position: absolute;
     z-index: 999;
     left: 5%;
-    bottom: 10%; /* Adjust this value to move the positioned div up and down */
+    bottom: -5px;
 }
 
 #num-signup,
@@ -162,9 +214,11 @@ a{
 .title-chart{
     font-size: 18px;
     border-bottom: 1px solid #494949;
+    position: absolute;
+    width: 95%;
 }
 
-.subtitle-donut{
+.subtitle-donut,.btn-primary{
     font-size: 14px;
     margin-left: 50%;
     color: #999999;
@@ -174,18 +228,9 @@ a{
 .btn-primary{
     font-size: 12px !important;
     color: white !important;
-    margin-left: 45% !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
-    margin-bottom: 9% !important;
-    z-index: 9999 !important;
-    position: absolute;
 }
-
-#bus-type .btn-primary{
-    margin-left: 48% !important;
-}
-
 
 .c3-my-select{
     outline: none !important;
@@ -223,7 +268,7 @@ a{
 }
 
 select.decorated option:hover {
-    box-shadow: none!;
+    box-shadow: none;
 }
 
 select.form-control{

@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    updateContainer(afterLoad);
+
+    $(window).resize(function () {
+        updateContainer(afterLoad);
+    });
+});
+
+function afterLoad() {
+    $('#donut-value').html("70");
+    $('#bus-type-value').html("Sleeper");
+
+}
+
+function updateContainer(callback) {
     var objToday = new Date(),
         weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
         dayOfWeek = weekday[objToday.getDay()],
@@ -14,7 +28,7 @@ $(document).ready(function () {
         curYear = objToday.getFullYear();
     var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + ", " + curYear;
 
-    document.getElementById("date").innerHTML += today;
+    document.getElementById("date").innerHTML = "Today is " + today;
 
     /*    animateValue("num-signup", 0, 1000000, 1);
         animateValue("num-sale", 0, 100000, 1);
@@ -46,7 +60,8 @@ $(document).ready(function () {
 
     google.charts.setOnLoadCallback(drawChartBusRoute);
 
-});
+    callback();
+}
 
 function drawChartBusRoute() {
     var data = google.visualization.arrayToDataTable([
@@ -67,6 +82,11 @@ function drawChartBusRoute() {
             duration: 1000,
             easing: 'in',
             startup: true
+        },
+        chartArea: {
+            left: "0%",
+            width: "200px",
+            height: "400px"
         },
         backgroundColor: 'transparent'
 
@@ -96,7 +116,12 @@ function drawChartBusType() {
             easing: 'in',
             startup: true
         },
-        backgroundColor: 'transparent',
+        chartArea: {
+            left: "0%",
+            width: "200px",
+            height: "400px"
+        },
+        backgroundColor: 'transparent'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_bustype'));
@@ -120,6 +145,11 @@ function drawChartDonut() {
             duration: 1000,
             easing: 'in',
             startup: true
+        },
+        chartArea: {
+            left: "0%",
+            width: "200px",
+            height: "400px"
         },
         backgroundColor: 'transparent'
 
@@ -161,7 +191,7 @@ function drawColColors() {
     ]);
 
     var options = {
-        title: 'Revenue from May 1st, 2019 to Now',
+
         colors: ['#d70303'],
         hAxis: {
             title: 'Day of month',
@@ -197,7 +227,7 @@ function drawChartLine() {
     ]);
 
     var options = {
-        title: 'Number of booking bus from May 1st, 2019 to Now',
+
         colors: ['#d70303'],
         hAxis: {
             title: 'Day of month',
