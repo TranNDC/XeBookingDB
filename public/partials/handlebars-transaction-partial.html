@@ -1,5 +1,5 @@
 <script id="transaction-detail-template" type="text/x-handlebars-template">
-    <div class="container-fluid  text-center d-flex flex-column my-table b3-table" id="search-table-result">
+    <div class="container-fluid  text-center d-flex flex-column my-table h-100" id="search-table-result">
            <div class="row table-header big-label">
                     <div class="col-2 active-filter">Time <i class="fas fa-arrow-down"></i></div>
                     <div class="col-2">Transaction ID</div>
@@ -8,7 +8,7 @@
                     <div class="col-2">Price</div>
                     <div class="col-2">Status</div>
             </div>
-            <div class="b3-content-containter">
+            <div class="b3-content-containter overflow-hidden">
                         {{#each results}}
 
                         <div class="row table-content">
@@ -30,7 +30,7 @@
                                 </div>
                         </div>
             
-                        <hr>
+                        <hr class="m-2">
                         <div class="modal fade" id="modal{{@index}}">
                                 <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
@@ -191,7 +191,7 @@
             </div>
 
 
-            <ul class="pagination d-flex justify-content-center mt-auto">
+            <ul class="pagination d-flex justify-content-center mt-auto" style="z-index: 100">
                     <li class="page-item"><a class="page-link" href="#">
                                     <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
                     <li class="page-item"><a class="page-link 2" href="#">2</a></li>

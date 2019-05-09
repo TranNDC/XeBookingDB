@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/a2.css">
     <link rel="stylesheet" href="css/c3.css">
 
+
     <link rel="stylesheet" href="css/c1.css">
 
 
@@ -35,124 +36,126 @@
             <div class="col-6">
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link a2-nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-data"
-                            role="tab">Master Data</a>
-                        <a class="nav-item nav-link a2-nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-transaction"
-                            role="tab">Transaction</a>
-                        <a class="nav-item nav-link a2-nav-link active" id="nav-contact-tab" data-toggle="tab" href="#nav-report"
-                            role="tab">Report</a>
+                        <a class="nav-item nav-link a2-nav-link" id="nav-home-tab" href="c1_master-data.html">Master Data</a>
+                        <a class="nav-item nav-link a2-nav-link active" id="nav-profile-tab" href="#" >Transaction</a>
+                        <a class="nav-item nav-link a2-nav-link" id="nav-contact-tab"href="c3_report.html" >Report</a>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-
-        <div class="container-fluid" id="c2-filter-div">
-            <div class="row mt-4 d-flex justify-content-center">
-                <div class="col-3 pl-0">
-                    <div class="container border col-12 ml-0 pt-3 p-3">
-                        <h4>FILTER</h4>
-                        <h5 class="mt-3">Transaction Time</h5>
-                        <div id="transaction-filter-div" class="filter-div m-3">
-                            <div class="container mt-3">
-                                    <div class="row">
-                                            <div class="col-6 pl-0 pr-2 input-date">
-                                                <!-- <label class="form-check-label" for="bday">From</label> -->
-                                                <input placeholder="From" id="searchform-departureday" type="text" class="datepicker-here my-date-time-picker form-control"
-                                                data-language='en'data-timepicker="true" data-position="bottom left"/>
-                                                <i class="far fa-calendar-alt icon-date mr-3"></i>
-                                            </div>
-                                            <div class="col-6 pr-0 pl-2 input-date">
-                                                <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
-                                                <input placeholder="To" id="searchform-departureday" type="text" class="datepicker-here my-date-time-picker form-control"
-                                                data-language='en'data-timepicker="true" data-position="bottom right"/>
-                                                 <i class="far fa-calendar-alt icon-date mr-3"></i>
-                                            </div>
-                                        </div>
-                                <div class="row mt-3">
-                                    <select class="c3-my-select" id="sel1">
-                                        <option class="c3-my-option">Today</optionc3-my-option>
-                                        <option class="c3-my-option">Last 7 days</option>
-                                        <option class="c3-my-option">Last 3 days</option>
-                                        <option class="c3-my-option">All time</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <h5 class="mt-3">Departure Time</h5>
-                        <div id="departure-filter-div" class="filter-div m-3">
-                            <div class="container mt-3">
-                                <div class="row">
-                                    <div class="col-6 pl-0 pr-2 input-date">
-                                        <!-- <label class="form-check-label" for="bday">From</label> -->
-                                        <input placeholder="From" id="searchform-departureday" type="text" class="datepicker-here my-date-time-picker form-control"
-                                            data-language='en'data-timepicker="true"  data-position='top left' />
-                                        <i class="far fa-calendar-alt icon-date mr-3"></i>
-                                    </div>
-                                    <div class="col-6 pr-0 pl-2 input-date">
-                                        <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
-                                        <input placeholder="From" id="searchform-departureday" type="text" class="datepicker-here my-date-time-picker form-control"
-                                        data-language='en'data-timepicker="true" data-position='top left' />
+    
+    <div class="container-fluid pb-5" id="c2-filter-div">
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-3 pl-0 d-inline"style="height:850px !important; overflow: hidden;">
+                <div class="container border col-12 ml-0 pt-3 p-3 h-100">
+                    <h4>FILTER</h4>
+                    <h5 class="mt-3">Transaction Time</h5>
+                    <div id="transaction-filter-div" class="filter-div m-3">
+                        <div class="container mt-3">
+                            <div class="row ml-0 mr-0">
+                                <div class="col-6 pl-0 pr-2 input-date">
+                                    <!-- <label class="form-check-label" for="bday">From</label> -->
+                                    <input placeholder="From" id="searchform-departureday" type="text"
+                                        class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                        data-timepicker="true" data-position="bottom left" />
                                     <i class="far fa-calendar-alt icon-date mr-3"></i>
-                                    </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <select class="c3-my-select" id="sel1">
-                                        <option class="c3-my-option">Next 24h</option>
-                                        <option class="c3-my-option">Next 7 days</option>
-                                        <option class="c3-my-option">Next 3 days</option>
-                                        <option class="c3-my-option">All time</option>
-                                    </select>
-                                    
+                                <div class="col-6 pr-0 pl-2 input-date">
+                                    <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
+                                    <input placeholder="To" id="searchform-departureday" type="text"
+                                        class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                        data-timepicker="true" data-position="bottom right" />
+                                    <i class="far fa-calendar-alt icon-date mr-3"></i>
                                 </div>
                             </div>
-                        </div>
-                        <h5 class="mt-3">Client</h5>
-                        <div id="client-filter-div" class="filter-div m-3">
-                            <div class="container mt-3">
-                                    <label for="usr">Client's phone number</label>
-                                    <input type="text" class="form-control" id="usr" placeholder="Phone">
+                            <div class="row ml-0 mr-0 mt-3">
+                                <select class="c3-my-select" id="sel1">
+                                    <option class="c3-my-option">Today</optionc3-my-option>
+                                    <option class="c3-my-option">Last 7 days</option>
+                                    <option class="c3-my-option">Last 3 days</option>
+                                    <option class="c3-my-option">All time</option>
+                                </select>
                             </div>
                         </div>
-                        
-                        <h5 class="mt-3">Bus</h5>
-                            
-                        <div id="bus-filter-div" class="filter-div m-3">
-                            <div class="container mt-3">
-                                <div class="row">
-                                    <div class="col-6 input-date d-flex align-items-center">
-                                            <!-- <label class="form-check-label" for="bday">Time</label> -->
-                                        <input placeholder="Time" id="searchform-departureday" type="text" class="datepicker-here my-date-time-picker form-control"
-                                            data-language='en'data-timepicker="true" data-position='top left' />
-                                        <i class="far fa-calendar-alt icon-date mr-3"></i>
-                                    </div>
+    
+    
+                    </div>
+                    <h5 class="mt-3">Departure Time</h5>
+                    <div id="departure-filter-div" class="filter-div m-3">
+                        <div class="container mt-3">
+                            <div class="row ml-0 mr-0">
+                                <div class="col-6 pl-0 pr-2 input-date">
+                                    <!-- <label class="form-check-label" for="bday">From</label> -->
+                                    <input placeholder="From" id="searchform-departureday" type="text"
+                                        class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                        data-timepicker="true" data-position='top left' />
+                                    <i class="far fa-calendar-alt icon-date mr-3"></i>
                                 </div>
-                                
-                                <div class="row mt-3 d-flex align-items-center">
-                                    <div class="col-5">
-                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                            placeholder="From">
-                                    </div>
-                                    <div class="col-1 text-centur p-0">
-                                        <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                            placeholder="To">
-                                    </div>
+                                <div class="col-6 pr-0 pl-2 input-date">
+                                    <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
+                                    <input placeholder="From" id="searchform-departureday" type="text"
+                                        class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                        data-timepicker="true" data-position='top left' />
+                                    <i class="far fa-calendar-alt icon-date mr-3"></i>
+                                </div>
+                            </div>
+                            <div class="row ml-0 mr-0 mt-3">
+                                <select class="c3-my-select" id="sel1">
+                                    <option class="c3-my-option">Next 24h</option>
+                                    <option class="c3-my-option">Next 7 days</option>
+                                    <option class="c3-my-option">Next 3 days</option>
+                                    <option class="c3-my-option">All time</option>
+                                </select>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="mt-3">Client</h5>
+                    <div id="client-filter-div" class="filter-div m-3">
+                        <div class="container mt-3">
+                            <label for="usr">Client's phone number</label>
+                            <input type="text" class="form-control" id="usr" placeholder="Phone">
+                        </div>
+                    </div>
+    
+                    <h5 class="mt-3">Bus</h5>
+    
+                    <div id="bus-filter-div" class="filter-div m-3">
+                        <div class="container mt-3">
+                            <div class="row ml-0 mr-0">
+                                <div class="col-6 pl-0 input-date d-flex align-items-center">
+                                    <!-- <label class="form-check-label" for="bday">Time</label> -->
+                                    <input placeholder="Time" id="searchform-departureday" type="text"
+                                        class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                        data-timepicker="true" data-position='top left' />
+                                    <i class="far fa-calendar-alt icon-date mr-3"></i>
+                                </div>
+                            </div>
+    
+                            <div class="row ml-0 mr-0 mt-3 d-flex align-items-center">
+                                <div class="col-5 pl-0">
+                                    <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                                        placeholder="From">
+                                </div>
+                                <div class="col-1 pl-0 text-centur p-0">
+                                    <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                                        placeholder="To">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="transaction-container" class="col-8 border">
-                    <script id="transaction-template" type="text/x-handlebars-template">
-                        {{> transactionPartial}}
-                                </script>
-                </div>
             </div>
+            <div id="transaction-container" style="height:850px !important; overflow: hidden;" class="col-8 border">
+                <script id="transaction-template" type="text/x-handlebars-template">
+                            {{> transactionPartial}}
+                                    </script>
+            </div>
+        </div>
     </div>
 
 

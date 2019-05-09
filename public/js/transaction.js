@@ -201,6 +201,64 @@ var res={results:[{
         "birthYear":"1995"
     }
     ]
+},
+{
+    "time":"1:15 PM",
+    "transID":"T190317-0010",
+    "userID":"U102",
+    "busID":"B190330-11-01",
+    "phone":"0121.162.121",
+    "email":"abc@kmail.com",
+    "date":"30 April 2017",
+    "liscensePlate":"59 V2 64.516",
+    "type":"Sleeper",
+    "departure":"13:30",
+    "arrival":"23:30",
+    "price":"$500",
+    "paymentTime":"11:13 AM, 17 Mar 2019",
+    "fromLocation":"Đà Lạt",
+    "toLocation":"Hồ Chí Minh",
+    "seats":['10B', '11B'],
+    "status":1,//0 == unused , 1 == used,
+    "passenger":[{
+        "name":"John Smith",
+        "gender":"Male",
+        "birthYear":"1991"
+    },{
+        "name":"Marry Smith",
+        "gender":"Female",
+        "birthYear":"1995"
+    }
+    ]
+},
+{
+    "time":"1:15 PM",
+    "transID":"T190317-0010",
+    "userID":"U102",
+    "busID":"B190330-11-01",
+    "phone":"0121.162.121",
+    "email":"abc@kmail.com",
+    "date":"30 April 2017",
+    "liscensePlate":"59 V2 64.516",
+    "type":"Sleeper",
+    "departure":"13:30",
+    "arrival":"23:30",
+    "price":"$500",
+    "paymentTime":"11:13 AM, 17 Mar 2019",
+    "fromLocation":"Đà Lạt",
+    "toLocation":"Hồ Chí Minh",
+    "seats":['10B', '11B'],
+    "status":1,//0 == unused , 1 == used,
+    "passenger":[{
+        "name":"John Smith",
+        "gender":"Male",
+        "birthYear":"1991"
+    },{
+        "name":"Marry Smith",
+        "gender":"Female",
+        "birthYear":"1995"
+    }
+    ]
 }
 
 ]};
