@@ -154,6 +154,10 @@ body{
     margin-top: 24px;
 }
 
+.a2-nav-link.disabled{
+  color:#B8B8B8 !important;
+  border-color: #B8B8B8 !important;
+}
 
 .a2-nav-link{
   border:none !important;

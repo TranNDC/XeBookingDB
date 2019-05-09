@@ -1,6 +1,17 @@
 #homeLogo {
-  height: 36px;
+  height: 32px;
   margin-left: 24px;
+  padding:2px;
+}
+
+#my-navbar .navbar-brand{
+  padding:0px;
+}
+
+@media (max-width: 700px){
+  .navbar-toggler{
+    display: none;
+  }
 }
 
 .btn {
@@ -83,7 +94,7 @@ h4{
 }
 
 .small-text{
-  font-size: 16px !important;
+  font-size: 12px !important;
 }
 
 .lighter-text{
@@ -174,7 +185,7 @@ span{
   height:30px; 
   margin:0px;
   border-radius: 50%;
-  margin-right: 16px !important;
+  margin-right: 0.75em !important;
 }
 
 .form-check-label{
@@ -228,7 +239,7 @@ span{
 
 .big-label{
   color: #494949;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #ticket-info{
@@ -274,4 +285,51 @@ span{
 
 .p-relative{
   position: relative !important;
+}
+
+
+/* .datepicker-here:focus{
+  padding: 4px 8px !important;
+  outline: none !important;
+  border: #999999 solid 1px !important;
+  border-radius: 5px !important;
+} */
+
+.form-control{
+  font-size: inherit !important;
+}
+
+.datepicker-here.form-control{
+  border-radius: 0 !important;
+  font-size: inherit !important;
+  width: 100% !important;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #999999;
+  padding-left: 0 !important;
+
+}
+
+.datepicker-here.form-control:focus{
+  border-radius: 5px !important;
+}
+
+.datepicker-here.form-control:focus{
+  border-radius: 5px !important;
+}
+
+
+.input-date{
+  position: relative;
+  display: flex;
+  align-content: center;
+}
+.input-date .icon-date{
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.25rem;
+  color: #999999 !important;
+}
+
+#my-navbar .nav-link{
+  font-size: 1em !important;
 }

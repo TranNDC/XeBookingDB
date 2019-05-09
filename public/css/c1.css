@@ -145,8 +145,8 @@ a:hover{
 }
 .icon-date{
     position: absolute;
-    top: 20%;
-    right: 0;
+    bottom: 0.75rem;
+    right: 0.25rem;
 }
 
 .action-employ{

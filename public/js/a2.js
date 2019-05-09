@@ -10,6 +10,7 @@ function click1(){
           $('#home').addClass('fade');
           $('#amenu1').addClass('active');
           $('#ahome').removeClass('active');
+          $('#amenu1').removeClass('disabled');
   }
   else{
       $("#formhome").find(':submit').click();
@@ -25,6 +26,7 @@ function click2() {
     $('#menu1').addClass('fade');
     $('#amenu2').addClass('active');
     $('#amenu1').removeClass('active');
+    $('#amenu2').removeClass('disabled');
   } else {
     $("#formmenu1").find(':submit').click();
   }

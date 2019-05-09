@@ -57,8 +57,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: "Cabin Condensed", sans-serif !important;
-  font-size: 18px;
   font-weight: 400;
+  font-size: 14px;
   line-height: 1.5;
   color: #212529;
   text-align: left;
@@ -1818,7 +1818,7 @@ pre code {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
