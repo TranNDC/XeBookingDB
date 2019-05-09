@@ -18,7 +18,76 @@ body{
     justify-content: center;
 }
 
+.seater:hover{
+  border-color:#494949;
+}
 
+.seater div:hover{
+  border-color:#494949;
+}
+
+.seater {
+  
+  position: relative;
+    width: 12px;
+    height: 22px;
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+  .seater-rec1{
+    position: absolute;
+    
+    border: 1px solid #999999;
+  border-radius: 3px 0px 0px 3px;
+  display:inline-block;
+  width:20px;
+  height:16px;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  right: -1px;
+  top:2px;
+  }
+  
+  .seater-rec2{
+    position: absolute;
+    
+    border: 1px solid #999999;
+  border-radius: 3px;
+  display:inline-block;
+  width:5px;
+  height:10px;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  right: -4px;
+  top:5px;
+  }
+
+  .seater.sleeper-disabled .seater-rec1{
+    border-color: #999999;
+    background-color: #999999;
+    cursor: default;
+  }
+
+  .seater.sleeper-disabled div{
+    cursor: default;
+  }
+
+  .seater.sleeper-disabled .seater-rec1{
+    border-color: #999999;
+    background-color: #999999;
+  }
+
+  .seater.sleeper-disabled{
+    border-color: #999999;
+    background-color: #fff;
+  }
+
+  .seater.sleeper-disabled:hover{
+    border-color: #999999;
+    background-color: #fff;
+  }
 
 .sleeper-rec {
   position: absolute;
@@ -34,6 +103,7 @@ body{
 
 }
 
+
 .sleeper {
   display:inline-block;
     width:48px;
@@ -43,6 +113,7 @@ body{
     border-radius: 3px;
     margin:auto !important;
     cursor: pointer;
+    z-index: 100;
 }
 
 .sleeper div {
@@ -98,7 +169,13 @@ body{
   padding: 0 2px;
 }
 
-#sleeper-table tbody{
+#seater-table td{
+  width:36px;
+  height: 28px !important;
+  padding: 0 2px;
+}
+
+#sleeper-table tbody, #seater-table tbody{
   display: inline;  
 }
 
@@ -117,7 +194,7 @@ body{
   left: -12px;
 }
 
-#sleeper-div #title{
+#sleeper-div #title, #seater-div #title{
   margin: 0;
   font-size: 12px;
   color: #999999;

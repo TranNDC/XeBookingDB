@@ -1,20 +1,20 @@
 var res={results:[{
     "liscensePlate":"59 V2 65.616",
-    "type":"Sleeper",
+    "type":"Semi Sleeper",
     "departure":"13:30",
     "arrival":"23:30",
     "price":"$500"
 },
 {
     "liscensePlate":"59 V2 65.617",
-    "type":"Sleeper non AC",
+    "type":"Seater",
     "departure":"14:30",
     "arrival":"23:30",
     "price":"$500"
 },
 {
     "liscensePlate":"59 V2 65.618",
-    "type":"Semi Sleeper",
+    "type":"Sleeper",
     "departure":"15:30",
     "arrival":"0:30",
     "price":"$500"
@@ -28,7 +28,7 @@ var res={results:[{
 },
 {
     "liscensePlate":"59 V2 65.626",
-    "type":"Sleeper",
+    "type":"Semi Sleeper",
     "departure":"17:30",
     "arrival":"0:30",
     "price":"$500"
@@ -42,14 +42,14 @@ var res={results:[{
 },
 {
     "liscensePlate":"59 V2 65.646",
-    "type":"Sleeper",
+    "type":"Seater",
     "departure":"19:30",
     "arrival":"23:30",
     "price":"$500"
 },
 {
     "liscensePlate":"59 V2 65.656",
-    "type":"Sleeper",
+    "type":"Semi Sleeper",
     "departure":"20:00",
     "arrival":"23:30",
     "price":"$500"
@@ -63,12 +63,17 @@ var res={results:[{
 },
 {
     "liscensePlate":"59 V2 65.616",
-    "type":"Sleeper",
+    "type":"Semi Sleeper",
     "departure":"21:00",
     "arrival":"23:30",
     "price":"$500"
 }
 ]};
+
+Handlebars.registerHelper("checkSeater", function(value, options)
+{
+    return value!="Sleeper";
+});
 
 $(document).ready(() => {
 
@@ -80,6 +85,10 @@ $(document).ready(() => {
         $('#searchResult-container').html(compilednavTemplates(res));
 
         $('.sleeper:not(.sleeper-disabled)').on('click',function(){
+            $(this).toggleClass('sleeper-active');
+        });
+
+        $('.seater:not(.sleeper-disabled)').on('click',function(){
             $(this).toggleClass('sleeper-active');
         });
 

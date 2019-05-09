@@ -20,100 +20,70 @@
                 data-toggle="collapse" data-target="#collapse{{@index}}">Select Seat</a></div>
     </div>
     <div id="collapse{{@index}}" class="row container table-content collapse">
-        <div id="sleeper-div" class="col-lg-6">
-            <p id="title">Upper</p>
+        {{#if (checkSeater type)}}
+        <div id="seater-div" class="col-lg-6">
             <div id="sleeper-div-lower">
                 <p>FRONT</p>
-
-                <table id="sleeper-table">
-                    <tr>
+                <table id="seater-table">
+                    <tr class="mb-4">
                         <td>
-                            <div class="sleeper sleeper-disabled">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <a class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="pb-4 pt-4">
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -121,190 +91,121 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-
-                </table>
-            </div><br>
-            <p id="title">Lower</p>
-            <div id="sleeper-div-upper">
-                <p>FRONT</p>
-
-                <table id="sleeper-table">
-                    <tr>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                         <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sleeper">
-                                <div class="sleeper-rec"></div>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
                             </div>
                         </td>
                     </tr>
@@ -313,30 +214,31 @@
             </div>
             <div class="container">
                 <div class="row">
-                    
-                    <div class="col-4 pl-0">
-                        <table>
-                            <td>
-                                <div class="sleeper sleeper-disabled">
-                                    <div class="sleeper-rec"></div>
+                    <div class="col-4">
+                        <table><td>
+                                <div class="seater sleeper-disabled">
+                                    <div class="seater-rec2"></div>
+                                    <div class="seater-rec1"></div>
                                 </div>
                             </td>
                             <td  class="pl-2">Occupied</td>
                         </table>
                     </div>
-                    <div class="col-4 pl-0">
+                    <div class="col-4">
                             <table><td>
-                                    <div class="sleeper">
-                                        <div class="sleeper-rec"></div>
+                                    <div class="seater">
+                                        <div class="seater-rec2"></div>
+                                        <div class="seater-rec1"></div>
                                     </div>
                                 </td>
                                 <td class="pl-2">Available</td>
                             </table>
                     </div>
-                    <div class="col-4 pl-0">
+                    <div class="col-4 ">
                             <table><td>
-                                    <div class="sleeper sleeper-active">
-                                        <div class="sleeper-rec"></div>
+                                    <div class="seater sleeper-active">
+                                        <div class="seater-rec2"></div>
+                                        <div class="seater-rec1"></div>
                                     </div>
                                 </td>
                                 <td  class="pl-2">Selected</td>
@@ -345,6 +247,330 @@
                 </div>
             </div>
         </div>
+        {{else}}
+        <div id="sleeper-div" class="col-lg-6">
+                <p id="title">Upper</p>
+                <div id="sleeper-div-lower">
+                    <p>FRONT</p>
+                    <table id="sleeper-table">
+                        <tr>
+                            <td>
+                                <div class="sleeper sleeper-disabled">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+    
+                    </table>
+                </div><br>
+                <p id="title">Lower</p>
+                <div id="sleeper-div-upper">
+                    <p>FRONT</p>
+                    <table id="sleeper-table">
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+    
+                    </table>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4 pl-0">
+                            <table>
+                                <td>
+                                    <div class="sleeper sleeper-disabled">
+                                        <div class="sleeper-rec"></div>
+                                    </div>
+                                </td>
+                                <td  class="pl-2">Occupied</td>
+                            </table>
+                        </div>
+                        <div class="col-4 pl-0">
+                                <table><td>
+                                        <div class="sleeper">
+                                            <div class="sleeper-rec"></div>
+                                        </div>
+                                    </td>
+                                    <td class="pl-2">Available</td>
+                                </table>
+                        </div>
+                        <div class="col-4 pl-0">
+                                <table><td>
+                                        <div class="sleeper sleeper-active">
+                                            <div class="sleeper-rec"></div>
+                                        </div>
+                                    </td>
+                                    <td  class="pl-2">Selected</td>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
         <div id="ticket-info" class="container col-lg-6">
 
             <div class="row pt-0">
