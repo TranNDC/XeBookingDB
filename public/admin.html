@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>XeBooking</title>
+    <link rel="icon" href="img/Logo/icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/a1.css">
+    <link rel="stylesheet" href="css/c1.css">
+    <link rel="stylesheet" href="css/c3.css">
+    <link rel="stylesheet" href="css/a2.css">
+
+
+
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+
+<body id="a1-body">
+    <div class="a1-overlay"></div>
+    <span id="nav-container">
+        <script id="navbar-admin-template" type="text/x-handlebars-template">
+            {{> navbarAdminPartial}}
+        </script>
+    </span>
+
+    <div class="container ">
+        <div class="row justify-content-center align-content-center">
+            <div class="col-6">
+                <nav>
+                    <div class="nav nav-tabs a2-nav-link nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link a2-nav-link " id="nav-home-tab" href="c1_master-data.html">Master
+                            Data</a>
+                        <a class="nav-item nav-link a2-nav-link" id="nav-profile-tab"
+                            href="c2_transaction.html">Transaction</a>
+                        <a class="nav-item nav-link a2-nav-link active" id="nav-contact-tab"
+                            href="#">Report</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-content">
+        <!--
+        <div class="tab-pane fade" id="nav-data" role="tabpanel">
+            <div class="container-fluid">
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-transaction" role="tabpanel">
+            <div class="container-fluid">
+
+            </div>
+        </div> 
+        -->
+        <div class="tab-pane fade show active" id="nav-report" role="tabpanel">
+            <div class="container-fluid-custom">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <a href="" id="sign-ups" class="box">
+                            <img class="c3-img" src="img/C3/1.jpg" alt="">
+                            <div class="text">
+                                <div id="num-signup">100.000</div>
+                                Online signups
+                            </div>
+                        </a>
+
+                        <a href="" id="new-visitors" class="box">
+                            <img class="c3-img" src="img/C3/3.jpg" alt="">
+                            <div class="text">
+                                <div id="num-visit">100.000</div>
+                                Number of visitors
+                            </div>
+                        </a>
+                        <a href="" id="last-month-sales" class="box">
+                            <img class="c3-img" src="img/C3/2.jpg" alt="">
+                            <div class="text">
+                                <div id="num-sale">100.000</div>
+                                Total of bookings
+                            </div>
+                        </a>
+                        <a href="" id="total-revenue-month" class="box">
+                            <img class="c3-img" src="img/C3/4.jpg" alt="">
+                            <div class="text">
+                                <div id="num-revenue">$100.000</div>
+                                Total revenue
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-5 block-center">
+                        <div id="name-ad" class="c3-form">
+                            <a href="#"role="button" data-toggle="modal"
+                            data-target="#myModal">
+                                <i class="far fa-calendar-alt icon-change-date"></i>
+                            </a>
+                            <div class="name-ad-info">
+                                <div id="admin-name">Hi <span>Lê Thành Công</span></div>
+                                <div id="date">Today is </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                        <div id="num-of-booking" class="c3-form">
+                            <div class="title-chart">Number of booking bus from May 1st, 2019 to Now</div>
+                            <div id="chart_line"></div>
+                        </div>
+
+                        <div id="revenue" class="c3-form">
+                            <div class="title-chart">Revenue from May 1st, 2019 to Now</div>
+                            <div id="chart_col"></div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="col-lg-5 block-right">
+                        <div id="user-visit-book" class="c3-form">
+                            <div id="donut-value"></div>
+                            <div id="chart_donut"></div>
+                            <div class="info-chart">
+
+                                <div class="title-donut">Users visit then book bus</div>
+                                <div class="subtitle-donut">Calculated from May 1st, 2019 to Now</div>
+                                <a href="#" class="btn btn-primary" role="button" data-toggle="modal"
+                                    data-target="#myModal">REFRESH</a>
+                            </div>
+
+
+                        </div>
+
+                        <div id="bus-type" class="c3-form">
+                            <div id="bus-type-value"></div>
+                            <div id="chart_bustype"></div>
+                            <div class="info-chart">
+                                <div class="title-donut">Bus type used most</div>
+                                <div class="subtitle-donut">Calculated from May 1st, 2019 to Now</div>
+                                <a href="#" class="btn btn-primary" role="button" data-toggle="modal"
+                                    data-target="#myModal">REFRESH</a>
+                            </div>
+                        </div>
+
+                        <div id="bus-route" class="c3-form">
+                            <div class="info-chart-route">
+                                <div class="title-chart">Bus route booked most from May 1st, 2019 to Now</div>
+                                <br>
+                                <div id="chart_busroute"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header pb-0">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <ul class="nav nav-tabs d-flex align-content-center mb-3 text-center" style="margin: 2em 15%"
+                    role="tablist">
+                    <li class="nav-item">
+                        <a id="title-date-choose" class="nav-link a2-nav-link active" data-toggle="tab" href="#home">
+                            Choose date for report</a>
+                    </li>
+                </ul>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <!-- <form action="#"> -->
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="home" class="container tab-pane active">
+                            <form id="formhome" action="c3_report.html">
+                                <div class="container pl-5 pr-5">
+                                    <div class="row row-custom">
+                                        <div class="col-6">
+                                            <div class="input-date">
+                                                <input placeholder="From" id="datefromID" type="text" name="datefrom"
+                                                    class="datepicker-here form-control" data-language='en'
+                                                    data-multiple-dates="3" data-multiple-dates-separator=", "
+                                                    data-position='top right' />
+                                                <i class="far fa-calendar-alt icon-date"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="input-date">
+                                                <input placeholder="To" id="datetoID" type="text" name="dateto"
+                                                    class="datepicker-here form-control" data-language='en'
+                                                    data-multiple-dates="3" data-multiple-dates-separator=", "
+                                                    data-position='top right' />
+                                                <i class="far fa-calendar-alt icon-date"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right  mb-4 mr-4 mt-2" id="ok-btn"
+                                    data-dismiss="">OK</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <script src="js/handlebars-v4.1.2.js"></script>
+    <script src="js/nav-admin-input.js"></script>
+    <script src="js/a1.js"></script>
+    <script src="js/b3.js"></script>
+
+    <script src="js/c3.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/datepicker.min.js"></script>
+    <!-- Include English language -->
+    <script src="dist/js/i18n/datepicker.en.js"></script>
+
+</body>
+
+</html>
