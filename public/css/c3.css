@@ -301,14 +301,6 @@ select.form-control {
     z-index: 1151 !important;
 }
 
-#myModal{
-    width: 50% !important;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    transform: translate(-50%, -50%);
-}
-
 #title-date-choose{
     font-size: 20px;
 }
