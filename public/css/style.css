@@ -8,15 +8,38 @@
   padding:0px;
 }
 
-@media (max-width: 700px){
-  .navbar-toggler{
-    display: none;
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+@media only screen and (max-width: 700px) {
+ body {
+  	width: 700px;
+    overflow: scroll;
   }
 }
 
 .btn {
   border-radius: 5px !important;
-  width: 100px;
+  width: 100px auto;
 }
 
 .icon {
@@ -37,6 +60,12 @@
   text-align: center;
   vertical-align: middle;
 
+}
+
+@media (max-width: 480px) {
+  #b3-container {
+     overflow: scroll;
+  }
 }
 
 

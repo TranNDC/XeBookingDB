@@ -49,6 +49,19 @@ body{
   right: -1px;
   top:2px;
   }
+
+  @media (max-width: 900px){
+    .ajust{
+      flex: 0 0 100% !important;
+      width: 100% !important;
+      margin: auto !important;
+      padding-bottom: 3em;
+    }
+
+    #menu2 h2{
+      text-align: center !important;
+    }
+  }
   
   .seater-rec2{
     position: absolute;
