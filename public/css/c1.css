@@ -156,6 +156,6 @@ a:hover{
     border-color: transparent transparent #DDDDDD !important;   
 }
 
-.nav-link:hover {
+#nav-tab .nav-link:hover {
     border-bottom: 1px solid #DDDDDD !important;
 }
