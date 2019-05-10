@@ -4,6 +4,10 @@
   padding:2px;
 }
 
+.width-100{
+  width: 100% !important;
+}
+
 #my-navbar .navbar-brand{
   padding:0px;
 }
@@ -20,6 +24,11 @@
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+}
+
+.my-navbar-collapse{
+  display: flex !important;
+  flex-basis: auto;
 }
 
 .navbar-nav {

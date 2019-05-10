@@ -1,12 +1,9 @@
 <script id="navbar-admin-detail-template" type="text/x-handlebars-template">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light admin-navbar" id="my-navbar">
+    <nav class="navbar sticky-top navbar-light bg-light admin-navbar" id="my-navbar">
             <a class="navbar-brand" href="index.html"><img id="homeLogo" src="/img/Logo/white.png" alt=""></a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" style="width:100%" id="collapsibleNavId">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+         
+            <div class="collapse my-navbar-collapse"  id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0 flex-row">
                     <li class="nav-item d-flex align-content-center justify-content-center align-items-center">
                         <div class="icon-container">
                             <a id="search-toggle" class="nav-link" href="#">
@@ -27,10 +24,10 @@
                         </a>
                     </li>
 
-                    <li class="nav-item justify-content-center" style="display: flex">
-                            <button type="button" class="btn dropdown-toggle align-items-center" data-toggle="dropdown">
+                    <li class="nav-item p-auto" >
+                            <button type="button" class="btn dropdown-toggle align-items-center" data-toggle="dropdown"style="padding-top:8px !important; width:32px !important;">
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Help</a>
                                 <a class="dropdown-item" href="#">Log out</a>
