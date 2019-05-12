@@ -301,14 +301,6 @@ select.form-control {
     z-index: 1151 !important;
 }
 
-#myModal{
-    width: 50% !important;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    transform: translate(-50%, -50%);
-}
-
 #title-date-choose{
     font-size: 20px;
 }
@@ -316,6 +308,8 @@ select.form-control {
 #ok-btn{
     margin-top: 5% !important;
     margin-right: 12% !important;
+    border-radius: 5px !important;
+    text-align: center !important;
 }
 #datetoID,#datefromID{
     font-size: 16px !important;
