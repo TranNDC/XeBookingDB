@@ -18,7 +18,7 @@
 
 </head>
 
-<body id="a1-body">
+<body id="b3-body">
     <div class="a1-overlay"></div>
     <span id="nav-container">
         <script id="navbar-admin-template" type="text/x-handlebars-template">
@@ -26,12 +26,12 @@
         </script>
     </span>
 
-    <div class="container-fluid a3-container mt-4">
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center b3-table">
-                <!-- pannel left -->
-                <div class="col-xl-2 col-lg-3 col-sm-12 panel-left a3-form d-flex flex-column b3-fixed-height">
-                    <h2 class="a3-title">Admin Profile</h2>
+    <div id="b3-container" class="container-fluid p-sm-0 b3-container mt-4">
+        <div class="row d-flex justify-content-center b3-table">
+            <!-- pannel left -->
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-8  panel-left a3-form  d-flex flex-column b3-fixed-height">
+    
+                    <h2 class="a3-title">User Profile</h2>
                     <div class="b3-options">
                         <a id="b3-link-userprofile" class="b3-choice b3-chosen" href="#">
                             <img class="b3-icon" src="img/icon/baseline-person-24px.svg" alt="">
@@ -49,23 +49,25 @@
                             <div class="b3-textOpt">Setting</div>
                         </a>
                     </div>
+                    <br><br><br>
                     <div id="logout" class="mt-auto">
                         <a href="#">
                             <img id="b3-logout-icon" src="img/icon/logout.svg" alt="">
                             Log out
                         </a>
                     </div>
-                </div>
-                <div class="col-md-1 col-sm-0"></div>
-                <!-- pannel right -->
-                <!-- profile -->
-                <div id="b3-userprofile" class="col-md-8 col-sm-12 panel-right a3-form b3-fixed-height">
+                
+            </div>
+            
+            <!-- pannel right -->
+            <!-- profile -->
+            <div id="b3-userprofile" class="col-md-8 col-sm-10 panel-right b3-fixed-height">
+                <div class="a3-form">
                     <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                         <div class="b3-avatar">
                             <img id="b3-header-avatar" src="img/user/user.jpg" alt="">
                             <div class="box">
-                                <a href="#"><img class="b3-icon-edit" src="img/icon/baseline-create-24px.svg"
-                                        alt=""></a>
+                                <a href="#"><img class="b3-icon-edit" src="img/icon/baseline-create-24px.svg" alt=""></a>
                                 <input type="file" class="chooser" onchange="readURL(this);">
                                 <!-- <div class="b3-cursorpointer"></div> -->
                             </div>
@@ -75,12 +77,12 @@
                             <div class="b3-title-location">Ho Chi Minh City, Viet Nam</div>
                         </div>
                     </div>
-
+    
                     <form action="b3_profile.html">
                         <div class="container b3-form-edit">
-
+    
                             <div class="row justify-content-center align-content-center">
-
+    
                                 <div class="col-md-5 col-sm-12">
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">User ID</div>
@@ -89,60 +91,68 @@
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">Password</div>
                                         <input type="password" name="pasw" value="congdeptrai" readonly>
-                                        <img id="b3-icon-edit-password" src="img/icon/baseline-create-24px-grey.svg"
-                                            alt="">
+                                        <img id="b3-icon-edit-password" src="img/icon/baseline-create-24px-grey.svg" alt="">
                                     </div>
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">Phone number</div>
                                         <input type="text" name="phone" value="0909173336" readonly>
-                                        <img id="b3-icon-edit-phone" src="img/icon/baseline-create-24px-grey.svg"
-                                            alt="">
-
+                                        <img id="b3-icon-edit-phone" src="img/icon/baseline-create-24px-grey.svg" alt="">
+    
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-12">
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">Full name</div>
                                         <input type="text" id="nameID" name="fullname" value="Lê Thành Công" readonly>
-                                        <img id="b3-icon-edit-fullname" src="img/icon/baseline-create-24px-grey.svg"
-                                            alt="">
+                                        <img id="b3-icon-edit-fullname" src="img/icon/baseline-create-24px-grey.svg" alt="">
                                     </div>
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">Email address</div>
                                         <input type="text" name="email" value="thanhcong.le1108@gmail.com" readonly>
-                                        <img id="b3-icon-edit-email" src="img/icon/baseline-create-24px-grey.svg"
-                                            alt="">
+                                        <img id="b3-icon-edit-email" src="img/icon/baseline-create-24px-grey.svg" alt="">
                                     </div>
-
+    
                                     <div class="p-relative">
                                         <div class="b3-title-form-opts">Location</div>
                                         <input type="text" name="location" value="Ho Chi Minh City, Viet Nam" readonly>
-                                        <img id="b3-icon-edit-location" src="img/icon/baseline-create-24px-grey.svg"
-                                            alt="">
+                                        <img id="b3-icon-edit-location" src="img/icon/baseline-create-24px-grey.svg" alt="">
                                     </div>
                                 </div>
-
+    
                             </div>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Save changes">
                     </form>
                 </div>
-                <!-- history -->
-                <div id="b3-history" class="col-md-8 col-sm-12 panel-right border b3-fixed-height hidden">
+            </div>
+            <!-- history -->
+            <div id="b3-history" class="col-md-8 col-sm-10 panel-right b3-fixed-height hidden">
+                <div class="a3-form">
                     <div id="userHistory-container">
                         <script id="userHistory-template" type="text/x-handlebars-template">
                             {{> userHistoryPartial}}
-                            </script>
+                                </script>
                     </div>
                 </div>
-                <!-- setting -->
-                <div id="b3-setting" class="col-md-8 col-sm-12 panel-right a3-form b3-fixed-height hidden">
-                </div>
-                <!-- <div class="col-md-1 col-sm-0"></div> -->
             </div>
+            <!-- setting -->
+            <div id="b3-setting" class="col-md-8 col-sm-10 panel-right  b3-fixed-height hidden">
+                <div class="a3-form">
+                    <div class="empty">
+                        Does not have any settings...We will add later at backend milestone
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-1 col-sm-0"></div> -->
         </div>
     </div>
     </div>
+
+    <span id="footer-container">
+        <script id="footer-template" type="text/x-handlebars-template">
+            {{> footerPartial}}
+        </script>
+    </span>
 
     <script src="js/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

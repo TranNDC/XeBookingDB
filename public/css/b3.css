@@ -1,12 +1,6 @@
-.panel-right {
-    margin-left: -3%;
+.b3-container{
+    width: 94% !important;
 }
-
-.panel-left {
-    margin-right: -3%;
-}
-
-
 
 .a3-title {
     margin-top: 45px !important;
@@ -21,20 +15,16 @@ a:hover {
 }
 
 .b3-options {
-    align-content: center;
-    justify-content: space-around;
     margin-left: 0px !important;
-    margin-right: 1px !important;
-
+    margin-right: 0px !important;
+    position: relative;
 }
 
 .b3-choice {
-    width: 101%;
-
+    width: 100%;
     border-bottom: 1px solid #999999;
     float: left;
-    padding-left: 20%;
-    padding-right: 12%;
+    padding-left: 25%;
     padding-bottom: 8px !important;
     padding-top: 8px !important;
 }
@@ -51,7 +41,6 @@ a:hover {
 
 .b3-table{
     position: relative;
-    height: 850px;
 }
 
 
@@ -63,7 +52,13 @@ a:hover {
 .b3-textOpt {
     color: #494949;
     float: left;
-    font-size: 22px;
+    font-size: 18px;
+}
+
+.empty{
+    height: 600px;
+    text-align: center;
+    font-size: 18px;
 }
 
 .b3-content-containter{

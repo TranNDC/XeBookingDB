@@ -308,6 +308,8 @@ select.form-control {
 #ok-btn{
     margin-top: 5% !important;
     margin-right: 12% !important;
+    border-radius: 5px !important;
+    text-align: center !important;
 }
 #datetoID,#datefromID{
     font-size: 16px !important;
