@@ -17,5 +17,8 @@
     "jquery": "^3.4.0",
     "popper.js": "^1.15.0",
     "pretty-checkbox": "^3.0.3"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
   }
 }

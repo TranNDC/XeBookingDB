@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--index.html is a1.html-->
+
+<head>
+    <title>XeBooking</title>
+    <link rel="icon" href="img/Logo/icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/a1.css">
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body id="a1-body">
+    {{>header}}
+    {{{body}}}
+    {{>footer}}
+</body>
+
+<script>
+    $(document).ready(() => {
+        $("#search-toggle").on('click', function () {
+            $("#search-bar").toggle("slide");
+        });
+    })
+</script>
+</html>
