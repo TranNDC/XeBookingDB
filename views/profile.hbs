@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="css/a1.css">
 <link rel="stylesheet" href="css/a3.css">
 <link rel="stylesheet" href="css/b3.css">
+<!-- font awsome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
 <div id="b3-container" class="container-fluid p-sm-0 b3-container mt-4">
     <div class="row d-flex justify-content-center b3-table">
@@ -29,7 +33,7 @@
             </div>
             <br><br><br>
             <div id="logout" class="mt-auto">
-                <a href="b1_log-in.html">
+                <a href="/login">
                     <img id="b3-logout-icon" src="img/icon/logout.svg" alt="">
                     Log out
                 </a>
@@ -51,7 +55,7 @@
                         </div>
                     </div>
                     <div class="pl-5">
-                        <div class="b3-title-name">{{name}}</div>
+                        <div class="b3-title-name">Lê Thành Công</div>
                         <div class="b3-title-location">Ho Chi Minh City, Viet Nam</div>
                     </div>
                 </div>
@@ -107,6 +111,7 @@
         <div id="b3-history" class="col-md-8 col-sm-10 panel-right b3-fixed-height hidden">
             <div class="a3-form">
                 <div id="userHistory-container">
+                    {{> userHistoryPartial}}
 
                 </div>
             </div>
@@ -123,6 +128,8 @@
     </div>
 </div>
 </div>
+
+
 
 <script src="js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

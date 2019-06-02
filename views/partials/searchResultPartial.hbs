@@ -1,0 +1,814 @@
+
+    <div class="container-fluid  text-center my-table" id="search-table-result">
+            <div class="row table-header big-label">
+                    <div class="col-2">Liscense Plate</div>
+                    <div class="col-2">Type</div>
+                    <div class="col-2 active-filter">Departure <i class="fas fa-arrow-up"></i></div>
+                    <div class="col-2">Arrival</div>
+                    <div class="col-2">Price</div>
+                    <div class="col-2"></div>
+            </div>
+    {{#each results}}
+
+    <div class="row table-content">
+        <div class="col-2">{{liscensePlate}}</div>
+        <div class="col-2">{{type}}</div>
+        <div class="col-2 active-filter">{{departure}}</div>
+        <div class="col-2">{{arrival}}</div>
+        <div class="col-2">{{price}}</div>
+        <div class="col-2"><a name="" id="" class="btn btn-outline-secondary" href="#" role="button"
+                data-toggle="collapse" data-target="#collapse{{@index}}">Select Seat</a></div>
+    </div>
+    <div id="collapse{{@index}}" class="row container table-content collapse">
+        {{#if (checkSeater type)}}
+        <div id="seater-div" class="col-lg-6">
+            <div id="sleeper-div-lower">
+                <p>FRONT</p>
+                <table id="seater-table">
+                    <tr class="mb-4">
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="pb-4 pt-4">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="seater">
+                                <div class="seater-rec2"></div>
+                                <div class="seater-rec1"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <table><td>
+                                <div class="seater sleeper-disabled">
+                                    <div class="seater-rec2"></div>
+                                    <div class="seater-rec1"></div>
+                                </div>
+                            </td>
+                            <td  class="pl-2">Occupied</td>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                            <table><td>
+                                    <div class="seater">
+                                        <div class="seater-rec2"></div>
+                                        <div class="seater-rec1"></div>
+                                    </div>
+                                </td>
+                                <td class="pl-2">Available</td>
+                            </table>
+                    </div>
+                    <div class="col-4 ">
+                            <table><td>
+                                    <div class="seater sleeper-active">
+                                        <div class="seater-rec2"></div>
+                                        <div class="seater-rec1"></div>
+                                    </div>
+                                </td>
+                                <td  class="pl-2">Selected</td>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div id="sleeper-div" class="col-lg-6">
+                <p id="title">Upper</p>
+                <div id="sleeper-div-lower">
+                    <p>FRONT</p>
+                    <table id="sleeper-table">
+                        <tr>
+                            <td>
+                                <div class="sleeper sleeper-disabled">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+    
+                    </table>
+                </div><br>
+                <p id="title">Lower</p>
+                <div id="sleeper-div-upper">
+                    <p>FRONT</p>
+                    <table id="sleeper-table">
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sleeper">
+                                    <div class="sleeper-rec"></div>
+                                </div>
+                            </td>
+                        </tr>
+    
+                    </table>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4 pl-0">
+                            <table>
+                                <td>
+                                    <div class="sleeper sleeper-disabled">
+                                        <div class="sleeper-rec"></div>
+                                    </div>
+                                </td>
+                                <td  class="pl-2">Occupied</td>
+                            </table>
+                        </div>
+                        <div class="col-4 pl-0">
+                                <table><td>
+                                        <div class="sleeper">
+                                            <div class="sleeper-rec"></div>
+                                        </div>
+                                    </td>
+                                    <td class="pl-2">Available</td>
+                                </table>
+                        </div>
+                        <div class="col-4 pl-0">
+                                <table><td>
+                                        <div class="sleeper sleeper-active">
+                                            <div class="sleeper-rec"></div>
+                                        </div>
+                                    </td>
+                                    <td  class="pl-2">Selected</td>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        <div id="ticket-info" class="container col-lg-6">
+
+            <div class="row pt-0">
+                <div class="col-4">
+                    <p class="small m-0 p-0 label text-left">From</p>NewYork
+                </div>
+                <div class="col-2"></div>
+                <div class="col-4">
+                    <p class="small m-0 p-0 label text-right">To</p>Dallas
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p class="small m-0 p-0 label text-left">Departure</p>13:30
+                </div>
+                <div class="col-2"><i class="fas fa-arrow-right"></i></div>
+                <div class="col-4">
+                    <p class="small m-0 p-0 label text-right">Arrival</p>23:30
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">Seat(s)</div>
+                <div class="col-2"></div>
+                <div class="col-4">10B,11B</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-4">Total</div>
+                <div class="col-2"></div>
+                <div class="col-4">$1000</div>
+            </div>
+            <div class="row">
+                <a name="" id="" class="btn btn-primary m-auto" href="#" role="button" data-toggle="modal" data-target="#myModal">Continue</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {{/each}}
+    <ul class="pagination d-flex justify-content-center">
+            <li class="page-item"><a class="page-link" href="#"><</a></li>
+            <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
+            <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+            <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">></a></li>
+    </ul>
+    </div>
+
+     <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+           
+        <!-- Modal Header -->
+        <div class="modal-header pb-0">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <ul class="nav nav-tabs d-flex align-content-center mb-3 text-center" style="margin: 2em 15%" role="tablist">
+                <li class="nav-item">
+                  <a id="ahome" class="nav-link a2-nav-link active" data-toggle="tab" href="#home">1. Passenger Information</a>
+                </li>
+                <li class="nav-item">
+                  <a id="amenu1" class="nav-link a2-nav-link disabled" data-toggle="tab" href="#menu1">2. Contact Details</a>
+                </li>
+                <li class="nav-item">
+                  <a id="amenu2" class="nav-link a2-nav-link disabled" data-toggle="tab" href="#menu2">3. Payment Details</a>
+                </li>
+              </ul>
+        <!-- Modal body -->
+        <div class="modal-body">
+                <!-- <form action="#"> -->
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Passenger Information -->
+                <div id="home" class="container tab-pane active">
+                    <form id="formhome" action="javascript:click1();">
+                        <div class="container pl-5 pr-5">
+                            <div class="row  mt-3">
+                                <div class="big-label">Passenger 1 | <b> Seat 10B</b></div>
+                                <div class="container ml-3 mt-3">
+                                    <div class="row form-group">
+                                        <label for="usr">Full Name</label>
+                                        <input type="text" class="form-control" id="usr" placeholder="Name" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8 ">
+                                            <label>Gender</label>
+                                            <div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="male1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="male1">Male</label>
+                                                </div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="female1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="female1">Female</label>
+                                                </div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="other1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="other1">Other</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-4 form-group">
+                                            <label for="usr">Year Of Birth</label>
+                                            <input type="text" class="form-control" id="usr" placeholder="Year of birth"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="big-label">Passenger 2 | <b> Seat 11B</b></div>
+                                <div class="container ml-3 mt-3">
+                                    <div class="row form-group">
+                                        <label for="usr">Full Name</label>
+                                        <input type="text" class="form-control" id="usr" placeholder="Name" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8 ">
+                                            <label>Gender</label>
+                                            <div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="male1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="male1">Male</label>
+                                                </div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="female1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="female1">Female</label>
+                                                </div>
+                                                <div class="custom-control custom-radio  custom-control-inline">
+                                                    <input type="radio" class="custom-control-input" id="other1"
+                                                        name="gender1" value="customEx">
+                                                    <label class="custom-control-label" for="other1">Other</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-4 form-group">
+                                            <label for="usr">Year Of Birth</label>
+                                            <input type="text" class="form-control" id="usr" placeholder="Year of birth"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right  mb-4 mr-4 mt-2" id="a2-btn-step-1"
+                            data-dismiss="">Continue</button>
+                    </form>
+                </div>
+                <!-- Contact Details -->
+                <div id="menu1" class="container tab-pane fade">
+                    <form id="formmenu1" action="javascript:click2();">
+                        <div class="container d-flex flex-column">
+                            <div class="row big-label align-self-center mb-3 text-primary">Your ticket will be sent to
+                                these
+                                details</div>
+                            <div class="row col-8 mb-2  align-self-center">
+                                <label for="usr">Phone</label>
+                                <input type="tel" class="form-control" id="usr" placeholder="Phone" required>
+                            </div>
+                            <div class="row col-8 mb-2  align-self-center">
+                                <label for="usr">Email</label>
+                                <input type="text" class="form-control" id="usr" placeholder="Email" required>
+                            </div>
+                            <div class="row col-8 text-center mt-3 align-self-center custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="term" name="gender1"
+                                    value="customEx" required>
+                                <label class="custom-control-label" for="term">I agreed to the <a class="text-info"
+                                        href="#">Terms and Conditions</a></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right m-4" id="a2-btn-step-2"
+                            data-dismiss="">Continue</button>
+                    </form>
+                </div>
+                <!-- Payment Details -->
+                <div id="menu2" class="container tab-pane fade">
+                    <h2 class="text-right text-primary mr-5 mb-4">10:00</h2>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-5 ajust">
+                                <p class="label p-0 m-0 text-left">Full name</p>Lê Thành Công
+                                <p class="label p-0 m-0 text-left">Phone</p>0123456789
+                                <p class="label p-0  m-0 text-left">Email</p>1612898@student.hcmus.edu.vn
+                            </div>
+                            <div id="" class="container col-lg-6">
+                                <div class="row pt-0 d-flex justify-content-center">
+                                    <div class="col-4">
+                                        <p class="small m-0 p-0 label text-left">From</p>NewYork
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div class="col-4  text-right">
+                                        <p class="small m-0 p-0 label">To</p>Dallas
+                                    </div>
+                                </div>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-4">
+                                        <p class="small m-0 p-0 label text-left">Departure</p>13:30
+                                    </div>
+                                    <div class="col-2  text-right"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="col-4   text-right">
+                                        <p class="small m-0 p-0 label text-right">Arrival</p>23:30
+                                    </div>
+                                </div>
+                                <div class="row mt-2 d-flex justify-content-center">
+                                    <div class="col-4">Seat(s)</div>
+                                    <div class="col-2  text-right"></div>
+                                    <div class="col-4   text-right">10B,11B</div>
+                                </div>
+                                <hr>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-4">Total</div>
+                                    <div class="col-2"></div>
+                                    <div class="col-4 text-right">$1000</div>
+                                </div>
+                                <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3"
+                                    data-dismiss="">Proceed To Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </form> -->
+
+        </div>
+        
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="">Continue</button>
+        </div> -->
+        
+      </div>
+    </div>
+  </div>

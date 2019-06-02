@@ -47,6 +47,22 @@ app.get('/detail', function(req, res){
 	res.render('detail');
 });
 
+app.get('/contact', function(req, res){
+	res.render('contact');
+});
+
+app.get('/signup', function(req, res){
+	res.render('signup');
+});
+
+app.get('/masterdata', function(req, res){
+	res.render('masterdata');
+});
+
+app.get('/transaction', function(req, res){
+	res.render('transaction');
+});
+
 app.get('/profile', function(req, res){
 	user={
 		name:"Lê Thành Công",

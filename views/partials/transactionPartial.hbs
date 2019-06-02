@@ -1,0 +1,238 @@
+<div class="container-fluid  text-center d-flex flex-column my-table h-100" id="search-table-result">
+        <div class="row table-header big-label">
+                <div class="col-2 active-filter">Time <i class="fas fa-arrow-down"></i></div>
+                <div class="col-2">Transaction ID</div>
+                <div class="col-2">User ID</div>
+                <div class="col-2">Bus ID</div>
+                <div class="col-2">Price</div>
+                <div class="col-2">Status</div>
+        </div>
+        <div class="b3-content-containter overflow-hidden">
+                {{#each results}}
+
+                <div class="row table-content">
+                        <div class="col-2  active-filter"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{time}}<br>{{date}}</a></div>
+                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{transID}}</a></div>
+                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{userID}}</a></div>
+                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{busID}}</a></div>
+                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{price}}</a></div>
+                        <div class="col-2">
+                                {{#if status}}
+                                <a href="#" data-toggle="tooltip" title="Used" data-placement="right"
+                                        style="cursor:default">
+                                        <i class="fas fa-check-circle" style="color:#56C568"></i>
+                                </a>
+                                {{else}}
+                                <a href="#" data-toggle="tooltip" title="Unused" data-placement="right"
+                                        style="cursor:default">
+                                        <i class="far fa-circle" style="color:#999"></i>
+                                </a>
+                                {{/if}}
+                        </div>
+                </div>
+
+                <hr class="m-2">
+                <div class="modal fade" id="modal{{@index}}">
+                        <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header pb-0">
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <ul class="nav nav-tabs pb-4 pt-0 d-flex align-items-end mb-3" role="tablist"
+                                                style="margin:0 15%">
+                                                <li class="nav-item">
+                                                        <a id="ahome" class="nav-link a2-nav-link active"
+                                                                data-toggle="tab"
+                                                                href="#modalGeneral{{@index}}">General</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <a id="amenu1" class="nav-link a2-nav-link" data-toggle="tab"
+                                                                href="#modalPassengerContact{{@index}}">Passenger &
+                                                                Contact Details</a>
+                                                </li>
+                                        </ul>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body   pl-5 pb-5 pr-5">
+                                                <div class="tab-content text-left">
+                                                        <!-- General Information -->
+                                                        <div id="modalGeneral{{@index}}"
+                                                                class="container tab-pane active">
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Transaction ID</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{transID}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Time
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{time}},
+                                                                                {{date}}</div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Bus
+                                                                                ID</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{busID}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{departure}}
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Arrival
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{arrival}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Palace Liscene
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{liscensePlate}}
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Bus
+                                                                                Route
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{fromLocation}}-{{toLocation}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Seats
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{seats}}</div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">User
+                                                                                Id</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{userID}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Phone number
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{phone}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Email
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{email}}</div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Total Price</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{price}}</div>
+                                                                </div>
+                                                                <div class="row">
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Status
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{#if status}}
+                                                                                <a href="#" data-toggle="tooltip"
+                                                                                        title="Used"
+                                                                                        data-placement="right"
+                                                                                        style="cursor:default">
+                                                                                        <i class="fas fa-check-circle"
+                                                                                                style="color:#56C568"></i>
+                                                                                </a>
+                                                                                {{else}}
+                                                                                <a href="#" data-toggle="tooltip"
+                                                                                        title="Unused"
+                                                                                        data-placement="right"
+                                                                                        style="cursor:default">
+                                                                                        <i class="far fa-circle"
+                                                                                                style="color:#999"></i>
+                                                                                </a>
+                                                                                {{/if}}
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Payment Time
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{paymentTime}}
+                                                                        </div>
+
+                                                                </div>
+                                                        </div>
+                                                        <!-- modalPassengerContact-->
+                                                        <div id="modalPassengerContact{{@index}}"
+                                                                class="container tab-pane">
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">User
+                                                                                Id
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{userID}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Phone number
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{phone}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Email
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{email}}</div>
+                                                                </div>
+                                                                <hr>
+                                                                {{#each passenger}}
+                                                                <div class="row">
+                                                                        <div class="col-lg-5 col-sm-5">
+                                                                                Passenger {{inc @index}} | Seats
+                                                                                {{getSeat @../index @index}}
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Full
+                                                                                Name
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{name}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Gender
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{gender}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Year
+                                                                                Of Birth
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{birthYear}}
+                                                                        </div>
+                                                                </div>
+                                                                <hr>
+                                                                {{/each}}
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+                {{/each}}
+        </div>
+
+
+        <ul class="pagination d-flex justify-content-center mt-auto" style="z-index: 100">
+                <li class="page-item"><a class="page-link" href="#">
+                                <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
+                <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+                <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">></a></li>
+        </ul>
+</div>
