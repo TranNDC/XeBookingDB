@@ -1,15 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Chuyen = sequelize.define('Chuyen', {
-    idTuyen: DataTypes.INTEGER,
-    idXe: DataTypes.INTEGER,
-    ngayKhoiHanh: DataTypes.STRING,
-    gioKhoiHanh: DataTypes.STRING,
-    ngayDen: DataTypes.STRING,
-    gioDen: DataTypes.STRING
+    ngayKhoiHanh: DataTypes.DATE,
+    gioKhoiHanh: DataTypes.TIME
   }, {});
   Chuyen.associate = function(models) {
     // associations can be defined here
+    Chuyen.belongsTo(models.Tuyen);
+    Chuyen.belongsTo(models.Xe);
+    Chuyen.hasMany(models.Transaction);
   };
   return Chuyen;
 };

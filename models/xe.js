@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Xe = sequelize.define('Xe', {
-    bienSo: DataTypes.STRING,
-    loaiXe: DataTypes.STRING,
-    soCho: DataTypes.INTEGER
+    bienso: DataTypes.STRING
   }, {});
   Xe.associate = function(models) {
     // associations can be defined here
+    Xe.belongsTo(models.LoaiXe);
+    Xe.hasMany(models.Chuyen);
   };
   return Xe;
 };
