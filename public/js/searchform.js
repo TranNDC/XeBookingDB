@@ -1,7 +1,6 @@
 $(document).ready(() => {
 
     let navTemplates = $("#searchform-template").html();
-    console.log(navTemplates);
     let compilednavTemplates = Handlebars.compile(navTemplates);
     $.ajax("/partials/handlebars-searchform-partial.html").done((navDetail) => {
         $("body").append(navDetail);
@@ -9,6 +8,10 @@ $(document).ready(() => {
 
         $('#searchform-container').html(compilednavTemplates());
 
+        var controller = require('../../controllers/diadiem');
+        controller.getAll(function(stations){
+            console.log(stations);
+        })
 
         $('input[type=radio][name="searchform-type-trip"]').change(function () {
             if (this.value == '1') {

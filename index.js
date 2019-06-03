@@ -29,11 +29,12 @@ app.get('/sync', function(req, res){
 });
 
 
+
 // Define your route here
 // Test view render
-app.get('/', function(req, res){
-	res.render('index');
-});
+
+var indexRouter = require('./routes/index');
+app.use('/',indexRouter);
 
 app.get('/login', function(req, res){
 	res.render('login');

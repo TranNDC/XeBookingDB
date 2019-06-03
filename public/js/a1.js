@@ -19,4 +19,19 @@ $('#carouselExample').on('slide.bs.carousel', function (e) {
     }
 });
 
+// var controller = require('../../controllers/diadiem');
+// controller.getAll(function(stations){
+//     console.log(stations);
+// })
+
+
+$('input[type=radio][name="searchform-type-trip"]').change(function () {
+    if (this.value == '1') {
+        $("#searchform-returnday").prop('disabled', true);
+
+    } else if (this.value == '2') {
+        $("#searchform-returnday").prop('disabled', false);
+    }
+});
+
 $('.dropdown-toggle').dropdown();

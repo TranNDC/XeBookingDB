@@ -371,3 +371,34 @@ span{
 #my-navbar .nav-link{
   font-size: 1em !important;
 }
+
+#fromInput,#toInput{
+  position: relative;
+  z-index: 2;
+  background-color:white; 
+}
+
+#fromInputautocomplete-list,#toInputautocomplete-list{
+  position: absolute;
+  top:60%;
+  width:85%;
+  background-color:white; 
+  border: 1px solid #999999;
+  text-align: left !important;
+  
+}
+#fromInputautocomplete-list div,#toInputautocomplete-list div{
+  background-color:white; 
+  
+  padding:10px 8px !important;
+  margin:0px !important;
+
+}
+
+#fromInputautocomplete-list div:hover,#toInputautocomplete-list div:hover{
+  background-color:#ddd; 
+  padding:10px 8px !important;
+  margin:0px !important;
+  cursor: pointer;
+
+}
