@@ -8,13 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ten: {
+      sdt: {
         type: Sequelize.STRING
       },
-      namSinh: {
-        type: Sequelize.INTEGER
-      },
-      viTriDatGhe: {
+      email: {
         type: Sequelize.STRING
       },
       createdAt: {

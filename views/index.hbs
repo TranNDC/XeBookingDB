@@ -1,22 +1,8 @@
-<title>XeBooking</title>
-<link rel="icon" href="img/Logo/icon.png">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/a1.css">
-<!-- font awsome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
-
-
-
-
 <div class="container-fluid bg-1 text-center" id="a1-div-form">
     <h1>BOOK BUS TICKET</h1>
-    
-    <span id="searchform-container" class="d-flex align-content-centera justify-content-center" data-station="{{#each stations}}{{ten}};{{/each}}">
+
+    <span id="searchform-container" class="d-flex align-content-centera justify-content-center"
+        data-station="{{#each stations}}{{ten}};{{/each}}">
         {{> searchformPartial}}
 
     </span>
@@ -30,27 +16,33 @@
 
 <div class="container mt-3">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <script src="js/a1.js"></script>
 
         <!-- Indicators -->
         <ul class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
+            {{#each carouselInfors.carouselVouchers}}
+            <li data-target="#myCarousel" data-slide-to="{{@index}}" {{#ifEquals @index 0 }} class="active"
+                {{/ifEquals}}></li>
+            {{/each}}
             <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
         </ul>
 
         <!-- The slideshow -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            {{#each carouselInfors.carouselVouchers}}
+            <div class="carousel-item  {{#ifEquals @index 0 }} active {{/ifEquals}}">
                 <div class="container-fluid">
                     <div class="row">
+                        {{#each idVouchers}}
                         <div class="col-4">
-                            <img src="img/A1/1.jpg" alt="Los Angeles" width="1100" height="500">
+                            <img src="{{getVoucherImagePath ../../vouchers this}}" alt="Los Angeles" width="1100" height="500">
                             <div class="carousel-caption d-none d-md-block">
-                                <h3>New York</h3>
-                                <p>Sale 50%</p>
+                                <h3>{{getVoucherName ../../vouchers this}}</h3>
+                                <p>Sale {{getVoucherSaleOff ../../vouchers this}}%</p>
                             </div>
                         </div>
-                        <div class="col-4">
+                        {{/each}}
+                        {{!-- <div class="col-4">
                             <img src="img/A1/2.jpg" alt="Los Angeles" width="1100" height="500">
                             <div class="carousel-caption d-none d-md-block">
                                 <h3>New York</h3>
@@ -63,11 +55,12 @@
                                 <h3>New York</h3>
                                 <p>Sale 50%</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
+            {{/each}}
+            {{!-- <div class="carousel-item">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-4">
@@ -93,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
         </div>
@@ -108,13 +101,3 @@
     </div>
 
 </div>
-
-<script src="js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/handlebars-v4.1.2.js"></script>
-<script src="js/a1.js"></script>
-<script src="js/nav-guess-input.js"></script>
-{{!-- <script src="js/searchform.js"></script> --}}
-<script src="dist/js/datepicker.min.js"></script>
-<script src="dist/js/i18n/datepicker.en.js"></script>
-<script src="js/footer.js"></script>

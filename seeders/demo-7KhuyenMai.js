@@ -13,7 +13,7 @@ module.exports = {
         ngayBatDau: "2019-06-01",
         ngayKetThuc: "2019-07-01",
         phanTram: 30,
-        imagePath: `img\A1\{i}.jpg`,
+        imagePath: `/img/A1/${i}.jpg`,
         TuyenId: i%4+1,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
