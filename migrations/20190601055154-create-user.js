@@ -20,6 +20,15 @@ module.exports = {
       isAdmin: {
         type: Sequelize.BOOLEAN
       },
+      phone:{
+        type: Sequelize.STRING
+      },
+      imagePath:{
+        type: Sequelize.STRING
+      },
+      location:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
