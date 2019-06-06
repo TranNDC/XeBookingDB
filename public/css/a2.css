@@ -102,6 +102,25 @@ body{
     background-color: #fff;
   }
 
+
+  .seater.sleeper-active .seater-rec1{
+    border-color: #56C568 !important;
+    background-color: #56C568 !important;
+    cursor: default;
+  }
+
+  .seater.sleeper-active .seater-rec1{
+    border-color: #56C568 !important;
+    background-color: #56C568 !important;
+  }
+
+  .seater.sleeper-active{
+    border-color: #56C568 !important;
+    background-color: #fff !important;
+  }
+
+
+
 .sleeper-rec {
   position: absolute;
   left: 85.42%;
@@ -147,11 +166,13 @@ body{
 
 .sleeper-active {
   border-color: #56C568 !important;
+  background-color: #56C568;
   color: #56C568;
 }
 
 .sleeper-active div {
-  border-color: #56C568 !important;
+  border-color: white !important;
+  background-color: white;
   color: #56C568;
 }
 
@@ -167,7 +188,7 @@ body{
 }
 
 .sleeper-disabled div {
-  border-color: #999999;
+  border-color: white;
   background-color: white;
 }
 
@@ -216,14 +237,14 @@ body{
 
 
 #searchform{
-    margin:16px !important;
+    margin:16px auto !important;
     width: 60% !important;
     padding-top: 16px !important ;
 }
 
 #searchform-row-div-form div{
-    margin:2% 0px !important;
-    padding:4px 1% !important;
+    margin:2% 0px ;
+    padding:4px 1% ;
 }
 
 #searchResult-container{

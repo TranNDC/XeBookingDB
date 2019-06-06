@@ -1,3 +1,4 @@
+<form style="width: 100%" action="/search"onsubmit="DoSubmit();">
 <div class="container justify-content-center align-content-center" id="searchform">
     <div class="row">
         <div class="col-md-1 col-sm-0 "></div>
@@ -19,12 +20,12 @@
     </div>
     <div id="searchform-row-div-form" class="row align-items-center justify-content-center">
         <div class="col-md-2 col-sm-4 mb-3">
-            <input id="fromInput" type="text" class="form-control-plaintext control-inline my-inpyt-text"
+            <input id="fromInput" autocomplete="off" name="xuatphatId" type="text" class="form-control-plaintext control-inline my-inpyt-text"
                 placeholder="From">
         </div>
-        <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
+        <i id="swapbutton" style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
         <div class="col-md-2 col-sm-4">
-            <input id="toInput" type="text" class="form-control-plaintext control-inline my-inpyt-text"
+            <input id="toInput" autocomplete="off" name="ketthucId" type="text" class="form-control-plaintext control-inline my-inpyt-text"
                 placeholder="To">
         </div>
         <div class="col-md-3 col-sm-4">
@@ -32,7 +33,7 @@
                 <!-- <label class="form-check-label" for="bday">Departure Day</label> -->
                 <input placeholder="Departure Day" id="searchform-departureday" type="text"
                     class="datepicker-here my-date-time-picker form-control" data-language='en'
-                    data-position='bottom right' />
+                    data-position='bottom right' name="ngayKhoiHanh" autocomplete="off" required />
                 <i class="far fa-calendar-alt icon-date m-auto"></i>
             </div>
         </div>
@@ -41,18 +42,19 @@
                 <!-- <label class="form-check-label" for="bday">Departure Day</label> -->
                 <input placeholder="Return Day" id="searchform-returnday" type="text"
                     class="datepicker-here my-date-time-picker form-control" data-language='en'
-                    data-position='bottom right' disabled />
+                    data-position='bottom right' name="luotVe" autocomplete="off" disabled />
                 <i class="far fa-calendar-alt icon-date m-auto"></i>
             </div>
         </div>
         <div class="col-lg-1 col-m-2 col-sm-5 d-flex justify-content-center">
-            <a name="" id="searchform-search-button" class="btn btn-primary" href="/detail" role="button">Search</a>
+            <button  id="searchform-search-button" class="btn btn-primary"  type="submit">Search</a>
         </div>
     </div>
     <script src="dist/js/i18n/datepicker.en.js"></script>
     <script src="dist/js/datepicker.min.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script src="js/autocomple.js"></script>
+    <script src="js/search.js"></script>
 
 
 </div>
+</form>

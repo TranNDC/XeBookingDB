@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ngayKhoiHanh: {
+      ngayGioKhoiHanh: {
         type: Sequelize.DATE
       },
-      gioKhoiHanh: {
-        type: Sequelize.TIME
+      gia: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

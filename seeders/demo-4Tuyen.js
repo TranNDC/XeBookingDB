@@ -6,7 +6,6 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     let tuyens = [];
     let tuyen = {
-      gia:500,
       soPhutDiChuyen:630,
       xuatphatId:1,
       ketthucId:2,
@@ -16,7 +15,6 @@ module.exports = {
     tuyens.push(tuyen);
 
     tuyen = {
-      gia:500,
       soPhutDiChuyen:630,
       xuatphatId:2,
       ketthucId:1,
@@ -26,7 +24,6 @@ module.exports = {
     tuyens.push(tuyen);
 
     tuyen = {
-      gia:100,
       soPhutDiChuyen:420,
       xuatphatId:3,
       ketthucId:4,
@@ -36,7 +33,6 @@ module.exports = {
     tuyens.push(tuyen);
 
     tuyen = {
-      gia:100,
       soPhutDiChuyen:420,
       xuatphatId:4,
       ketthucId:3,
@@ -44,7 +40,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     tuyens.push(tuyen);
-    console.log(tuyens);
     return queryInterface.bulkInsert('Tuyens', tuyens, {});
   },
 

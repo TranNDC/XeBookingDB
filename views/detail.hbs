@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="css/a2.css">
 
 
-<span id="searchform-container" class="a2-searchform d-flex align-content-centera justify-content-center">
+<span id="searchform-container" class="a2-searchform d-flex align-content-centera justify-content-center"
+    data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}">
 
     {{> searchformPartial}}
 
@@ -94,11 +95,36 @@
 
             </div>
             <div id="searchResult-container" class="container-fluid col-9 border">
-                {{> searchResultPartial}}
+
+                <div class="container-fluid  text-center my-table" id="search-table-result">
+                    <div class="row table-header big-label">
+                        <div class="col-2">Liscense Plate</div>
+                        <div class="col-2">Type</div>
+                        <div class="col-2 active-filter">Departure <i class="fas fa-arrow-up"></i></div>
+                        <div class="col-2">Arrival</div>
+                        <div class="col-2">Price</div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div id="searchResultPartialDiv" data-chuyens="{{#each this.Chuyens}}{{id}};{{/each}}">
+                        {{!-- {{Transactions}} --}}
+                        {{#each Chuyens}}
+                        {{> searchResultPartial chuyen=this transactions=../Transactions}}
+                        {{!-- {{> searchResultPartial}} --}}
+                        {{/each}}
+                    </div>
+                    <ul class="pagination d-flex justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">
+                                <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">></a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>
     </div>
+    <script src="js/searchResults.js"></script>
 
 </div>
 
