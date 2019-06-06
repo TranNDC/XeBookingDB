@@ -155,8 +155,8 @@ a {
     position: absolute;
     top: 25%;
     right: 5%;
-    ;
     width: 100%;
+    z-index: 1000;
 }
 
 #chart_donut,
@@ -165,6 +165,11 @@ a {
     height: 130% !important;
     width: 70% !important;
     margin-top: -7%;
+    z-index: 1000;
+}
+
+#refresh{
+    z-index: 10000 !important;
 }
 
 #chart_busroute {

@@ -1,4 +1,20 @@
-<div class="a1-overlay"></div>
-<span id="nav-container">
-    {{> navbarGuessPartial}}
-</span>
+
+{{#if isLoggedIn }}
+    {{#if user.isAdmin}}
+        <span id="nav-container">
+            {{> navbarAdminPartial}}
+        </span>
+    {{else}}  
+        <span id="nav-container">
+            {{> navbarUserPartial}}
+        </span>
+    {{/if}}
+{{else}}
+    <span id="nav-container">
+        {{> navbarGuessPartial}}
+    </span>
+{{/if}}
+
+
+
+

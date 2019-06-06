@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/a1.css">
-<link rel="stylesheet" href="css/a3.css">
-<link rel="stylesheet" href="css/b3.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/a1.css">
+<link rel="stylesheet" href="/css/a3.css">
+<link rel="stylesheet" href="/css/b3.css">
 <!-- font awsome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -16,25 +16,25 @@
             <h2 class="a3-title">User Profile</h2>
             <div class="b3-options">
                 <a id="b3-link-userprofile" class="b3-choice b3-chosen" href="#">
-                    <img class="b3-icon" src="img/icon/baseline-person-24px.svg" alt="">
+                    <img class="b3-icon" src="/img/icon/baseline-person-24px.svg" alt="">
                     <div class="b3-textOpt">Info</div>
 
                 </a>
 
                 <a id="b3-link-history" class="b3-choice" href="#">
-                    <img class="b3-icon" src="img/icon/baseline-restore-24px.svg" alt="">
+                    <img class="b3-icon" src="/img/icon/baseline-restore-24px.svg" alt="">
                     <div class="b3-textOpt">History</div>
                 </a>
 
                 <a id="b3-link-setting" class="b3-choice" href="#">
-                    <img class="b3-icon" src="img/icon/baseline-settings-20px.svg" alt="">
+                    <img class="b3-icon" src="/img/icon/baseline-settings-20px.svg" alt="">
                     <div class="b3-textOpt">Setting</div>
                 </a>
             </div>
             <br><br><br>
             <div id="logout" class="mt-auto">
                 <a href="/login">
-                    <img id="b3-logout-icon" src="img/icon/logout.svg" alt="">
+                    <img id="b3-logout-icon" src="/img/icon/logout.svg" alt="">
                     Log out
                 </a>
             </div>
@@ -47,20 +47,20 @@
             <div class="a3-form">
                 <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                     <div class="b3-avatar">
-                        <img id="b3-header-avatar" src="img/user/user.jpg" alt="">
+                        <img id="b3-header-avatar" src="/img/user/user.jpg" alt="">
                         <div class="box">
-                            <a href="#"><img class="b3-icon-edit" src="img/icon/baseline-create-24px.svg" alt=""></a>
+                            <a href="#"><img class="b3-icon-edit" src="/img/icon/baseline-create-24px.svg" alt=""></a>
                             <input type="file" class="chooser" onchange="readURL(this);">
                             <!-- <div class="b3-cursorpointer"></div> -->
                         </div>
                     </div>
                     <div class="pl-5">
-                        <div class="b3-title-name">Lê Thành Công</div>
-                        <div class="b3-title-location">Ho Chi Minh City, Viet Nam</div>
+                        <div class="b3-title-name">{{user.name}}</div>
+                        <div class="b3-title-location">{{user.location}}</div>
                     </div>
                 </div>
 
-                <form action="b3_profile.html">
+                <form role="form" method="POST" action="/users/updateinfo">
                     <div class="container b3-form-edit">
 
                         <div class="row justify-content-center align-content-center">
@@ -68,36 +68,36 @@
                             <div class="col-md-5 col-sm-12">
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">User ID</div>
-                                    <input type="text" name="userID" value="U101" readonly>
+                                    <input type="text" name="userID" readonly value={{user.id}}>
                                 </div>
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Password</div>
-                                    <input type="password" name="pasw" value="congdeptrai" readonly>
-                                    <img id="b3-icon-edit-password" src="img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="password" name="pasw" value="abcxyz" readonly>
+                                    <img id="b3-icon-edit-password" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Phone number</div>
-                                    <input type="text" name="phone" value="0909173336" readonly>
-                                    <img id="b3-icon-edit-phone" src="img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="text" name="phone" readonly value={{user.phone}} >
+                                    <img id="b3-icon-edit-phone" src="/img/icon/baseline-create-24px-grey.svg" alt="">
 
                                 </div>
                             </div>
                             <div class="col-md-5 col-sm-12">
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Full name</div>
-                                    <input type="text" id="nameID" name="fullname" value="Lê Thành Công" readonly>
-                                    <img id="b3-icon-edit-fullname" src="img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="text" id="nameID" name="fullname" readonly value="{{user.name}}">
+                                    <img id="b3-icon-edit-fullname" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Email address</div>
-                                    <input type="text" name="email" value="thanhcong.le1108@gmail.com" readonly>
-                                    <img id="b3-icon-edit-email" src="img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="text" name="email" readonly value={{user.email}} >
+                                    <img id="b3-icon-edit-email" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
 
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Location</div>
-                                    <input type="text" name="location" value="Ho Chi Minh City, Viet Nam" readonly>
-                                    <img id="b3-icon-edit-location" src="img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="text" name="location" readonly value="{{user.location}}" >
+                                    <img id="b3-icon-edit-location" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
                             </div>
 
@@ -131,11 +131,11 @@
 
 
 
-<script src="js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/handlebars-v4.1.2.js"></script>
-<script src="js/a1.js"></script>
-<script src="js/b3.js"></script>
-<script src="js/nav-user-input.js"></script>
-<script src="js/user-history.js"></script>
-<script src="js/footer.js"></script>
+<script src="/js/handlebars-v4.1.2.js"></script>
+<script src="/js/a1.js"></script>
+<script src="/js/b3.js"></script>
+<script src="/js/nav-user-input.js"></script>
+<script src="/js/user-history.js"></script>
+<script src="/js/footer.js"></script>
