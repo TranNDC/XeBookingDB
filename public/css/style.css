@@ -374,11 +374,12 @@ span{
 
 #fromInput,#toInput{
   position: relative;
-  z-index: 2;
+  z-index: 3;
   background-color:white; 
 }
 
 #fromInputautocomplete-list,#toInputautocomplete-list{
+  z-index: 2;
   position: absolute;
   top:60%;
   width:85%;
@@ -395,10 +396,14 @@ span{
 
 }
 
-#fromInputautocomplete-list div:hover,#toInputautocomplete-list div:hover{
-  background-color:#ddd; 
+#fromInputautocomplete-list div:hover,#toInputautocomplete-list div:hover, .autocomplete-active{
+  background-color:#ddd !important;
   padding:10px 8px !important;
   margin:0px !important;
   cursor: pointer;
 
+}
+
+#swapbutton{
+  cursor: pointer;
 }

@@ -1,8 +1,10 @@
+    <link rel="stylesheet" href="css/a1.css">
+
 <div class="container-fluid bg-1 text-center" id="a1-div-form">
     <h1>BOOK BUS TICKET</h1>
 
     <span id="searchform-container" class="d-flex align-content-centera justify-content-center"
-        data-station="{{#each stations}}{{ten}};{{/each}}">
+        data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}">
         {{> searchformPartial}}
 
     </span>

@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Tuyen = sequelize.define('Tuyen', {
-    gia: DataTypes.INTEGER,
     soPhutDiChuyen: DataTypes.INTEGER
   }, {});
   Tuyen.associate = function(models) {

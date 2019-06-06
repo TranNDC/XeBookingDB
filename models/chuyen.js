@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Chuyen = sequelize.define('Chuyen', {
-    ngayKhoiHanh: DataTypes.DATE,
-    gioKhoiHanh: DataTypes.TIME
+    ngayGioKhoiHanh: DataTypes.DATE,
+    gia: DataTypes.INTEGER
   }, {});
   Chuyen.associate = function(models) {
     // associations can be defined here

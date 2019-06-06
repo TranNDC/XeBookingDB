@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      gia: {
-        type: Sequelize.INTEGER
-      },
       soPhutDiChuyen: {
         type: Sequelize.INTEGER
       },
