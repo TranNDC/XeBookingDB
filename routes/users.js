@@ -26,11 +26,11 @@ router.post('/login', function(req, res) {
 
     userController.getUserByEmail(email, function(user) {
         if (!user) {
-            res.render('login', { error: 'No email is found' });
+            res.render('login', { error: 'No email is found',noHeader:'true',noFooter:'true' });
         } else {
             userController.comparePassword(password, user.password, function(isMatch) {
                 if (!isMatch) {
-                    res.render('login', { error: 'Incorrect Password' });
+                    res.render('login', { error: 'Incorrect Password',noHeader:'true',noFooter:'true' });
                 } else {
                     req.session.user = user;
                     if (req.session.returnURL) {
@@ -57,11 +57,11 @@ router.post('/signup', function(req, res) {
     
     var errors = req.validationErrors();
     if (errors) {
-        res.render('signup', { errors: errors });
+        res.render('signup', { errors: errors,noHeader:'true',noFooter:'true' });
     } else {
         userController.getUserByEmail(email, function(user) {
             if (user) {
-                res.render('signup', { error: `Email ${email} exists! Please choose another email.` });
+                res.render('signup', { error: `Email ${email} exists! Please choose another email.`,noHeader:'true',noFooter:'true' });
             } else {
                 var user = {
                     name: name,
@@ -71,7 +71,7 @@ router.post('/signup', function(req, res) {
                 };
                 userController.createUser(user, function(err) {
                     if (err) throw err;
-                    res.render('login', { success: 'You have registered, now please login' });
+                    res.render('login', { success: 'You have registered, now please login',noHeader:'true',noFooter:'true' });
                 });
             }
         });

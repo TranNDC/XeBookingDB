@@ -33,7 +33,7 @@
             </div>
             <br><br><br>
             <div id="logout" class="mt-auto">
-                <a href="/login">
+                <a href="/users/logout">
                     <img id="b3-logout-icon" src="/img/icon/logout.svg" alt="">
                     Log out
                 </a>
@@ -47,7 +47,7 @@
             <div class="a3-form">
                 <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                     <div class="b3-avatar">
-                        <img id="b3-header-avatar" src="/img/user/user.jpg" alt="">
+                        <img id="b3-header-avatar" src={{{user.imagePath}}} alt="">
                         <div class="box">
                             <a href="#"><img class="b3-icon-edit" src="/img/icon/baseline-create-24px.svg" alt=""></a>
                             <input type="file" class="chooser" onchange="readURL(this);">
