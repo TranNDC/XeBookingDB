@@ -3,8 +3,6 @@ var app = express();
 var expressHbs = require('express-handlebars');
 var paginateHelper = require('express-handlebars-paginate');
 
-// Setting for app here
-
 // Set Public Folder
 app.use(express.static(__dirname + '/public'));
 // Use View Engine
@@ -17,6 +15,7 @@ var hbs = expressHbs.create({
 	helpers: {
         paginate: paginateHelper.createPagination,
     }
+
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -26,56 +25,78 @@ app.set('port', (process.env.PORT || 5000));
 
 // Create database
 var models = require('./models');
-app.get('/sync', function(req, res){
-	models.sequelize.sync().then(function(){
+app.get('/sync', function (req, res) {
+	models.sequelize.sync().then(function () {
 		res.send('database sync completed!');
 	});
 });
 
+//use body parser
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 
-// Define your route here
-// Test view render
+// use session
+var session = require('express-session');
+app.use(session({
+	cookie: {
+		httpOnly: true,
+		maxAge: 30 * 24 * 60 * 60 * 1000
+	}, //30 days
+	secret: 'Secret',
+	saveUninitialized: false,
+	resave: false
+}));
+
+//use express validator
+var expressValidator = require('express-validator');
+app.use(expressValidator());
+
+app.use(function (req, res, next) {
+	res.locals.user = req.session.user;
+	res.locals.isLoggedIn = req.session.user ? true : false;
+	next();
+});
 
 var indexRouter = require('./routes/index');
-app.use('/',indexRouter);
+app.use('/', indexRouter);
 
-app.get('/login', function(req, res){
-	res.render('login');
+var userRouter = require('./routes/users');
+app.use('/users', userRouter);
+
+var userRouter = require('./routes/charts');
+app.use('/charts', userRouter);
+
+app.get('/login', function (req, res) {
+	res.redirect('users/login');
 });
 
-app.get('/admin', function(req, res){
-	res.render('admin');
+app.get('/admin', function (req, res) {
+	res.redirect('users/admin');
 });
 
-app.get('/detail', function(req, res){
-	res.render('detail');
-});
-
-app.get('/contact', function(req, res){
+app.get('/contact', function (req, res) {
 	res.render('contact');
 });
 
-app.get('/signup', function(req, res){
-	res.render('signup');
+app.get('/signup', function (req, res) {
+	res.redirect('users/signup');
 });
 
-app.get('/masterdata', function(req, res){
-	res.render('masterdata');
+app.get('/transaction', function (req, res) {
+	res.redirect('users/transaction');
 });
 
-app.get('/transaction', function(req, res){
-	res.render('transaction');
+app.get('/profile', function (req, res) {
+	res.redirect('users/profile');
 });
 
-app.get('/profile', function(req, res){
-	user={
-		name:"Lê Thành Công",
-		avatarlink:"/img/user/user.jpg"
-	}
-	res.render('profile',user);
+app.get('/masterdata', function (req, res) {
+	res.redirect('users/masterdata');
 });
 
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'), function () {
 	console.log('Server is listening at port ' + app.get('port'));
 });

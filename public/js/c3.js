@@ -60,7 +60,6 @@ function updateContainer(afterLoad) {
 
     google.charts.setOnLoadCallback(drawChartBusRoute);
 
-    afterLoad("70", "Sleeper");
 }
 
 function drawChartBusRoute() {
@@ -96,7 +95,7 @@ function drawChartBusRoute() {
     // chart.draw(data, options);
 
     var jsonData = $.ajax({
-        url: "https://api.myjson.com/bins/k7maj",
+        url: "/charts/chart_busroute",
         dataType: "json",
         async: false,
         success: (
@@ -152,7 +151,7 @@ function drawChartBusType() {
     // chart.draw(data, options);
 
     var jsonData = $.ajax({
-        url: "https://api.myjson.com/bins/9uw2z",
+        url: "/charts/chart_bustype",
         dataType: "json",
         async: false,
         success: (
@@ -207,7 +206,7 @@ function drawChartDonut() {
     // chart.draw(data, options);
 
     var jsonData = $.ajax({
-        url: "https://api.myjson.com/bins/wlv3v",
+        url: "/charts/chart_donut",
         dataType: "json",
         async: false,
         success: (
@@ -224,26 +223,32 @@ function drawChartDonut() {
                     data.setCell(i, 0, c[i].task);
                     data.setCell(i, 1, c[i].percent);
                 }
+
+                if (c[1].percent>c[0].percent){
+                    $('#donut-value').html(parseInt(c[1].percent*100/(c[0].percent+c[1].percent)));
+                }
+                else
+                    $('#donut-value').html(parseInt(c[0].percent*100/(c[0].percent+c[1].percent)));
                 chartdonut = new google.visualization.PieChart(
                     document.getElementById('chart_donut'));
                 chartdonut.draw(data, options);
                 
-                // initial value
-                var percent = 0;
-                // start the animation loop
-                var handler = setInterval(function () {
-                    // values increment
-                    percent += 1;
-                    // apply new values
-                    data.setValue(0, 1, percent);
-                    data.setValue(1, 1, 100 - percent);
-                    // update the pie
-                    chartdonut.draw(data, options);
-                    // check if we have reached the desired value
-                    if (percent >= 30)
-                        // stop the loop
-                        clearInterval(handler);
-                }, 30);
+                // // initial value
+                // var percent = 0;
+                // // start the animation loop
+                // var handler = setInterval(function () {
+                //     // values increment
+                //     percent += 1;
+                //     // apply new values
+                //     data.setValue(0, 1, percent);
+                //     data.setValue(1, 1, 100 - percent);
+                //     // update the pie
+                //     chartdonut.draw(data, options);
+                //     // check if we have reached the desired value
+                //     if (percent >= 30)
+                //         // stop the loop
+                //         clearInterval(handler);
+                // }, 30);
             })
     }).responseText;
 
@@ -314,7 +319,7 @@ function drawColColors() {
 
 
     var jsonData = $.ajax({
-        url: "https://api.myjson.com/bins/egrj7",
+        url: "/charts/chart_col",
         dataType: "json",
         async: false,
         success: (
@@ -380,7 +385,7 @@ function drawChartLine() {
     // chart.draw(data, google.charts.Line.convertOptions(options));
 
     var jsonData = $.ajax({
-        url: "https://api.myjson.com/bins/egrj7",
+        url: "/charts/chart_line",
         dataType: "json",
         async: false,
         success: (

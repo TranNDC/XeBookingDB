@@ -12,7 +12,7 @@ module.exports = {
       password: 'cong',
       isAdmin: false,
       phone:'0123456789',
-      imagePath: `/img/user/user.jpg`,
+      imagePath: `/img/user/user-cong.jpg`,
       location:'Ho Chi Minh City, Viet Nam',
       
       createdAt: Sequelize.literal('NOW()'),
@@ -41,7 +41,7 @@ module.exports = {
       password: 'cong',
       isAdmin: false,
       phone:'0123456789',
-      imagePath: `/img/user/user.jpg`,
+      imagePath: `/img/user/user-cong.jpg`,
       location:'Ho Chi Minh City, Viet Nam',
       createdAt: Sequelize.literal('NOW()'),
       updatedAt: Sequelize.literal('NOW()')
@@ -69,7 +69,7 @@ module.exports = {
       password: 'cong',
       isAdmin: false,
       phone:'0123456789',
-      imagePath: `/img/user/user.jpg`,
+      imagePath: `/img/user/user-cong.jpg`,
       location:'Ho Chi Minh City, Viet Nam',
       createdAt: Sequelize.literal('NOW()'),
       updatedAt: Sequelize.literal('NOW()')
@@ -98,7 +98,7 @@ module.exports = {
       password: 'cong',
       isAdmin: false,
       phone:'0123456789',
-      imagePath: `/img/user/user.jpg`,
+      imagePath: `/img/user/user-cong.jpg`,
       location:'Ho Chi Minh City, Viet Nam',
       createdAt: Sequelize.literal('NOW()'),
       updatedAt: Sequelize.literal('NOW()')
@@ -127,7 +127,7 @@ module.exports = {
       password: 'cong',
       isAdmin: false,
       phone:'0123456789',
-      imagePath: `/img/user/user.jpg`,
+      imagePath: `/img/user/user-cong.jpg`,
       location:'Ho Chi Minh City, Viet Nam',
       createdAt: Sequelize.literal('NOW()'),
       updatedAt: Sequelize.literal('NOW()')
