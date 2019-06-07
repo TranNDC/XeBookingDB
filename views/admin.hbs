@@ -42,7 +42,7 @@
                      <a href="" id="sign-ups" class="box">
                          <img class="c3-img" src="/img/C3/1.jpg" alt="">
                          <div class="text">
-                             <div id="num-signup">100.000</div>
+                             <div id="num-signup">{{numSignUp}}</div>
                              Online signups
                          </div>
                      </a>
@@ -50,21 +50,21 @@
                      <a href="" id="new-visitors" class="box">
                          <img class="c3-img" src="/img/C3/3.jpg" alt="">
                          <div class="text">
-                             <div id="num-visit">100.000</div>
+                             <div id="num-visit">{{numVisit}}</div>
                              Number of visitors
                          </div>
                      </a>
                      <a href="" id="last-month-sales" class="box">
                          <img class="c3-img" src="/img/C3/2.jpg" alt="">
                          <div class="text">
-                             <div id="num-sale">100.000</div>
+                             <div id="num-sale">{{numBooking}}</div>
                              Total of bookings
                          </div>
                      </a>
                      <a href="" id="total-revenue-month" class="box">
                          <img class="c3-img" src="/img/C3/4.jpg" alt="">
                          <div class="text">
-                             <div id="num-revenue">$100.000</div>
+                             <div id="num-revenue">${{revenue}}</div>
                              Total revenue
                          </div>
                      </a>
@@ -76,7 +76,7 @@
                              <i class="far fa-calendar-alt icon-change-date"></i>
                          </a>
                          <div class="name-ad-info">
-                             <div id="admin-name">Hi <span>Lê Thành Công</span></div>
+                             <div id="admin-name">Hi <span>{{user.name}}</span></div>
                              <div id="date">Today is </div>
 
                          </div>
@@ -157,7 +157,7 @@
                  <!-- Tab panes -->
                  <div class="tab-content">
                      <div id="home" class="container tab-pane active">
-                         <form id="formhome" action="admin.html">
+                         <form id="formhome" action="/admin/refresh" method="GET">
                              <div class="container pl-5 pr-5">
                                  <div class="row row-custom">
                                      <div class="col-6">

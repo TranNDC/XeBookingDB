@@ -10,6 +10,13 @@ var controllerTransaction = require('../controllers/transaction');
 var _stations = null;
 
 router.get('/', function (req, res) {
+
+    let visitController = require('../controllers/logvisit');
+    visitController
+        .add({
+            visit: Date.now()
+        });
+
     controllerDiaDiem.getAll(function (stations) {
         res.locals.stations = stations;
         if (!_stations) _stations = stations;

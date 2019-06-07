@@ -61,16 +61,15 @@ app.use('/', indexRouter);
 var userRouter = require('./routes/users');
 app.use('/users', userRouter);
 
+var userRouter = require('./routes/charts');
+app.use('/charts', userRouter);
+
 app.get('/login', function (req, res) {
-	res.render('login');
+	res.redirect('users/login');
 });
 
 app.get('/admin', function (req, res) {
-	res.render('admin');
-});
-
-app.get('/detail', function (req, res) {
-	res.render('detail');
+	res.redirect('users/admin');
 });
 
 app.get('/contact', function (req, res) {
@@ -78,23 +77,19 @@ app.get('/contact', function (req, res) {
 });
 
 app.get('/signup', function (req, res) {
-	res.render('signup');
-});
-
-app.get('/masterdata', function (req, res) {
-	res.render('masterdata');
+	res.redirect('users/signup');
 });
 
 app.get('/transaction', function (req, res) {
-	res.render('transaction');
+	res.redirect('users/transaction');
 });
 
 app.get('/profile', function (req, res) {
-	user = {
-		name: "Lê Thành Công",
-		avatarlink: "/img/user/user.jpg"
-	}
-	res.render('profile', user);
+	res.redirect('users/profile');
+});
+
+app.get('/masterdata', function (req, res) {
+	res.redirect('users/masterdata');
 });
 
 app.listen(app.get('port'), function () {

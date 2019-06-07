@@ -58,10 +58,24 @@
                         </div>
                         {{/if}}
 
-                        <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                        placeholder="Your email" id="email" name="email" autocomplete="off" required autofocus>
+                        {{#if email}}
+                        <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your email"
+                            id="email" name="email" value="{{email}}" autocomplete="off" required autofocus>
+                        {{else}}
+                        <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your email"
+                            id="email" name="email" autocomplete="off" required autofocus>
 
-                        <input type="password" placeholder="Your password" id="password" name="password" autocomplete="off" required autofocus>
+                        
+                        {{/if}}
+
+                        {{#if password}}
+                        <input type="password" placeholder="Your password" value="{{password}}" id="password" name="password"
+                            autocomplete="off" required autofocus>
+                        {{else}}
+                        <input type="password" placeholder="Your password" id="password" name="password"
+                            autocomplete="off" required autofocus>
+                        {{/if}}
+
 
                         <div class="custom-control custom-checkbox custom-control" id="remember">
                             <input type="checkbox" class="my-control-input custom-control-input my-checkbox"
