@@ -6,6 +6,8 @@ var Tuyens = models.Tuyen;
 var DiaDiems = models.DiaDiem;
 var Xes = models.Xe;
 var LoaiXes = models.LoaiXe;
+var KhuyenMais = models.KhuyenMai;
+
 
 
 
@@ -24,7 +26,6 @@ controller.search = function (xuatphatTen, ketthucTen, ngayKhoiHanh, callback) {
         include: [{
             model: Tuyens,
             required: true,
-            // attributes: [['id', 'id'],"soPhutDiChuyen","xuatphatId", "ketthucId"],
             include: [{
                 model: DiaDiems,
                 as: "xuatphat",
@@ -35,6 +36,48 @@ controller.search = function (xuatphatTen, ketthucTen, ngayKhoiHanh, callback) {
                 as: "ketthuc",
                 attributes: ['ten'],
                 where:{ten:ketthucTen}
+            }, {
+                model: KhuyenMais,
+                attributes: ['maKhuyenMai','phanTram','ngayBatDau','ngayKetThuc'],
+            }]
+        },
+        {
+            model: Xes,
+            include: {
+                model: LoaiXes
+            }
+        }
+        ],
+
+    })
+        .then((Chuyens) => {
+            callback(Chuyens);
+        });
+}
+
+controller.searchWithVoucher = function(xuatphatTen,ketthucTen,maKhuyenMai, callback){
+    Chuyens.findAll({
+        attributes: ['id', 'ngayGioKhoiHanh', 'gia'],
+        include: [{
+            model: Tuyens,
+            required: true,
+            include: [{
+                model: DiaDiems,
+                as: "xuatphat",
+                required: true,
+                attributes: ['ten'],
+                where:{ten:xuatphatTen}
+            }, {
+                model: DiaDiems,
+                as: "ketthuc",
+                required: true,
+                attributes: ['ten'],
+                where:{ten:ketthucTen}
+            }, {
+                model: KhuyenMais,
+                required: true,
+                attributes: ['maKhuyenMai','phanTram','ngayBatDau','ngayKetThuc'],
+                where:{maKhuyenMai:maKhuyenMai}
             }]
         },
         {

@@ -91,6 +91,11 @@ body{
     border-color: #999999;
     background-color: #999999;
   }
+  .seater.sleeper-disabled .seater-rec2{
+    border-color: #999999;
+    background-color: white;
+  }
+
 
   .seater.sleeper-disabled{
     border-color: #999999;
@@ -119,6 +124,10 @@ body{
     background-color: #fff !important;
   }
 
+  .seater.sleeper-active .seater-rec2{
+    border-color: #56C568 !important;
+    background-color: white;
+  }
 
 
 .sleeper-rec {
@@ -174,6 +183,15 @@ body{
   border-color: white !important;
   background-color: white;
   color: #56C568;
+}
+
+.listHeader{
+  color: #333333;
+  font-size:1.1rem;
+}
+
+.listHeader:hover{
+  text-decoration: none;
 }
 
 .sleeper-disabled {

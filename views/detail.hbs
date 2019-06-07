@@ -17,6 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 pl-0">
+                <form id='filterForm' action="" method="get">
                 <div class="container border col-12 ml-0 pt-3 pl-md-3 pl-lg-5 pr-3 pb-5">
                     <h4>Filter</h4>
                     <div id="departure-div" class="filter-div">
@@ -36,10 +37,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <form>
-                                        <input type="hidden" name="min-value" value="">
-                                        <input type="hidden" name="max-value" value="">
-                                    </form>
+                                        <input id="departure_min" type="hidden" name="departure_min" value="">
+                                        <input id="departure_max" type="hidden" name="departure_max" value="">
                                 </div>
                             </div>
                         </div>
@@ -62,10 +61,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <form>
-                                        <input type="hidden" name="min-value" value="">
-                                        <input type="hidden" name="max-value" value="">
-                                    </form>
+                                        <input id="price_min" type="hidden" name="price_min" value="">
+                                        <input id="price_max" type="hidden" name="price_max" value="">
                                 </div>
                             </div>
                         </div>
@@ -75,56 +72,59 @@
                         <h5 class="mb-3">Bus Type</h5>
                         <div class="mb-2 custom-control custom-checkbox custom-control">
                             <input type="checkbox" class="my-control-input custom-control-input my-checkbox" id="seater"
-                                name="" value="1">
+                                name="bustype" value="seater">
                             <label class="custom-control-label" for="seater">Seater</label>
                         </div>
                         <div class="mb-2 custom-control custom-checkbox custom-control">
                             <input type="checkbox" class="my-control-input custom-control-input my-checkbox"
-                                id="sleeper" name="" value="1">
+                                id="sleeper" name="bustype" value="sleeper">
                             <label class="custom-control-label" for="sleeper">Sleeper</label>
                         </div>
-                        <div class="custom-control custom-checkbox custom-control">
-                            <input type="checkbox" class="my-control-input custom-control-input my-checkbox"
-                                id="semisleeper" name="" value="1">
-                            <label class="custom-control-label" for="semisleeper">Semi Sleeper</label>
-                        </div>
                     </div>
-
+                    <div class="row d-flex w-100 mt-5 ">
+                        <button type="submit" class="btn btn-primary m-auto" onclick="updateDataFilter()">Apply Filter</button>
+                    </div>
+                    
 
                 </div>
-
+                </form>
             </div>
             <div id="searchResult-container" class="container-fluid col-9 border">
-
                 <div class="container-fluid  text-center my-table" id="search-table-result">
                     <div class="row table-header big-label">
-                        <div class="col-2">Liscense Plate</div>
-                        <div class="col-2">Type</div>
-                        <div class="col-2 active-filter">Departure <i class="fas fa-arrow-up"></i></div>
-                        <div class="col-2">Arrival</div>
-                        <div class="col-2">Price</div>
+                        <div class="col-2"><a id="headerlicensePlate" class="listHeader" href="?order=licensePlate_asc">License Plate</a></div>
+                        <div class="col-2"><a id="headertype" class="listHeader" href="?order=type_asc">Type</a></div>
+                        <div class="col-2"><a id="headerdeparture" class="listHeader" href="?order=departure_asc">Departure</a></div>
+                        <div class="col-2"><a id="headerarrival" class="listHeader" href="?order=arrival_asc">Arrival</a></div>
+                        <div class="col-2"><a id="headerprice" class="listHeader" href="?order=price_asc">Price</a></div>
                         <div class="col-2"></div>
-                    </div>
+                    </div> 
                     <div id="searchResultPartialDiv" data-chuyens="{{#each this.Chuyens}}{{id}};{{/each}}">
-                        {{!-- {{Transactions}} --}}
                         {{#each Chuyens}}
-                        {{> searchResultPartial chuyen=this transactions=../Transactions}}
-                        {{!-- {{> searchResultPartial}} --}}
+                        {{> searchResultPartial chuyen=this transactions=../Transactions hasVoucher=../hasVoucher}}
                         {{/each}}
                     </div>
-                    <ul class="pagination d-flex justify-content-center">
+                    {{!-- <ul class="pagination d-flex justify-content-center">
                         <li class="page-item"><a class="page-link" href="#">
                                 <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
                         <li class="page-item"><a class="page-link 2" href="#">2</a></li>
                         <li class="page-item"><a class="page-link 3" href="#">3</a></li>
                         <li class="page-item"><a class="page-link" href="#">></a></li>
-                    </ul>
+                    </ul> --}}
+
+                    <nav class="d-flex">
+                        {{#if hasPagination}}
+                            {{{paginate pagination}}}
+                        {{/if}}
+                    </nav>
                 </div>
 
             </div>
         </div>
     </div>
     <script src="js/searchResults.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
 
 </div>
 

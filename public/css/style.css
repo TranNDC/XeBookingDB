@@ -187,7 +187,7 @@ h4{
   background-color: white;
   border: 1px solid #494949;
   border-radius: 5px;
-  padding: 16px 8px 8px 8px !important;
+  /* padding: 16px 8px 8px 8px !important; */
 }
 
 
@@ -406,4 +406,46 @@ span{
 
 #swapbutton{
   cursor: pointer;
+}
+
+ul.pagination li a{
+  padding: 8px 8px 4px 8px;
+  /* line-height: 1.5rem; */
+}
+
+ul.pagination{
+  margin:auto;
+}
+
+ul.pagination li {
+  padding: 4px 0px;
+}
+
+ul.pagination li:hover {
+  background-color: #ddd;
+}
+
+ul.pagination li.disabled:hover {
+  background-color: white;
+  cursor: default;
+}
+
+ul.pagination li.disabled a {
+  pointer-events: none;
+ cursor: default;
+}
+
+ul.pagination li a{
+  color: #999999 !important;
+}
+
+ul.pagination li a:hover{
+  text-decoration: none;
+
+}
+
+
+ul.pagination li.active a{
+  color: #494949 !important;
+  border-bottom: 2px #494949 solid;
 }

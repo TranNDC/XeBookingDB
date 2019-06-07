@@ -15,7 +15,7 @@ controller.getAll = function (callback) {
 
 controller.getSumary = function (callback) {
     voucher.findAll({
-        attributes: ['maKhuyenMai', 'phanTram', 'imagePath'],
+        attributes: ['maKhuyenMai', 'phanTram', 'imagePath','ngayBatDau','ngayKetThuc'],
             include: {
                 model: Tuyens,
                 attributes: [['id', 'id']],

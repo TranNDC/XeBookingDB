@@ -37,11 +37,13 @@
                     <div class="row">
                         {{#each idVouchers}}
                         <div class="col-4">
-                            <img src="{{getVoucherImagePath ../../vouchers this}}" alt="Los Angeles" width="1100" height="500">
+                            <a style="z-index: 10;" href="{{getHref ../../vouchers this}}" targer='_self'><img src="{{getVoucherImagePath ../../vouchers this}}" alt="Los Angeles" width="1100" height="500">
                             <div class="carousel-caption d-none d-md-block">
                                 <h3>{{getVoucherName ../../vouchers this}}</h3>
                                 <p>Sale {{getVoucherSaleOff ../../vouchers this}}%</p>
+                                <p>{{getDateRange ../../vouchers this}}</p>
                             </div>
+                            </a>
                         </div>
                         {{/each}}
                         {{!-- <div class="col-4">

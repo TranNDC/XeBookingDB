@@ -1,32 +1,37 @@
 // Requires jQuery
 
-function click1() {
-  var check = $('#formhome')[0].checkValidity();
-  if ($("#formhome")[0].checkValidity()) {
-    $('#menu1').addClass('active');
-    $('#home').removeClass('active');
-    $('#menu1').removeClass('fade');
-    $('#home').addClass('fade');
-    $('#amenu1').addClass('active');
-    $('#ahome').removeClass('active');
-    $('#amenu1').removeClass('disabled');
+
+
+function click1(id) {
+  console.log(id);
+  var check = $('#formhome'+id)[0].checkValidity();
+  if ($("#formhome"+id)[0].checkValidity()) {
+    $('#menu1'+id).addClass('active');
+    $('#home'+id).removeClass('active');
+    $('#menu1'+id).removeClass('fade');
+    $('#home'+id).addClass('fade');
+
+    $('#amenu1'+id).addClass('active');
+    $('#ahome'+id).removeClass('active');
+    $('#amenu1'+id).removeClass('disabled');
   }
   else {
-    $("#formhome").find(':submit').click();
+    $("#formhome"+id).find(':submit').click();
   }
 }
-function click2() {
-  var check = $('#formmenu1')[0].checkValidity();
+function click2(id) {
+  var check = $('#formmenu1'+id)[0].checkValidity();
   if (check) {
-    $('#menu2').addClass('active');
-    $('#menu1').removeClass('active');
-    $('#menu2').removeClass('fade');
-    $('#menu1').addClass('fade');
-    $('#amenu2').addClass('active');
-    $('#amenu1').removeClass('active');
-    $('#amenu2').removeClass('disabled');
+    $('#menu2'+id).addClass('active');
+    $('#menu1'+id).removeClass('active');
+    $('#menu2'+id).removeClass('fade');
+    $('#menu1'+id).addClass('fade');
+
+    $('#amenu2'+id).addClass('active');
+    $('#amenu1'+id).removeClass('active');
+    $('#amenu2'+id).removeClass('disabled');
   } else {
-    $("#formmenu1").find(':submit').click();
+    $("#formmenu1"+id).find(':submit').click();
   }
 }
 
@@ -42,11 +47,11 @@ function pricerange() {
     prefix: '$'
   });
   noUiSlider.create(rangeSlider, {
-    start: [1, 5000],
+    start: [1, 500],
     step: 1,
     range: {
       'min': [0],
-      'max': [5000]
+      'max': [500]
     },
     format: moneyFormat,
     connect: true
@@ -63,6 +68,11 @@ function pricerange() {
   });
 }
 
+function getCurrentMinutes(){
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes();
+  return ( today.getHours()*60) +today.getMinutes();
+}
 
 function timeRange() {
   $('.noUi-handle').on('click', function () {
@@ -75,10 +85,10 @@ function timeRange() {
     prefix: ''
   });
   noUiSlider.create(rangeSlider, {
-    start: [0, 1439],
+    start: [getCurrentMinutes(), 1439],
     step: 1,
     range: {
-      'min': [0],
+      'min': [getCurrentMinutes()],
       'max': [1439]
     },
     format: moneyFormat,
@@ -99,10 +109,181 @@ function timeRange() {
   });
 }
 
-// Initialize slider:
+function getNewHref(pattern, url, hreff){
+  let href= hreff.substr(1);
+
+  let uri = url.substr(url.search('search?')+6);
+
+  if (uri.search(pattern)>=0){
+    lists = uri.substr(1).split('&');
+    for (let i = 0; i < lists.length; i++) {
+      if (lists[i].search(pattern)>=0){
+        lists[i] = href;
+
+      }      
+    }
+    uri = '?'+lists.join('&');
+  }
+  else{
+    uri+= '&'+href;
+  }
+  return uri;
+}
+
+function getPageNumber(pattern, url){
+  let uri = url.substr(url.search('search?')+6);
+
+  if (uri.search(pattern) > 1) {
+    let tmp = uri.substr(uri.search(pattern)+pattern.length+1);
+    tmp1  =tmp.search('&');
+    let page;
+    if (tmp1 >=1 )
+      page = tmp.substr(0,tmp1);
+    else
+      page = tmp;
+    return page;
+  }
+  else {
+    return 1;
+  }
+}
+
+function getOppositeOrder(ord){
+  return ord=='asc'?'desc':'asc';
+}
+
+$('#filterForm').submit(function() {
+  // DO STUFF...
+  console.log("xxxxxxx");
+  
+  
+  $('#departure_min').val($('#slider-range-time-value1').text());
+  $('#departure_max').val($('#slider-range-time-value2').text()); 
+
+  $('#price_min').val($('#slider-range-price-value1').text());
+  $('#price_max').val($('#slider-range-price-value2').text()); 
+
+
+
+  return true; // return false to cancel form action
+});
+
+function updateDataFilter(){
+
+  console.log("xxxxxxx");
+
+  $('#departure_min').val($('#slider-range-time-value1').text());
+  $('#departure_max').val($('#slider-range-time-value2').text()); 
+
+  $('#price_min').val($('#slider-range-price-value1').text());
+  $('#price_max').val($('#slider-range-price-value2').text()); 
+
+
+}
+
 $(document).ready(function () {
   pricerange();
   timeRange();
+
+  let url = window.location.href
+  let nPage = getPageNumber('page',url);
+  let n = $('ul.pagination li a').length;
+  let i = 0;
+  
+  $('ul.pagination li a').each(function () {
+    let text = 0;
+    if (i == 0) {
+      if (nPage == 1) {
+        $(this).parent().addClass('disabled');
+        text = 0;
+      }
+      else text = nPage - 1;
+    } else if (i == n - 1) {
+        if (nPage == n - 1) {
+          $(this).parent().addClass('disabled');
+          text = 0;
+        }
+        else text = parseInt(nPage) + 1;
+      } else
+        text = i;
+    if (text != 0) {
+      let href = '?page=' + text;
+      let newhref = getNewHref('page',url, href);
+      $(this).attr('href', newhref);
+    }
+    i++;
+  });
+
+  let type = ['departure','asc' ];
+  let query = getPageNumber('order',url);
+  if (query!=1)
+    type = query.split('_');
+
+  let newActive = $('#header'+type[0]);
+  $('.listHeader').each(function () {
+    let href = $(this).attr('href');
+    
+    if ($(this).attr('id')==newActive.attr('id')){
+      let html = (newActive.text());
+      if (type[1]=='asc') html+='<i class="fas fa-arrow-up ml-1"></i>';
+      else html+='<i class="fas fa-arrow-down ml-1"></i>';
+      $(this).html(html);
+      href = href.replace(type[1],getOppositeOrder(type[1]));
+    }
+    
+    let newhref = getNewHref('order', url, href);
+    $(this).attr('href', newhref);
+
+  });
+
+  switch (type[0]) {
+    case 'licensePlate': {
+      $('.active-filter').removeClass('active-filter');
+      $('#headerlicensePlate').addClass('active-filter');
+      $('licensePlateData').addClass('active-filter');
+      break;
+    }
+    case 'type':{
+      $('.active-filter').removeClass('active-filter');
+      $('#headertype').addClass('active-filter');
+      $('.typeData').addClass('active-filter');
+      break;
+    }  
+    case 'departure': {
+      $('.active-filter').removeClass('active-filter'); 
+      $('#headerdeparture').addClass('active-filter');
+      $('.departureData').addClass('active-filter');
+      break;
+    } 
+    case 'arrival': {
+      $('.active-filter').removeClass('active-filter'); 
+      $('#headerarrival').addClass('active-filter');
+      $('.arrivalData').addClass('active-filter');
+
+      break;
+    }
+    case 'price':{
+      $('.active-filter').removeClass('active-filter'); 
+      $('#headerprice').addClass('active-filter');
+      $('.priceData').addClass('active-filter');
+      break;
+    } 
+
+    default:
+      break;
+  }
+  let uri = url.substr(url.search('search?')+6);
+  lists = uri.substr(1).split('&');
+  lists.forEach(element => {
+    kv = element.split('=');
+    kv[1] = kv[1].replace(/\+/g, ' ');
+    html = '<input type="hidden" name="'+kv[0]+'" value="'+decodeURIComponent(kv[1])+'">';
+    if (html.search('_min')>=0 || html.search('_max')>=0 || html.search=='bustype'){}
+    else  
+    $('#filterForm').append(html);
+    console.log(html);
+  });
+
 });
 
 

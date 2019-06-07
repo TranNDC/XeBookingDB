@@ -1,32 +1,33 @@
-<div class="row mt-3 text-left">
-    <div class="big-label">Passenger 1 | <b> Seat 10B</b></div>
-    <div class="container ml-3 mt-3">
+<div id="passengerDetail{{id}}" class="row mt-0 text-left ">
+    <div class="big-label">Passenger <p id="number" class="d-inline"></p> | <b> Seat <p id="detailSeat" class="d-inline"></p></b>
+    </div>
+    <div class="container ml-3 mt-2">
         <div class="row form-group mb-0">
             <label for="usr">Full Name</label>
-            <input type="text" class="form-control" id="usr" placeholder="Name" required>
+            <input type="text" class="form-control" id="passengerName{{id}}" placeholder="Name" required>
         </div>
         <div class="row">
-            <div class="col-8 ">
+            <div class="col-8 pl-0">
                 <label>Gender</label>
-                <div>
+                <div id="genderDiv{{id}}">
                     <div class="custom-control custom-radio  custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="male1" name="gender1" value="customEx">
-                        <label class="custom-control-label" for="male1">Male</label>
+                        <input type="radio" class="custom-control-input" id="male{{id}}" name="gender1" value="1"  required>
+                        <label class="custom-control-label" for="male{{id}}">Male</label>
                     </div>
                     <div class="custom-control custom-radio  custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="female1" name="gender1" value="customEx">
-                        <label class="custom-control-label" for="female1">Female</label>
+                        <input type="radio" class="custom-control-input" id="female{{id}}" name="gender1" value="2"  required>
+                        <label class="custom-control-label" for="female{{id}}">Female</label>
                     </div>
                     <div class="custom-control custom-radio  custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="other1" name="gender1" value="customEx">
-                        <label class="custom-control-label" for="other1">Other</label>
+                        <input type="radio" class="custom-control-input" id="other{{id}}" name="gender1" value="3"  required>
+                        <label class="custom-control-label" for="other{{id}}">Other</label>
                     </div>
                 </div>
 
             </div>
-            <div class="col-4 form-group mb-0">
-                <label for="usr">Year Of Birth</label>
-                <input type="text" class="form-control" id="usr" placeholder="Year of birth" required>
+            <div class="col-4 form-group mb-0 pl-0 pr-0">
+                <label >Year Of Birth</label>
+                <input name="namSinh" type="number" min="1900" max="2019" class="form-control"  placeholder="Year of birth" required>
             </div>
         </div>
     </div>

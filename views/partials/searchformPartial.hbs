@@ -1,24 +1,8 @@
 <form style="width: 100%" action="/search"onsubmit="DoSubmit();">
-<div class="container justify-content-center align-content-center" id="searchform">
-    <div class="row">
-        <div class="col-md-1 col-sm-0 "></div>
-        <div class="col-lg-2 col-md-3 col-sm-6 text-center">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="my-control-input custom-control-input" id="customRadio-OneWay"
-                    name="searchform-type-trip" value="1" checked>
-                <label class="custom-control-label" for="customRadio-OneWay">One Way</label>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 ">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="my-control-input custom-control-input" id="customRadio-RoundTrip"
-                    name="searchform-type-trip" value="2">
-                <label class="custom-control-label" for="customRadio-RoundTrip">Round Trip</label>
-            </div>
-            <br>
-        </div>
-    </div>
-    <div id="searchform-row-div-form" class="row align-items-center justify-content-center">
+<div class="container justify-content-center align-content-center p-2 mb-0" id="searchform">
+    <div class="align-items-center justify-content-center row"><p style="font-size: 26px;" class='mb-0'>Find your bus</p></div>
+    <div id="searchform-row-div-form" class="row align-items-center justify-content-center pl-4 pr-4">
+        <div class="col-md-1 col-sm-0"></div>
         <div class="col-md-2 col-sm-4 mb-3">
             <input id="fromInput" autocomplete="off" name="xuatphatId" type="text" class="form-control-plaintext control-inline my-inpyt-text"
                 placeholder="From">
@@ -37,17 +21,8 @@
                 <i class="far fa-calendar-alt icon-date m-auto"></i>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4">
-            <div class="input-date m-0">
-                <!-- <label class="form-check-label" for="bday">Departure Day</label> -->
-                <input placeholder="Redturn Day" id="searchform-returnday" type="text"
-                    class="datepicker-here my-date-time-picker form-control" data-language='en'
-                    data-position='bottom right' name="luotVe" autocomplete="off" disabled />
-                <i class="far fa-calendar-alt icon-date m-auto"></i>
-            </div>
-        </div>
-        <div class="col-lg-1 col-m-2 col-sm-5 d-flex justify-content-center">
-            <button  id="searchform-search-button" class="btn btn-primary"  type="submit">Search</a>
+        <div class="col-lg-2 col-m-2 col-sm-5 d-flex justify-content-center">
+            <button  id="searchform-search-button" class="btn btn-primary w-100"  type="submit">Search</a>
         </div>
     </div>
     <script src="dist/js/i18n/datepicker.en.js"></script>
