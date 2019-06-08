@@ -6,7 +6,7 @@ module.exports = {
     var users = [];
     var i = 1;
 
-    for (i = 39; i < 68; i++) {
+    for (i = 1; i < 30; i++) {
       var user = {
         ten:"Lê Thành Công",
         namSinh:1998,

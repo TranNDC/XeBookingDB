@@ -12,8 +12,7 @@
                  <div class="nav nav-tabs a2-nav-link nav-fill" id="nav-tab" role="tablist">
                      <a class="nav-item nav-link a2-nav-link " id="nav-home-tab" href="/masterdata">Master
                          Data</a>
-                     <a class="nav-item nav-link a2-nav-link" id="nav-profile-tab"
-                         href="/transaction">Transaction</a>
+                     <a class="nav-item nav-link a2-nav-link" id="nav-profile-tab" href="/transaction">Transaction</a>
                      <a class="nav-item nav-link a2-nav-link active" id="nav-contact-tab" href="#">Report</a>
                  </div>
              </nav>
@@ -84,12 +83,20 @@
                      </div>
 
                      <div id="num-of-booking" class="c3-form">
-                         <div class="title-chart">Number of booking bus from May 1st, 2019 to Now</div>
+                         {{#if datefrom}}
+                         <div class="title-chart">Number of booking bus from {{datefrom}} to {{dateto}}</div>
+                         {{else}}
+                         <div class="title-chart">Number of booking bus all time</div>
+                         {{/if}}
                          <div id="chart_line"></div>
                      </div>
 
                      <div id="revenue" class="c3-form">
-                         <div class="title-chart">Revenue from May 1st, 2019 to Now</div>
+                         {{#if datefrom}}
+                         <div class="title-chart">Revenue from {{datefrom}} to {{dateto}}</div>
+                         {{else}}
+                         <div class="title-chart">Revenue all time</div>
+                         {{/if}}
                          <div id="chart_col"></div>
                      </div>
 
@@ -103,7 +110,12 @@
                          <div class="info-chart">
 
                              <div class="title-donut">Users visit then book bus</div>
-                             <div class="subtitle-donut">Calculated from May 1st, 2019 to Now</div>
+                             {{#if datefrom}}
+                             <div class="subtitle-donut">From {{datefrom}} to {{dateto}}</div>
+                             {{else}}
+                             <div class="subtitle-donut">Calculated all time</div>
+                             {{/if}}
+
                              <a href="#" class="btn btn-primary" id="refresh" role="button" data-toggle="modal"
                                  data-target="#myModal">REFRESH</a>
                          </div>
@@ -116,7 +128,11 @@
                          <div id="chart_bustype"></div>
                          <div class="info-chart">
                              <div class="title-donut">Bus type used most</div>
-                             <div class="subtitle-donut">Calculated from May 1st, 2019 to Now</div>
+                             {{#if datefrom}}
+                             <div class="subtitle-donut">From {{datefrom}} to {{dateto}}</div>
+                             {{else}}
+                             <div class="subtitle-donut">Calculated all time</div>
+                             {{/if}}
                              <a href="#" class="btn btn-primary" id="refresh" role="button" data-toggle="modal"
                                  data-target="#myModal">REFRESH</a>
                          </div>
@@ -124,7 +140,12 @@
 
                      <div id="bus-route" class="c3-form">
                          <div class="info-chart-route">
-                             <div class="title-chart">Bus route booked most from May 1st, 2019 to Now</div>
+                             {{#if datefrom}}
+                             <div class="title-chart">Bus route booked most from {{datefrom}} to {{dateto}}</div>
+                             {{else}}
+                             <div class="title-chart">Bus route booked most all time</div>
+                             {{/if}}
+
                              <br>
                              <div id="chart_busroute"></div>
                          </div>
@@ -157,7 +178,7 @@
                  <!-- Tab panes -->
                  <div class="tab-content">
                      <div id="home" class="container tab-pane active">
-                         <form id="formhome" action="/admin/refresh" method="GET">
+                         <form id="formhome" action="/users/admin/refresh" method="GET">
                              <div class="container pl-5 pr-5">
                                  <div class="row row-custom">
                                      <div class="col-6">
@@ -165,7 +186,7 @@
                                              <input placeholder="From" id="datefromID" type="text" name="datefrom"
                                                  class="datepicker-here form-control" data-language='en'
                                                  data-multiple-dates="3" data-multiple-dates-separator=", "
-                                                 data-position='bottom right' />
+                                                 data-position='bottom right' autocomplete="off" />
                                              <i class="far fa-calendar-alt icon-date"></i>
                                          </div>
                                      </div>
@@ -175,7 +196,7 @@
                                              <input placeholder="To" id="datetoID" type="text" name="dateto"
                                                  class="datepicker-here form-control" data-language='en'
                                                  data-multiple-dates="3" data-multiple-dates-separator=", "
-                                                 data-position='bottom right' />
+                                                 data-position='bottom right' autocomplete="off" />
                                              <i class="far fa-calendar-alt icon-date"></i>
                                          </div>
                                      </div>

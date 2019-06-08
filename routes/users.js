@@ -33,6 +33,56 @@ router.use('/profile', userRouter);
 let allusers = require('../controllers/users');
 let allvisit = require('../controllers/logvisit');
 let allbooking = require('../controllers/transaction');
+
+//query chartjs with datefrom and date
+router.get('/admin/refresh', userController.isAdmin, function (req, res) {
+    parts = req.query.datefrom.split('/');
+
+    datefrom = new Date(parts[2], parts[0] - 1, parts[1]);
+
+    parts = req.query.dateto.split('/');
+
+    dateto = new Date(parts[2], parts[0] - 1, parts[1]);
+
+    res.locals.datefrom = datefrom.toDateString();
+    res.locals.dateto = dateto.toDateString();
+
+    req.session.datefrom = datefrom;
+    req.session.dateto = dateto;
+    req.session.loadBetweenDate = true;
+
+    if (datefrom > dateto) {
+        res.redirect("/admin");
+    } else {
+        allusers.getAllWithDate(datefrom, dateto, results => {
+            res.locals.numSignUp = Object.keys(results).length;
+            allvisit.getAllWithDate(datefrom, dateto, results => {
+                res.locals.numVisit = Object.keys(results).length;
+                allbooking.getAllBetweenDate(datefrom, dateto, results => {
+                    res.locals.numBooking = Object.keys(results).length;
+                    allbooking.getAllMoneyBetweenDate(datefrom, dateto, results => {
+                        var num = Object.keys(results).length;
+                        var sum = 0;
+                        for (i = 0; i < num; i++) {
+                            sum = sum + results[i].dataValues.Chuyen.dataValues.gia;
+                            //console.log(results[i].dataValues.Chuyen.dataValues.gia);
+                        }
+                        res.locals.revenue = sum;
+                        res.render('admin');
+                    })
+
+                })
+
+            })
+
+        })
+    }
+
+});
+
+
+
+
 router.get('/admin', userController.isAdmin, (req, res) => {
     allusers.getAll(results => {
         res.locals.numSignUp = Object.keys(results).length;
@@ -48,6 +98,7 @@ router.get('/admin', userController.isAdmin, (req, res) => {
                         //console.log(results[i].dataValues.Chuyen.dataValues.gia);
                     }
                     res.locals.revenue = sum;
+                    req.session.loadBetweenDate = false;
                     res.render('admin');
                 })
 
@@ -60,7 +111,6 @@ router.get('/admin', userController.isAdmin, (req, res) => {
 
 router.get('/transaction', userController.isAdmin, (req, res) => {
     controllerTransaction.getTransactions((Transactions)=>{
-        console.log(Transactions.length);
         var page = parseInt(req.query.page);
         var limit = 13;
         page = isNaN(page) ? 1 : page;
@@ -120,8 +170,23 @@ router.get('/history', userController.isLoggedIn, (req, res) => {
     })
 });
 
+
+
+let allchuyen = require('../controllers/chuyen');
 router.get('/masterdata', userController.isAdmin, (req, res) => {
-    res.render('masterdata');
+    let page = req.query.page || 1;
+    let limit = 7;
+    allchuyen.getAllForMasterdata(page,limit,results => {
+        res.locals.results = results.rows;
+        //res.send(results[0]);
+        res.locals.pagination={
+            page:parseInt(page),
+            limit:7,
+            totalRows:results.count
+        }
+        res.render('masterdata');
+        
+    });
 });
 
 router.post('/login', function (req, res) {
@@ -211,6 +276,7 @@ router.post('/signup', function (req, res) {
         });
     }
 });
+
 
 router.get('/logout', function (req, res) {
     req.session.user = null;

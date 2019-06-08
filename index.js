@@ -17,6 +17,9 @@ var hbs = expressHbs.create({
     }
 
 });
+
+hbs.handlebars.registerHelper('paginateHelper',paginateHelper.createPagination);
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
@@ -76,6 +79,7 @@ app.get('/login', function (req, res) {
 app.get('/admin', function (req, res) {
 	res.redirect('users/admin');
 });
+
 
 app.get('/contact', function (req, res) {
 	res.render('contact');

@@ -483,6 +483,15 @@ function filterVouchers(vouchers){
         });
     }
 }
+hbs.registerHelper("prettifyDate", function(timestamp) {
+    return timestamp.toDateString();
+});
+
+hbs.registerHelper("getTime", function(timestamp) {
+    return timestamp.toTimeString().split(' ')[0];
+});
+// hbs.registerPartial("searchResultPartial", $("#searchResult-detail-template").html());
+
 
 
 module.exports = router;

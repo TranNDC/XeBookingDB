@@ -91,5 +91,40 @@ controller.searchWithVoucher = function(xuatphatTen,ketthucTen,maKhuyenMai, call
         });
 }
 
+//------------------------------------------------------------------------------
+controller.getAllForMasterdata = function (page,limit,callback) {
+    Chuyens.findAndCountAll({
+        limit:limit,
+        offset:limit*(page-1),
+        include: [{
+            model: Tuyens,
+            required: true,
+            include: [{
+                model: DiaDiems,
+                as: "xuatphat",
+                attributes: ['ten'],
+            }, {
+                model: DiaDiems,
+                as: "ketthuc",
+                attributes: ['ten'],
+            }, {
+                model: KhuyenMais,
+                attributes: ['maKhuyenMai','phanTram','ngayBatDau','ngayKetThuc'],
+            }]
+        },
+        {
+            model: Xes,
+            include: {
+                model: LoaiXes
+            }
+        }
+        ],
+
+    })
+        .then((Chuyens) => {
+            callback(Chuyens);
+        });
+}
+
 
 module.exports = controller;

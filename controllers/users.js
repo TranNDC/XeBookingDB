@@ -2,13 +2,30 @@ var controller = {};
 
 var models = require('../models');
 var bcrypt = require('bcryptjs');
-
+const Op = require('../models').Sequelize.Op;
 
 let user = models.User;
 controller.getAll = (callback) => {
     user
         .findAll({
-            where: {isAdmin:false}
+            where: {
+                isAdmin: false
+            }
+        })
+        .then(result => {
+            callback(result);
+        });
+}
+
+controller.getAllWithDate = (datefrom, dateto, callback) => {
+    user
+        .findAll({
+            where: {
+                isAdmin: false,
+                createdAt: {
+                    [Op.between]: [datefrom, dateto],
+                }
+            }
         })
         .then(result => {
             callback(result);

@@ -224,11 +224,7 @@ function drawChartDonut() {
                     data.setCell(i, 1, c[i].percent);
                 }
 
-                if (c[1].percent>c[0].percent){
-                    $('#donut-value').html(parseInt(c[1].percent*100/(c[0].percent+c[1].percent)));
-                }
-                else
-                    $('#donut-value').html(parseInt(c[0].percent*100/(c[0].percent+c[1].percent)));
+                $('#donut-value').html(parseInt(c[1].percent*100/(c[0].percent+c[1].percent)));
                 chartdonut = new google.visualization.PieChart(
                     document.getElementById('chart_donut'));
                 chartdonut.draw(data, options);
