@@ -108,8 +108,23 @@ router.get('/transaction', userController.isAdmin, (req, res) => {
     res.render('transaction');
 });
 
+
+
+let allchuyen = require('../controllers/chuyen');
 router.get('/masterdata', userController.isAdmin, (req, res) => {
-    res.render('masterdata');
+    let page = req.query.page || 1;
+    let limit = 7;
+    allchuyen.getAllForMasterdata(page,limit,results => {
+        res.locals.results = results.rows;
+        //res.send(results[0]);
+        res.locals.pagination={
+            page:parseInt(page),
+            limit:7,
+            totalRows:results.count
+        }
+        res.render('masterdata');
+        
+    });
 });
 
 router.post('/login', function (req, res) {

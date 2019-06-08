@@ -382,9 +382,17 @@ hbs.registerHelper('getPrice', function (chuyen, options) {
     return (price);
 });
 
+var hbs = require('handlebars');
+hbs.registerHelper("prettifyDate", function(timestamp) {
+    return timestamp.toDateString();
+});
 
-
+var hbs = require('handlebars');
+hbs.registerHelper("getTime", function(timestamp) {
+    return timestamp.toTimeString().split(' ')[0];
+});
 // hbs.registerPartial("searchResultPartial", $("#searchResult-detail-template").html());
+
 
 
 module.exports = router;

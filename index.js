@@ -17,6 +17,9 @@ var hbs = expressHbs.create({
     }
 
 });
+
+hbs.handlebars.registerHelper('paginateHelper',paginateHelper.createPagination);
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
