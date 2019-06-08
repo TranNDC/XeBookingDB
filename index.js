@@ -77,6 +77,7 @@ app.get('/admin', function (req, res) {
 	res.redirect('users/admin');
 });
 
+
 app.get('/contact', function (req, res) {
 	res.render('contact');
 });

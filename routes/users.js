@@ -28,6 +28,56 @@ router.get('/profile', userController.isLoggedIn, (req, res) => {
 let allusers = require('../controllers/users');
 let allvisit = require('../controllers/logvisit');
 let allbooking = require('../controllers/transaction');
+
+//query chartjs with datefrom and date
+router.get('/admin/refresh', userController.isAdmin, function (req, res) {
+    parts = req.query.datefrom.split('/');
+
+    datefrom = new Date(parts[2], parts[0] - 1, parts[1]);
+
+    parts = req.query.dateto.split('/');
+
+    dateto = new Date(parts[2], parts[0] - 1, parts[1]);
+
+    res.locals.datefrom = datefrom.toDateString();
+    res.locals.dateto = dateto.toDateString();
+
+    req.session.datefrom = datefrom;
+    req.session.dateto = dateto;
+    req.session.loadBetweenDate = true;
+
+    if (datefrom > dateto) {
+        res.redirect("/admin");
+    } else {
+        allusers.getAllWithDate(datefrom, dateto, results => {
+            res.locals.numSignUp = Object.keys(results).length;
+            allvisit.getAllWithDate(datefrom, dateto, results => {
+                res.locals.numVisit = Object.keys(results).length;
+                allbooking.getAllBetweenDate(datefrom, dateto, results => {
+                    res.locals.numBooking = Object.keys(results).length;
+                    allbooking.getAllMoneyBetweenDate(datefrom, dateto, results => {
+                        var num = Object.keys(results).length;
+                        var sum = 0;
+                        for (i = 0; i < num; i++) {
+                            sum = sum + results[i].dataValues.Chuyen.dataValues.gia;
+                            //console.log(results[i].dataValues.Chuyen.dataValues.gia);
+                        }
+                        res.locals.revenue = sum;
+                        res.render('admin');
+                    })
+
+                })
+
+            })
+
+        })
+    }
+
+});
+
+
+
+
 router.get('/admin', userController.isAdmin, (req, res) => {
     allusers.getAll(results => {
         res.locals.numSignUp = Object.keys(results).length;
@@ -43,6 +93,7 @@ router.get('/admin', userController.isAdmin, (req, res) => {
                         //console.log(results[i].dataValues.Chuyen.dataValues.gia);
                     }
                     res.locals.revenue = sum;
+                    req.session.loadBetweenDate = false;
                     res.render('admin');
                 })
 
@@ -148,6 +199,7 @@ router.post('/signup', function (req, res) {
         });
     }
 });
+
 
 router.get('/logout', function (req, res) {
     req.session.user = null;
