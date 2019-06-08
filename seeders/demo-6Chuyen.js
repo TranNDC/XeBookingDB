@@ -7,19 +7,25 @@ module.exports = {
     let chuyens = [];
 
     for (let i = 1; i < 10; i++) {
-      var time = i + ":00";
-      var chuyen = {
-        ngayGioKhoiHanh:'2019-06-01 '+time,
-        gia:Math.floor(Math.random() * 401) + 100, 
-        TuyenId: i % 4 + 1,
-        XeId: i,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+      for (let j = 1; j < 10; j++) {
+        var date = new Date();
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setHours(date.getHours()+j);
+        date.setDate(date.getDate()+i-1);
+        var chuyen = {
+          ngayGioKhoiHanh: date.toLocaleString(),
+          gia: Math.floor(Math.random() * 401) + 100,
+          TuyenId: Math.floor(Math.random() * 4)+1,
+          XeId: Math.floor(Math.random() * 9)+1,
+          createdAt: Sequelize.literal('NOW()'),
+          updatedAt: Sequelize.literal('NOW()')
+        }
+        chuyens.push(chuyen);
       }
-      chuyens.push(chuyen);
     }
-    console.log(chuyens);
     return queryInterface.bulkInsert('Chuyens', chuyens, {});
+
   },
 
   down: (queryInterface, Sequelize) => {

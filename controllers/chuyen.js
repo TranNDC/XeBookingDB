@@ -8,10 +8,6 @@ var Xes = models.Xe;
 var LoaiXes = models.LoaiXe;
 var KhuyenMais = models.KhuyenMai;
 
-
-
-
-
 controller.getAll = function (callback) {
     voucher.findAll()
         .then(function (voucher) {
@@ -44,7 +40,8 @@ controller.search = function (xuatphatTen, ketthucTen, ngayKhoiHanh, callback) {
         {
             model: Xes,
             include: {
-                model: LoaiXes
+                model: LoaiXes,
+                attributes:['ten']
             }
         }
         ],

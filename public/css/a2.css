@@ -185,14 +185,7 @@ body{
   color: #56C568;
 }
 
-.listHeader{
-  color: #333333;
-  font-size:1.1rem;
-}
 
-.listHeader:hover{
-  text-decoration: none;
-}
 
 .sleeper-disabled {
   border-color: #999999;

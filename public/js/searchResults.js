@@ -56,7 +56,14 @@ function changeRadioID(id, newID){
     $('[for="'+id+'"]').attr('for',newID);
 }
 
-function loadSeats(btn, id) {
+function loadSeats(btn, id, isUserSesstion) {
+    if (!isUserSesstion){
+        href = (window.location.href).substr((window.location.href).search('/search'));
+        href = encodeURIComponent(href);
+        href = '/users/login?returnURL='+href;
+        window.open(href, "_self");
+        return;
+    }
     let seats = getSeatsArray(btn);
     let htmlPassengerDetail = $('#passengerDetailContainer'+id).data('html');
     if (htmlPassengerDetail){
@@ -118,10 +125,10 @@ function loadSeats(btn, id) {
 function updateTotal(chuyenId) {
     let totalDiv = $('#total' + chuyenId);
     let price;
-    if (totalDiv.data('price')[1]=='$')
+    if (totalDiv.data('price')[0]=='$')
         price = parseInt(totalDiv.data('price').substr(1));
     else
-    price = parseInt(totalDiv.data('price'));
+        price = parseInt(totalDiv.data('price'));
     let seatsList = $('#seats' + chuyenId).text();
     if (seatsList == '') totalDiv.text('$0')
     else {

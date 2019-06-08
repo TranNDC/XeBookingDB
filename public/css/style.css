@@ -449,3 +449,11 @@ ul.pagination li.active a{
   color: #494949 !important;
   border-bottom: 2px #494949 solid;
 }
+.listHeader{
+  color: #333333;
+  font-size:1.1rem;
+}
+
+.listHeader:hover{
+  text-decoration: none;
+}

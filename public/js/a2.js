@@ -1,6 +1,9 @@
 // Requires jQuery
+// userController.isAdmin
 
-
+function login(){
+  window.open('/login','_bla');
+}
 
 function click1(id) {
   console.log(id);
@@ -36,7 +39,7 @@ function click2(id) {
 }
 
 
-function pricerange() {
+function pricerange(minval,maxvl) {
   $('.noUi-handle').on('click', function () {
     $(this).width(50);
   });
@@ -47,7 +50,7 @@ function pricerange() {
     prefix: '$'
   });
   noUiSlider.create(rangeSlider, {
-    start: [1, 500],
+    start: [minval, maxvl],
     step: 1,
     range: {
       'min': [0],
@@ -74,7 +77,7 @@ function getCurrentMinutes(){
   return ( today.getHours()*60) +today.getMinutes();
 }
 
-function timeRange() {
+function timeRange(min,max) {
   $('.noUi-handle').on('click', function () {
     $(this).width(50);
   });
@@ -85,7 +88,7 @@ function timeRange() {
     prefix: ''
   });
   noUiSlider.create(rangeSlider, {
-    start: [getCurrentMinutes(), 1439],
+    start: [min, max],
     step: 1,
     range: {
       'min': [getCurrentMinutes()],
@@ -152,68 +155,25 @@ function getOppositeOrder(ord){
   return ord=='asc'?'desc':'asc';
 }
 
-$('#filterForm').submit(function() {
-  // DO STUFF...
-  console.log("xxxxxxx");
-  
-  
-  $('#departure_min').val($('#slider-range-time-value1').text());
-  $('#departure_max').val($('#slider-range-time-value2').text()); 
-
-  $('#price_min').val($('#slider-range-price-value1').text());
-  $('#price_max').val($('#slider-range-price-value2').text()); 
-
-
-
-  return true; // return false to cancel form action
-});
-
-function updateDataFilter(){
-
-  console.log("xxxxxxx");
-
-  $('#departure_min').val($('#slider-range-time-value1').text());
-  $('#departure_max').val($('#slider-range-time-value2').text()); 
-
-  $('#price_min').val($('#slider-range-price-value1').text());
-  $('#price_max').val($('#slider-range-price-value2').text()); 
-
-
+function hideDanger(){
+  $('.alert').slideUp(100);
 }
 
-$(document).ready(function () {
-  pricerange();
-  timeRange();
+$('#filterForm').submit(function() {
+  // DO STUFF...
+  $('#departure_min').val(($('#slider-range-time-value1').text()));
+  $('#departure_max').val(($('#slider-range-time-value2').text())); 
 
-  let url = window.location.href
-  let nPage = getPageNumber('page',url);
-  let n = $('ul.pagination li a').length;
-  let i = 0;
-  
-  $('ul.pagination li a').each(function () {
-    let text = 0;
-    if (i == 0) {
-      if (nPage == 1) {
-        $(this).parent().addClass('disabled');
-        text = 0;
-      }
-      else text = nPage - 1;
-    } else if (i == n - 1) {
-        if (nPage == n - 1) {
-          $(this).parent().addClass('disabled');
-          text = 0;
-        }
-        else text = parseInt(nPage) + 1;
-      } else
-        text = i;
-    if (text != 0) {
-      let href = '?page=' + text;
-      let newhref = getNewHref('page',url, href);
-      $(this).attr('href', newhref);
-    }
-    i++;
-  });
+  $('#price_min').val(($('#slider-range-price-value1').text()).substr(1));
+  $('#price_max').val(($('#slider-range-price-value2').text()).substr(1)); 
+  if ( $("[name=bustype]:checked").length == 0){
+    $('.alert').slideDown(100);
+    return false;
+  }
+  return truen; // return false to cancel form action
+});
 
+function updateHeader(url){
   let type = ['departure','asc' ];
   let query = getPageNumber('order',url);
   if (query!=1)
@@ -233,14 +193,14 @@ $(document).ready(function () {
     
     let newhref = getNewHref('order', url, href);
     $(this).attr('href', newhref);
-
+    
   });
 
   switch (type[0]) {
     case 'licensePlate': {
       $('.active-filter').removeClass('active-filter');
       $('#headerlicensePlate').addClass('active-filter');
-      $('licensePlateData').addClass('active-filter');
+      $('.licensePlateData').addClass('active-filter');
       break;
     }
     case 'type':{
@@ -272,18 +232,75 @@ $(document).ready(function () {
     default:
       break;
   }
+}
+
+function getminutes(time){
+  let tmp = time.split(':');
+  console.log(tmp);
+  return parseInt(tmp[0])*60 +  parseInt(tmp[1]);
+}
+
+$(document).ready(function () {
+  let url = window.location.href
+  let nPage = getPageNumber('page',url);
+  let n = $('ul.pagination li a').length;
+  let i = 0;
+  $('ul.pagination li a').each(function () {
+    let text = 0;
+    if (i == 0) {
+      if (nPage == 1) {
+        $(this).parent().addClass('disabled');
+        text = 0;
+      }
+      else text = nPage - 1;
+    } else if (i == n - 1) {
+        if (nPage == n - 1) {
+          $(this).parent().addClass('disabled');
+          text = 0;
+        }
+        else text = parseInt(nPage) + 1;
+      } else
+        text = i;
+    if (text != 0) {
+      let href = '?page=' + text;
+      let newhref = getNewHref('page',url, href);
+      $(this).attr('href', newhref);
+    }
+    i++;
+  });
+  updateHeader(url);
+  let minPrice=1, maxPrice=500;
+  let minDeparture=getCurrentMinutes(), maxDeparture=23*60+59;
   let uri = url.substr(url.search('search?')+6);
   lists = uri.substr(1).split('&');
   lists.forEach(element => {
     kv = element.split('=');
-    kv[1] = kv[1].replace(/\+/g, ' ');
+    kv[1] = decodeURIComponent(kv[1].replace(/\+/g, ' '));
     html = '<input type="hidden" name="'+kv[0]+'" value="'+decodeURIComponent(kv[1])+'">';
-    if (html.search('_min')>=0 || html.search('_max')>=0 || html.search=='bustype'){}
-    else  
-    $('#filterForm').append(html);
-    console.log(html);
+    if (html.search('_min')>=0 || html.search('_max')>=0 || html.search('bustype')>=0)
+    {
+      if (kv[0].search('_')>=0){
+        let tmp = kv[0].split("_");
+        if (tmp[0]=="price"&&tmp[1]=="min") minPrice=parseInt(kv[1]);
+        if (tmp[0]=="price"&&tmp[1]=="max") maxPrice=parseInt(kv[1]);
+        if (tmp[0]=="departure"&&tmp[1]=="min") minDeparture=getminutes(kv[1]);
+        if (tmp[0]=="departure"&&tmp[1]=="max") maxDeparture=getminutes(kv[1]);
+      }
+      else {
+        $('[value="'+kv[1]+'"]').attr('checked',true);
+      }
+    }
+    else  {
+      $('#filterForm').append(html);
+    }
   });
 
+  if ( $("[name=bustype]:checked").length == 0){
+    $("[name=bustype]").attr('checked',true);
+  }
+  
+  pricerange(minPrice,maxPrice);
+  timeRange(minDeparture,maxDeparture);
 });
 
 

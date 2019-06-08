@@ -1,28 +1,38 @@
 <div class="container-fluid  text-center d-flex flex-column my-table h-100" id="search-table-result">
         <div class="row table-header big-label">
-                <div class="col-2 active-filter">Time <i class="fas fa-arrow-down"></i></div>
-                <div class="col-2">Transaction ID</div>
-                <div class="col-2">User ID</div>
-                <div class="col-2">Bus ID</div>
-                <div class="col-2">Price</div>
+                <div class="col-2"><a id="headertime" class="listHeader" href="?order=time_desc">Time</a></div>
+                <div class="col-2 hidden"><a id="headerdeparture" class="listHeader"  href="?order=departure_asc">Departure</a></div>
+                <div class="col-2"><a id="headertransactionid" class="listHeader" href="?order=transactionid_asc">Transaction ID</a></div>
+                <div class="col-2"><a id="headeruserid" class="listHeader" href="?order=userid_asc">User ID</a></div>
+                <div class="col-2 hidden"><a id="headeruserphone" class="listHeader " href="?order=userphone_asc">User's phone</a></div>
+                <div class="col-2"><a id="headerbusid" class="listHeader" href="?order=busid_asc">Bus ID</a></div>
+                <div class="col-2 hidden"><a id="headerlicensePlate" class="listHeader " href="?order=licensePlate_asc">License Plate</a></div>
+                <div class="col-2"><a id="headerprice" class="listHeader" href="?order=price_asc">Price</a></div>
                 <div class="col-2">Status</div>
         </div>
         <div class="b3-content-containter overflow-hidden">
-                {{#each results}}
+                {{#each Transactions}}
 
                 <div class="row table-content">
-                        <div class="col-2  active-filter"><a class="cursor-pointer" data-toggle="modal"
-                                        data-target="#modal{{@index}}">{{time}}<br>{{date}}</a></div>
-                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
-                                        data-target="#modal{{@index}}">{{transID}}</a></div>
-                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
-                                        data-target="#modal{{@index}}">{{userID}}</a></div>
-                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
-                                        data-target="#modal{{@index}}">{{busID}}</a></div>
-                        <div class="col-2"><a class="cursor-pointer" data-toggle="modal"
-                                        data-target="#modal{{@index}}">{{price}}</a></div>
+                        <div class="timeData col-2 "><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{getDay createdAt}} {{getTime createdAt}}</a></div>
+                        <div class="departureData col-2 "hidden><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{getDay Chuyen.ngayGioKhoiHanh}} {{getTime Chuyen.ngayGioKhoiHanh}}</a></div>
+                        <div class="transactionidData col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">TRANSACTION-{{id}}</a></div>
+                        <div class="useridData col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">USER-{{User.id}}</a></div>
+                        <div class="userphoneData col-2 "hidden><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{sdt}}</a></div>
+                        <div class="busidData col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{Chuyen.Xe.id}}</a></div>
+                        <div class="licensePlateData  col-2"hidden><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{Chuyen.Xe.bienso}}</a></div>
+                                        
+                        <div class="priceData col-2"><a class="cursor-pointer" data-toggle="modal"
+                                        data-target="#modal{{@index}}">{{getTotal Chuyen.gia TransactionDetails KhuyenMai}}</a></div>
                         <div class="col-2">
-                                {{#if status}}
+                                {{#if (checkStatus createdAt)}}
                                 <a href="#" data-toggle="tooltip" title="Used" data-placement="right"
                                         style="cursor:default">
                                         <i class="fas fa-check-circle" style="color:#56C568"></i>
@@ -69,62 +79,61 @@
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Transaction ID</div>
-                                                                        <div class="col-lg-3 col-sm-6">{{transID}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{id}}</div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">Time
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{time}},
-                                                                                {{date}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{getDay createdAt}} {{getTime createdAt}}</div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">Bus
                                                                                 ID</div>
-                                                                        <div class="col-lg-3 col-sm-6">{{busID}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Chuyen.Xe.LoaiXe.ten}} - {{Chuyen.Xe.id}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Departure
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{departure}}
+                                                                        <div class="col-lg-3 col-sm-6">{{getDay Chuyen.ngayGioKhoiHanh}} {{getTime Chuyen.ngayGioKhoiHanh}}
                                                                         </div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Arrival
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{arrival}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{getArrival Chuyen.ngayGioKhoiHanh Chuyen.Tuyen.soPhutDiChuyen}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Palace Liscene
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{liscensePlate}}
+                                                                        <div class="col-lg-3 col-sm-6">{{Chuyen.Xe.bienso}}
                                                                         </div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">Bus
                                                                                 Route
                                                                         </div>
                                                                         <div class="col-lg-3 col-sm-6">
-                                                                                {{fromLocation}}-{{toLocation}}</div>
+                                                                                {{Chuyen.Tuyen.xuatphat.ten}}-{{Chuyen.Tuyen.ketthuc.ten}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Seats
                                                                         </div>
                                                                         <div class="col-lg-3 col-sm-6">
-                                                                                {{seats}}</div>
+                                                                                {{getSeats TransactionDetails}}</div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">User
                                                                                 Id</div>
-                                                                        <div class="col-lg-3 col-sm-6">{{userID}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">USER {{User.id}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Phone number
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{phone}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{sdt}}</div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Email
@@ -135,7 +144,7 @@
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Total Price</div>
-                                                                        <div class="col-lg-3 col-sm-6">{{price}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{getTotal Chuyen.gia TransactionDetails KhuyenMai}}</div>
                                                                 </div>
                                                                 <div class="row">
 
@@ -143,7 +152,7 @@
                                                                                 Status
                                                                         </div>
                                                                         <div class="col-lg-3 col-sm-6">
-                                                                                {{#if status}}
+                                                                                {{#if (checkStatus createdAt)}}
                                                                                 <a href="#" data-toggle="tooltip"
                                                                                         title="Used"
                                                                                         data-placement="right"
@@ -164,7 +173,7 @@
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Payment Time
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{paymentTime}}
+                                                                        <div class="col-lg-3 col-sm-6">{{createdAt}}
                                                                         </div>
 
                                                                 </div>
@@ -176,13 +185,13 @@
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">User
                                                                                 Id
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{userID}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">USER {{User.id}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Phone number
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{phone}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{sdt}}</div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Email
@@ -190,29 +199,29 @@
                                                                         <div class="col-lg-3 col-sm-6">{{email}}</div>
                                                                 </div>
                                                                 <hr>
-                                                                {{#each passenger}}
+                                                                {{#each TransactionDetails}}
                                                                 <div class="row">
                                                                         <div class="col-lg-5 col-sm-5">
                                                                                 Passenger {{inc @index}} | Seats
-                                                                                {{getSeat @../index @index}}
+                                                                                {{viTriGheDat}}
                                                                         </div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">Full
                                                                                 Name
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{name}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{ten}}</div>
                                                                 </div>
                                                                 <div class="row">
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
                                                                                 Gender
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{gender}}</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{GioiTinh.ten}}</div>
 
                                                                         <div class="col-lg-3 col-sm-4 lighter-text">Year
                                                                                 Of Birth
                                                                         </div>
-                                                                        <div class="col-lg-3 col-sm-6">{{birthYear}}
+                                                                        <div class="col-lg-3 col-sm-6">{{namSinh}}
                                                                         </div>
                                                                 </div>
                                                                 <hr>
@@ -228,11 +237,9 @@
         </div>
 
 
-        <ul class="pagination d-flex justify-content-center mt-auto" style="z-index: 100">
-                <li class="page-item"><a class="page-link" href="#">
-                                <</a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link 2" href="#">2</a></li>
-                <li class="page-item"><a class="page-link 3" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">></a></li>
-        </ul>
+                    <nav class="d-flex">
+                        {{#if hasPagination}}
+                            {{{paginate pagination}}}
+                        {{/if}}
+                    </nav>
 </div>

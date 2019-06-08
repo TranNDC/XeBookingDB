@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+
+
 var controllerDiaDiem = require('../controllers/diadiem');
 var controllerKhuyenMai = require('../controllers/khuyenmai');
 var controllerChuyen = require('../controllers/chuyen');
@@ -21,7 +23,7 @@ router.get('/', function (req, res) {
         res.locals.stations = stations;
         if (!_stations) _stations = stations;
         controllerKhuyenMai.getSumary(function (vouchers) {
-
+            filterVouchers(vouchers);
             var caroselInfors = {
                 numberOfCarousel: Math.ceil(vouchers.length / 3.0),
                 carouselVouchers: [],
@@ -46,133 +48,6 @@ router.get('/', function (req, res) {
 
 });
 
-function getData(type, chuyen){
-    switch (type) {
-        case 'licensePlate': {
-            return (chuyen.Xe.bienso)
-        }
-        case 'type': {
-            return (chuyen.Xe.LoaiXe.ten)
-        }
-        case 'departure': {
-            return (chuyen.ngayGioKhoiHanh)
-        }
-        case 'arrival': {
-            let time = chuyen.Tuyen.soPhutDiChuyen;
-            return new Date(chuyen.ngayGioKhoiHanh.getTime() + time * 60000);
-        }
-        case 'price': {
-            return (chuyen.gia);
-        }
-
-        default:
-            break;
-    }
-}
-
-function sort(type, isAsc, Chuyens){
-    let n = Chuyens.length;
-
-    for (let i = 0; i<n ; i++){
-        for (let j=0; j<i; j++){
-            let xi = getData(type,Chuyens[i]);
-            let xj = getData(type,Chuyens[j]);
-            if (!isAsc?xi>xj:xi<xj){
-                let tmp = Chuyens[i];
-                Chuyens[i] = Chuyens[j];
-                Chuyens[j] = tmp;
-            }
-        }
-    }
-}
-
-function samedate(d1,d2){
-    d1 =new Date(d1);
-    return d1.getDate() == d2.getDate() && d1.getYear() == d2.getYear() && d1.getDate() == d2.getDate();
-}
-
-function filterNgayKhoiHanh(ngayKhoiHanh, Chuyens){
-    if (!ngayKhoiHanh) return;
-    Chuyens.forEach((item, index, object) => {
-        if (! samedate(ngayKhoiHanh,item.ngayGioKhoiHanh)){
-            object.splice(index,1);
-        }
-    });
-}
-
-function inRange(ds,df,d){
-    return ((ds.getTime()<=d.getTime()) && (df.getTime()>=d.getTime()));
-}
-
-
-function filterWithMaKhuyenMai(Chuyens){
-    let foundEr=true;
-    while(foundEr){
-        foundEr = false;
-        Chuyens.forEach((item, index, object) => {
-            let ngayBatDau = new Date(item.Tuyen.KhuyenMais[0].ngayBatDau);
-            let ngayKetThuc = new Date(item.Tuyen.KhuyenMais[0].ngayKetThuc);
-            ngayKetThuc.setHours(23);
-            ngayKetThuc.setMinutes(59);
-            ngayKetThuc.setSeconds(59);
-            if (! inRange(ngayBatDau,ngayKetThuc, item.ngayGioKhoiHanh)){
-                object.splice(index,1);
-                foundEr=true;
-            }
-        });
-    }
-    
-}
-
-function filterKM(item){
-    let foundEr=false;
-    item.Tuyen.KhuyenMais.forEach((km, id, obs) => {
-        let ngayBatDau = new Date(km.ngayBatDau);
-        let ngayKetThuc = new Date(km.ngayKetThuc);
-        let ngay = new Date(item.ngayGioKhoiHanh);
-
-        ngayKetThuc.setHours(23);
-        ngayKetThuc.setMinutes(59);
-        ngayKetThuc.setSeconds(59);
-        if (!inRange(ngayBatDau, ngayKetThuc, ngay)) {
-            obs.splice(id, 1);
-            foundEr=true;
-        }
-    });
-    return foundEr;
-}
-
-function filterMaKhuyenMai(Chuyens){
-    let n = Chuyens.length;
-    for(let i=1;i<n;i++){
-        let item = Chuyens[i]
-        while(filterKM(item));
-    }
-}
-
-function sortFunc(req,res, Chuyens){
-    var page = parseInt(req.query.page);
-    var limit = 2;
-    page = isNaN(page) ? 1 : page;
-    let numPage = Math.ceil(Chuyens.length / limit);
-    page = (page<=numPage&&page>=1)?page:numPage;
-    var pagination = {
-        limit: limit,
-        page: page,
-        totalRows: Chuyens.length
-    }
-    var offset = (page - 1) * limit;
-
-    var order = req.query.order;
-    if (!order){
-        order= "departure_asc";
-    }
-    let tmp = order.split('_');
-    sort(tmp[0],tmp[1]=='asc',Chuyens);
-    res.locals.Chuyens = Chuyens.slice(offset, offset + limit);;
-    res.locals.pagination = pagination;
-    res.locals.hasPagination = (pagination.totalRows / limit > 1);
-}
 
 
 
@@ -181,6 +56,7 @@ router.get('/search', function (req, res) {
     var ketthucId = req.query.ketthucId;
     var ngayKhoiHanh = req.query.ngayKhoiHanh;
     var maKhuyenMai = req.query.maKhuyenMai;
+    res.locals.isUserSession=req.session.user;
     if (maKhuyenMai){
         controllerChuyen.searchWithVoucher(xuatphatId, ketthucId, maKhuyenMai, (Chuyens) => {
             filterNgayKhoiHanh(ngayKhoiHanh, Chuyens);
@@ -195,7 +71,8 @@ router.get('/search', function (req, res) {
                         res.locals.Transactions.push(Transactions);
                         count++;
                         if (count == Chuyens.length) {
-                            sortFunc(req,res, Chuyens);
+                            filterFunc(req,res, Chuyens);
+                            pagination(req,res, Chuyens);
                             res.render('detail');
                         }
                     });
@@ -210,16 +87,20 @@ router.get('/search', function (req, res) {
         // res.locals.Chuyens = Chuyens;
         filterNgayKhoiHanh(ngayKhoiHanh, Chuyens);
         filterMaKhuyenMai(Chuyens);
+
         controllerDiaDiem.getAll(function (stations) {
+
             res.locals.stations = stations;
             let count = 0;
             res.locals.Transactions = [];
+            if (Chuyens.length==0)res.render('detail');
             Chuyens.forEach(element => {
                 controllerTransaction.searchChuyen(element.id, (Transactions) => {
                     res.locals.Transactions.push(Transactions);
                     count++;
                     if (count == Chuyens.length) {
-                        sortFunc(req,res, Chuyens);
+                        filterFunc(req,res, Chuyens);
+                        pagination(req,res, Chuyens);
                         res.render('detail');
                     }
                 });
@@ -232,7 +113,7 @@ router.get('/search', function (req, res) {
 
 
 
-router.get('/termsandconditions', function (req, res) {
+router.get('/termsConditions', function (req, res) {
     res.render('termsConditions');
 });
 
@@ -255,6 +136,12 @@ router.post('/message', (req, res) => {
             });
         });
 });
+
+// __________________________________________
+//
+// HANDLEBARS HELPER
+//
+//____________________________________________
 
 
 var hbs = require('handlebars');
@@ -349,11 +236,9 @@ hbs.registerHelper("getTimeArrival", function (departure, time, options) {
 
 hbs.registerHelper('list', function (transactions, index, options) {
     if (!transactions[index][0]) {
-        console.log("no details");
         return;
     }
     let details = transactions[index][0].TransactionDetails;
-    // console.log(transactions[index][0].TransactionDetails);
     let res = "";
     details.forEach(detail => {
         res += detail.viTriGheDat + ";";
@@ -382,9 +267,222 @@ hbs.registerHelper('getPrice', function (chuyen, options) {
     return (price);
 });
 
+// ___________________________________
+//
+// HANDLE FUNCTION
+// ___________________________________
 
 
-// hbs.registerPartial("searchResultPartial", $("#searchResult-detail-template").html());
+function getData(type, chuyen){
+    switch (type) {
+        case 'licensePlate': {
+            return (chuyen.Xe.bienso)
+        }
+        case 'type': {
+            return (chuyen.Xe.LoaiXe.ten)
+        }
+        case 'departure': {
+            return (chuyen.ngayGioKhoiHanh)
+        }
+        case 'arrival': {
+            let time = chuyen.Tuyen.soPhutDiChuyen;
+            return new Date(chuyen.ngayGioKhoiHanh.getTime() + time * 60000);
+        }
+        case 'price': {
+            return (chuyen.gia);
+        }
+
+        default:
+            break;
+    }
+}
+
+function sort(type, isAsc, Chuyens){
+    let n = Chuyens.length;
+
+    for (let i = 0; i<n ; i++){
+        for (let j=0; j<i; j++){
+            let xi = getData(type,Chuyens[i]);
+            let xj = getData(type,Chuyens[j]);
+            if (!isAsc?xi>xj:xi<xj){
+                let tmp = Chuyens[i];
+                Chuyens[i] = Chuyens[j];
+                Chuyens[j] = tmp;
+            }
+        }
+    }
+}
+
+function samedate(d1,d2){
+    d1 =new Date(d1);
+    return d1.getDate() == d2.getDate() && d1.getYear() == d2.getYear() && d1.getMonth() == d2.getMonth();
+}
+
+function filterNgayKhoiHanh(ngayKhoiHanh, Chuyens){
+    if (!ngayKhoiHanh) return;
+    let foundEr=true;
+    while(foundEr){
+        foundEr = false;
+        Chuyens.forEach((item, index, object) => {
+            if (!samedate(ngayKhoiHanh,item.ngayGioKhoiHanh)){
+                object.splice(index,1);
+                foundEr = true;
+            }
+        });
+    }
+}
+
+function inRange(ds,df,d){
+    return ((ds.getTime()<=d.getTime()) && (df.getTime()>=d.getTime()));
+}
+
+
+function filterWithMaKhuyenMai(Chuyens){
+    let foundEr=true;
+    while(foundEr){
+        foundEr = false;
+        Chuyens.forEach((item, index, object) => {
+            let ngayBatDau = new Date(item.Tuyen.KhuyenMais[0].ngayBatDau);
+            let ngayKetThuc = new Date(item.Tuyen.KhuyenMais[0].ngayKetThuc);
+            ngayKetThuc.setHours(23);
+            ngayKetThuc.setMinutes(59);
+            ngayKetThuc.setSeconds(59);
+            if (! inRange(ngayBatDau,ngayKetThuc, item.ngayGioKhoiHanh)){
+                object.splice(index,1);
+                foundEr=true;
+            }
+        });
+    }
+    
+}
+
+function filterKM(item){
+    let foundEr=false;
+    item.Tuyen.KhuyenMais.forEach((km, id, obs) => {
+        let ngayBatDau = new Date(km.ngayBatDau);
+        let ngayKetThuc = new Date(km.ngayKetThuc);
+        let ngay = new Date(item.ngayGioKhoiHanh);
+
+        ngayKetThuc.setHours(23);
+        ngayKetThuc.setMinutes(59);
+        ngayKetThuc.setSeconds(59);
+        if (!inRange(ngayBatDau, ngayKetThuc, ngay)) {
+            obs.splice(id, 1);
+            foundEr=true;
+        }
+    });
+    return foundEr;
+}
+
+function filterMaKhuyenMai(Chuyens){
+    let n = Chuyens.length;
+    for(let i=1;i<n;i++){
+        let item = Chuyens[i]
+        while(filterKM(item));
+    }
+}
+
+function pagination(req,res, Chuyens){
+    var page = parseInt(req.query.page);
+    var limit = 9;
+    page = isNaN(page) ? 1 : page;
+    let numPage = Math.ceil(Chuyens.length / limit);
+    page = (page<=numPage&&page>=1)?page:numPage;
+    var pagination = {
+        limit: limit,
+        page: page,
+        totalRows: Chuyens.length
+    }
+    var offset = (page - 1) * limit;
+
+    var order = req.query.order;
+    if (!order){
+        order= "departure_asc";
+    }
+    let tmp = order.split('_');
+    sort(tmp[0],tmp[1]=='asc',Chuyens);
+    res.locals.Chuyens = Chuyens.slice(offset, offset + limit);;
+    res.locals.pagination = pagination;
+    res.locals.hasPagination = (pagination.totalRows / limit > 1);
+}
+
+function setDateTime(date, time, seconds){
+    let tmp = new Date(date);
+    let t = time.split(':');
+
+    tmp.setHours(0);
+    tmp.setMinutes(0);
+    tmp.setSeconds(0);
+
+    t = parseInt(t[0])*3600 + parseInt(t[1])*60 + seconds;
+    return new Date(tmp.getTime() + t*1000);
+}   
+
+function filerChuyen(departureRange, priceRange, bustype, chuyen){
+    let departureChuyen = chuyen.ngayGioKhoiHanh;
+    if ( (new Date()).getTime() > chuyen.ngayGioKhoiHanh) { return false;}
+    if (departureRange[0] || departureRange[1]) {
+        if (!departureRange[0]) departureRange[0] = '0:0';
+        departureRange[0] = setDateTime(departureChuyen, departureRange[0], 0);
+        if (!departureRange[1]) departureRange[1] = '23:59';
+        departureRange[1] = setDateTime(departureChuyen, departureRange[1], 59);
+        if (!inRange(departureRange[0], departureRange[1], departureChuyen)) {
+        return false;
+        }
+    }
+    
+    if (priceRange[0] || priceRange[1]){
+        if (!priceRange[0]) priceRange[0]=0;
+        else priceRange[0] = parseInt(priceRange[0]);
+        if (!priceRange[1]) priceRange[1]=Infinity;
+        else priceRange[1] = parseInt(priceRange[1]);
+        if (! (chuyen.gia>=priceRange[0] && chuyen.gia<=priceRange[1])){
+            return false;
+        }
+    }
+    
+    if (bustype){
+        if (bustype instanceof Array)
+            bustype = bustype.map(function(x){ return x.toUpperCase() })
+        else bustype = bustype.toUpperCase();
+        if (bustype.indexOf(chuyen.Xe.LoaiXe.ten.toUpperCase()) < 0){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function filterFunc(req,res, Chuyens){
+    let departureRange = [req.query.departure_min, req.query.departure_max];
+    let priceRange = [req.query.price_min, req.query.price_max];
+    let bustype = req.query.bustype;
+
+    let foundEr=true;
+    while(foundEr){
+        foundEr = false;
+        Chuyens.forEach((item, index, object) => {
+            departureRange = [req.query.departure_min, req.query.departure_max];
+            if (! filerChuyen(departureRange,priceRange,bustype,item)){
+                object.splice(index,1);
+                foundEr=true;
+            }
+        });
+    }
+}
+
+function filterVouchers(vouchers){
+    let foundEr=true;
+    while(foundEr){
+        foundEr = false;
+        vouchers.forEach((item, index, object) => {
+            if (! (new Date()).getTime>item.ngayKetThuc.getTime()){
+                object.splice(index,1);
+                foundEr=true;
+            }
+        });
+    }
+}
 
 
 module.exports = router;

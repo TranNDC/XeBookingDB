@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/a2.css">
+<div class="w-100 d-flex justify-content-center">
+    <div style="z-index: 100;" class="mt-2 alert position-fixed alert-danger alert-dismissible hidden text-center">
+    <button type="button" class="close pt-1 pl-1 pr-3" onclick="hideDanger()">&times;</button>
+    At least<strong> one Bus Type </strong> must be chosen.
+</div>
+</div>
 
 
 <span id="searchform-container" class="a2-searchform d-flex align-content-centera justify-content-center"
@@ -101,7 +107,7 @@
                     </div> 
                     <div id="searchResultPartialDiv" data-chuyens="{{#each this.Chuyens}}{{id}};{{/each}}">
                         {{#each Chuyens}}
-                        {{> searchResultPartial chuyen=this transactions=../Transactions hasVoucher=../hasVoucher}}
+                        {{> searchResultPartial chuyen=this transactions=../Transactions hasVoucher=../hasVoucher isLoggedIn=../isLoggedIn}}
                         {{/each}}
                     </div>
                     {{!-- <ul class="pagination d-flex justify-content-center">

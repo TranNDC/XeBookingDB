@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 var userController = require('../controllers/users');
+var controllerDiaDiem = require('../controllers/diadiem');
+var controllerKhuyenMai = require('../controllers/khuyenmai');
+var controllerChuyen = require('../controllers/chuyen');
+var controllerTransaction = require('../controllers/transaction');
+
 
 router.get('/login', (req, res) => {
     req.session.returnURL = req.query.returnURL;
@@ -20,9 +25,9 @@ router.get('/signup', (req, res) => {
     });
 });
 
-router.get('/profile', userController.isLoggedIn, (req, res) => {
-    res.render('profile');
-});
+var userRouter = require('./profile');
+router.use('/profile', userRouter);
+
 
 
 let allusers = require('../controllers/users');
@@ -54,7 +59,65 @@ router.get('/admin', userController.isAdmin, (req, res) => {
 });
 
 router.get('/transaction', userController.isAdmin, (req, res) => {
-    res.render('transaction');
+    controllerTransaction.getTransactions((Transactions)=>{
+        console.log(Transactions.length);
+        var page = parseInt(req.query.page);
+        var limit = 13;
+        page = isNaN(page) ? 1 : page;
+        let numPage = Math.ceil(Transactions.length / limit);
+        page = (page<=numPage&&page>=1)?page:numPage;
+        var pagination = {
+            limit: limit,
+            page: page,
+            totalRows: Transactions.length
+        }
+        var offset = (page - 1) * limit;
+    
+        var order = req.query.order;
+        if (!order){
+            order= "time_desc";
+        }
+        let tmp = order.split('_');
+
+        sort(tmp[0],tmp[1]=='asc',Transactions);
+
+        res.locals.Transactions = Transactions.slice(offset, offset + limit);;
+        res.locals.pagination = pagination;
+        res.locals.hasPagination = (pagination.totalRows / limit > 1);
+        res.render('transaction');
+    })
+
+});
+
+
+router.get('/history', userController.isLoggedIn, (req, res) => {
+    res.locals.isInfo= false
+    controllerTransaction.searchUser(res.locals.user.id, (Transactions)=>{
+
+        var page = parseInt(req.query.page);
+        var limit = 9;
+        page = isNaN(page) ? 1 : page;
+        let numPage = Math.ceil(Transactions.length / limit);
+        page = (page<=numPage&&page>=1)?page:numPage;
+        var pagination = {
+            limit: limit,
+            page: page,
+            totalRows: Transactions.length
+        }
+        var offset = (page - 1) * limit;
+    
+        var order = req.query.order;
+        if (!order){
+            order= "departure_asc";
+        }
+        let tmp = order.split('_');
+        sort(tmp[0],tmp[1]=='asc',Transactions);
+        res.locals.Transactions = Transactions.slice(offset, offset + limit);;
+        // res.locals.Transactions = Transactions;
+        res.locals.pagination = pagination;
+    res.locals.hasPagination = (pagination.totalRows / limit > 1);
+        res.render('profile');
+    })
 });
 
 router.get('/masterdata', userController.isAdmin, (req, res) => {
@@ -154,5 +217,121 @@ router.get('/logout', function (req, res) {
 
     res.redirect('/users/login');
 });
+
+var hbs = require('handlebars');
+
+
+hbs.registerHelper("getDay", function (value, options) {
+    let date = new Date(value);
+    var options = {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    };
+    return date.toLocaleString('en-US', options);
+});
+
+hbs.registerHelper("getTime", function (value, options) {
+    let date = new Date(value);
+    var options = {
+        hour12: false,
+        hour: 'numeric',
+        minute: 'numeric'
+    };
+    return date.toLocaleString('en-US', options);
+});
+
+hbs.registerHelper("checkStatus", function (value, options) {
+    let date = new Date(value).getTime();
+    return date<=(new Date()).getTime();
+});
+
+hbs.registerHelper("getTotal", function (price, tds, voucher, options) {
+    let pc = 0;
+    if (voucher) pc = voucher.phanTram;
+    
+    return (Math.ceil((1-pc/100)*price))*tds.length;
+});
+
+hbs.registerHelper("getArrival", function (departure, time, options) {
+    let date = new Date(departure.getTime() + time * 60000);
+    var options = {
+        hour12: false,
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    };
+    return date.toLocaleString('en-US', options);
+});
+
+hbs.registerHelper("getSeats", function (details, options) {
+    let res =[];
+    details.forEach(element => {
+        res.push(element.viTriGheDat);
+    });
+    return res.join(', ')
+});
+
+hbs.registerHelper("inc", function (x, options) {
+
+    return ++x;
+});
+
+
+
+function getData(type, transaction){
+    switch (type) {
+        case 'licensePlate': {
+            return (transaction.Chuyen.Xe.bienso)
+        }
+        case 'transactionid': {
+            return (transaction.id)
+        }
+        case 'busid': {
+            return (transaction.Chuyen.Xe.id)
+        }
+        case 'userphone': {
+            return (transaction.sdt)
+        }
+        case 'userid': {
+            return (transaction.User.id)
+        }
+        case 'time': {
+            return (transaction.createdAt)
+        }
+        case 'departure': {
+            let date = new Date(transaction.Chuyen.ngayGioKhoiHanh);
+            return (date.getHours()*60 + date.getMinutes())
+        }
+        case 'price': {
+            let km =1;
+            if (transaction.KhuyenMai) km =1- transaction.KhuyenMai.phanTram /100;
+            return (transaction.Chuyen.gia*km * transaction.TransactionDetails.length);
+        }
+
+        default:
+            break;
+    }
+}
+
+
+function sort(type, isAsc, Transactions){
+    let n = Transactions.length;
+
+    for (let i = 0; i<n ; i++){
+        for (let j=0; j<i; j++){
+            let xi = getData(type,Transactions[i]);
+            let xj = getData(type,Transactions[j]);
+            if (!isAsc?xi>xj:xi<xj){
+                let tmp = Transactions[i];
+                Transactions[i] = Transactions[j];
+                Transactions[j] = tmp;
+            }
+        }
+    }
+}
+
 
 module.exports = router;

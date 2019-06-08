@@ -1,24 +1,24 @@
 
     <div class="container-fluid  text-center d-flex flex-column my-table b3-table" id="search-table-result">
-           <div class="row table-header big-label">
-                    <div class="col-2 active-filter">Date <i class="fas fa-arrow-down"></i></div>
-                    <div class="col-2">Palace License</div>
-                    <div class="col-2">Departure</div>
-                    <div class="col-2">Information</div>
-                    <div class="col-2">Price</div>
-                    <div class="col-2">Status</div>
-            </div>
+        <div class="row table-header big-label">
+                <div class="col-2"><a id="headerdate" class="listHeader" href="?order=date_desc">Date</a></div>
+                <div class="col-2"><a id="headerlicensePlate" class="listHeader" href="?order=licensePlate_asc">License Plate</a></div>
+                <div class="col-2"><a id="headerdeparture" class="listHeader" href="?order=departure_asc">Departure</a></div>
+                <div class="col-2"><a id="headerinformation" class="listHeader" href="?order=information_asc">Information</a></div>
+                <div class="col-2"><a id="headerprice" class="listHeader" href="?order=price_asc">Price</a></div>
+                <div class="col-2" style="cursor:default">Status</div>
+        </div>
             <div class="b3-content-containter">
-                        {{#each results}}
+                        {{#each Transactions}}
 
                         <div class="row table-content">
-                                <div class="col-2  active-filter">{{date}}</div>
-                                <div class="col-2">{{liscensePlate}}</div>
-                                <div class="col-2">{{departure}}</div>
-                                <div class="col-2">{{fromLocation}}-{{toLocation}}</div>
-                                <div class="col-2">{{price}}</div>
+                                <div class="dateData col-2  active-filter">{{getDay Chuyen.ngayGioKhoiHanh}}</div>
+                                <div class="licensePlateData col-2">{{Chuyen.Xe.bienso}}</div>
+                                <div class="departureData col-2">{{getTime Chuyen.ngayGioKhoiHanh}}</div>
+                                <div class="informationData col-2">{{Chuyen.Tuyen.xuatphat.ten}}-{{Chuyen.Tuyen.ketthuc.ten}}</div>
+                                <div class="priceData col-2">${{getTotal Chuyen.gia TransactionDetails KhuyenMai}}</div>
                                 <div class="col-2">
-                                        {{#if status}}
+                                        {{#if (checkStatus Chuyen.ngayGioKhoiHanh)}}
                                         <a href="#" data-toggle="tooltip" title="Used" data-placement="right" style="cursor:default">
                                                 <i class="fas fa-check-circle" style="color:#56C568"></i>
                                         </a>
@@ -35,11 +35,9 @@
             </div>
 
 
-            <ul class="pagination d-flex justify-content-center mt-auto">
-                    <li class="page-item"><a class="page-link" href="#">
-                                    </a> </li> <li class="page-item"><a class="page-link 1 active" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link 2" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link 3" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">></a></li>
-            </ul>
+                    <nav class="d-flex">
+                        {{#if hasPagination}}
+                            {{{paginate pagination}}}
+                        {{/if}}
+                    </nav>
     </div>

@@ -1,306 +1,157 @@
-var res={results:[{
-    "time":"11:11 AM",
-    "transID":"T190317-0004",
-    "userID":"U101",
-    "busID":"B190330-01-01",
-    "phone":"0121.112.121",
-    "email":"abc@kmail.com",
-    "date":"30 Aug 2019",
-    "liscensePlate":"59 V2 65.616",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '11B'],
-    "status":0,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
+function getNewHref(pattern, url, hreff) {
+    let href = hreff.substr(1);
+    if (url.search('\\?')<0) return hreff;
+    let uri = url.substr(url.search('transaction?') + 10);
+
+    if (uri.search(pattern) >= 0) {
+        lists = uri.substr(1).split('&');
+        for (let i = 0; i < lists.length; i++) {
+            if (lists[i].search(pattern) >= 0) {
+                lists[i] = href;
+
+            }
+        }
+        uri = '?' + lists.join('&');
     }
-    ]
-}, 
-{
-    "time":"10:10 AM",
-    "transID":"T190317-0005",
-    "userID":"U102",
-    "busID":"B190330-01-01",
-    "phone":"0121.112.121",
-    "email":"abc@kmail.com",
-    "date":"30 Jul 2019",
-    "liscensePlate":"59 V2 65.616",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '11A'],
-    "status":0,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
+    else {
+        uri += '&' + href;
     }
-    ]
-}, 
-{
-    "time":"1:10 AM",
-    "transID":"T190317-0006",
-    "userID":"U103",
-    "busID":"B190330-01-02",
-    "phone":"0121.112.161",
-    "email":"abc@kmail.com",
-    "date":"30 Jun 2019",
-    "liscensePlate":"59 V2 65.516",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '1B'],
-    "status":0,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-}, 
-{
-    "time":"1:16 AM",
-    "transID":"T190317-0007",
-    "userID":"U102",
-    "busID":"B190330-01-01",
-    "phone":"0121.112.121",
-    "email":"abc@kmail.com",
-    "date":"30 May 2019",
-    "liscensePlate":"59 V2 65.616",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Cần Thơ",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['1A', '11B'],
-    "status":0,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-}, 
-{
-    "time":"1:15 AM",
-    "transID":"T190317-0008",
-    "userID":"U102",
-    "busID":"B190330-11-01",
-    "phone":"0121.162.121",
-    "email":"abc@kmail.com",
-    "date":"30 April 2019",
-    "liscensePlate":"59 V2 64.616",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Cần Thơ",
-    "seats":['10B', '11B'],
-    "status":1,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-},
-, 
-{
-    "time":"1:15 PM",
-    "transID":"T190317-0009",
-    "userID":"U104",
-    "busID":"B190330-12-01",
-    "phone":"0121.162.121",
-    "email":"abc@kmail.com",
-    "date":"30 Mar 2018",
-    "liscensePlate":"59 V2 64.616",
-    "type":"Semi-Seater",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Hồ Chí Minh",
-    "toLocation":"Cần Thơ",
-    "seats":['1A', '1B'],
-    "status":1,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991",
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-},
-{
-    "time":"1:15 PM",
-    "transID":"T190317-0010",
-    "userID":"U102",
-    "busID":"B190330-11-01",
-    "phone":"0121.162.121",
-    "email":"abc@kmail.com",
-    "date":"30 April 2017",
-    "liscensePlate":"59 V2 64.516",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '11B'],
-    "status":1,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-},
-{
-    "time":"1:15 PM",
-    "transID":"T190317-0010",
-    "userID":"U102",
-    "busID":"B190330-11-01",
-    "phone":"0121.162.121",
-    "email":"abc@kmail.com",
-    "date":"30 April 2017",
-    "liscensePlate":"59 V2 64.516",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '11B'],
-    "status":1,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
-},
-{
-    "time":"1:15 PM",
-    "transID":"T190317-0010",
-    "userID":"U102",
-    "busID":"B190330-11-01",
-    "phone":"0121.162.121",
-    "email":"abc@kmail.com",
-    "date":"30 April 2017",
-    "liscensePlate":"59 V2 64.516",
-    "type":"Sleeper",
-    "departure":"13:30",
-    "arrival":"23:30",
-    "price":"$500",
-    "paymentTime":"11:13 AM, 17 Mar 2019",
-    "fromLocation":"Đà Lạt",
-    "toLocation":"Hồ Chí Minh",
-    "seats":['10B', '11B'],
-    "status":1,//0 == unused , 1 == used,
-    "passenger":[{
-        "name":"John Smith",
-        "gender":"Male",
-        "birthYear":"1991"
-    },{
-        "name":"Marry Smith",
-        "gender":"Female",
-        "birthYear":"1995"
-    }
-    ]
+    return uri;
 }
 
-]};
+function getPageNumber(pattern, url) {
+    console.log(url);
+    if (url.search('\\?')<0) return 1;
+     
+    let uri = url.substr(url.search('transaction?') + 10);
 
-Handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
-});
+    if (uri.search(pattern) > 1) {
+        let tmp = uri.substr(uri.search(pattern) + pattern.length + 1);
+        tmp1 = tmp.search('&');
+        let page;
+        if (tmp1 >= 1)
+            page = tmp.substr(0, tmp1);
+        else
+            page = tmp;
+        return page;
+    }
+    else {
+        return 1;
+    }
+}
 
-Handlebars.registerHelper("getSeat", function(valueFather, valueSon)
-{
-    let index1 = parseInt(valueFather);
-    let index2 = parseInt(valueSon);
-    return res.results[index1].seats[index2];
-});
+function getOppositeOrder(ord) {
+    return ord == 'asc' ? 'desc' : 'asc';
+}
 
-$(document).ready(() => {
+function updateHeader(url) {
+    let type = ['time', 'desc'];
+    let query = getPageNumber('order', url);
+    if (query != 1)
+        type = query.split('_');
 
-    let navTemplates = $("#transaction-template").html();
-    let compilednavTemplates = Handlebars.compile(navTemplates);
-    $.ajax("/partials/handlebars-transaction-partial.html").done((navDetail) => {
-        $("body").append(navDetail);
-        Handlebars.registerPartial("transactionPartial", $("#transaction-detail-template").html());
-        $('#transaction-container').html(compilednavTemplates(res));
-        
-        // $('#a2-btn-step-1').click(function(){
-        //     $('#menu1').addClass('active');
-        //     $('#home').removeClass('active');
-        //     $('#menu1').removeClass('fade');
-        //     $('#home').addClass('fade');
-        //     $('#amenu1').addClass('active');
-        //     $('#ahome').removeClass('active');
-        //   });
-        //   $('#a2-btn-step-2').click(function(){
-        //     $('#menu2').addClass('active');
-        //     $('#menu1').removeClass('active');
-        //     $('#menu2').removeClass('fade');
-        //     $('#menu1').addClass('fade');
-        //     $('#amenu2').addClass('active');
-        //     $('#amenu1').removeClass('active');
-        //   });
+    let newActive = $('#header' + type[0]);
+    $('.listHeader').each(function () {
+        let href = $(this).attr('href');
+
+        if ($(this).attr('id') == newActive.attr('id')) {
+            console.log(newActive);
+            let html = (newActive.text());
+            if (type[1] == 'asc') html += '<i class="fas fa-arrow-up ml-1"></i>';
+            else html += '<i class="fas fa-arrow-down ml-1"></i>';
+            $(this).html(html);
+            href = href.replace(type[1], getOppositeOrder(type[1]));
+        }
+
+        let newhref = getNewHref('order', url, href);
+        $(this).attr('href', newhref);
+
     });
 
+    switch (type[0]) {
+        case 'licensePlate': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headerlicensePlate').addClass('active-filter');
+            $('.licensePlateData').addClass('active-filter');
+            break;
+        }
+        case 'transactionid': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headertransactionid').addClass('active-filter');
+            $('.transactionidData').addClass('active-filter');
+            break;
+        }
+        case 'userid': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headeruserid').addClass('active-filter');
+            $('.useridData').addClass('active-filter');
+            break;
+        }
+        case 'busid': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headerbusid').addClass('active-filter');
+            $('.busidData').addClass('active-filter');
+            break;
+        }
+        case 'userphone': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headeruserphone').addClass('active-filter');
+            $('.userphoneData').addClass('active-filter');
+            break;
+        }
+        case 'departure': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headerdeparture').addClass('active-filter');
+            $('.departureData').addClass('active-filter');
+            break;
+        }
+        case 'time': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headertime').addClass('active-filter');
+            $('.timeData').addClass('active-filter');
 
-})
+            break;
+        }
+        case 'price': {
+            $('.active-filter').removeClass('active-filter');
+            $('#headerprice').addClass('active-filter');
+            $('.priceData').addClass('active-filter');
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+$(document).ready(function () {
+    let url = window.location.href
+    let nPage = getPageNumber('page',url);
+    let n = $('ul.pagination li a').length;
+    let i = 0;
+    $('ul.pagination li a').each(function () {
+      let text = 0;
+      if (i == 0) {
+        if (nPage == 1) {
+          $(this).parent().addClass('disabled');
+          text = 0;
+        }
+        else text = nPage - 1;
+      } else if (i == n - 1) {
+          if (nPage == n - 1) {
+            $(this).parent().addClass('disabled');
+            text = 0;
+          }
+          else text = parseInt(nPage) + 1;
+        } else
+          text = i;
+      if (text != 0) {
+        let href = '?page=' + text;
+        let newhref = getNewHref('page',url, href);
+        $(this).attr('href', newhref);
+      }
+      i++;
+    });
+    updateHeader(url);
+    
+  });

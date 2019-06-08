@@ -15,13 +15,13 @@
 
             <h2 class="a3-title">User Profile</h2>
             <div class="b3-options">
-                <a id="b3-link-userprofile" class="b3-choice b3-chosen" href="#">
+                <a id="b3-link-userprofile" class="b3-choice {{#if isInfo}}b3-chosen{{/if}}" href="/users/profile/info">
                     <img class="b3-icon" src="/img/icon/baseline-person-24px.svg" alt="">
                     <div class="b3-textOpt">Info</div>
 
                 </a>
 
-                <a id="b3-link-history" class="b3-choice" href="#">
+                <a id="b3-link-history" class="b3-choice {{#unless isInfo}}b3-chosen{{/unless}}" href="/users/profile/history">
                     <img class="b3-icon" src="/img/icon/baseline-restore-24px.svg" alt="">
                     <div class="b3-textOpt">History</div>
                 </a>
@@ -43,7 +43,7 @@
 
         <!-- pannel right -->
         <!-- profile -->
-        <div id="b3-userprofile" class="col-md-8 col-sm-10 panel-right b3-fixed-height">
+        <div id="b3-userprofile" class="col-md-8 col-sm-10 panel-right b3-fixed-height {{#unless isInfo}}hidden{{/unless}}">
             <div class="a3-form">
                 <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                     <div class="b3-avatar">
@@ -108,11 +108,10 @@
             </div>
         </div>
         <!-- history -->
-        <div id="b3-history" class="col-md-8 col-sm-10 panel-right b3-fixed-height hidden">
+        <div id="b3-history" class="col-md-8 col-sm-10 panel-right b3-fixed-height {{#if isInfo}}hidden{{/if}}">
             <div class="a3-form">
                 <div id="userHistory-container">
-                    {{> userHistoryPartial}}
-
+                    {{> userHistoryPartial Transactions=Transactions}}
                 </div>
             </div>
         </div>
