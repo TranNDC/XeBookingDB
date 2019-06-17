@@ -6,21 +6,29 @@ module.exports = {
     var users = [];
     var i = 1;
 
-    for (i = 1; i < 30; i++) {
+    for (i = 1; i <= 100; i++) {
+      let ghetdat = '1A';
+      if (i%2 == 0){
+        ghetdat = '4';
+      }
       var user = {
         ten:"Lê Thành Công",
         namSinh:1998,
-        viTriGheDat:"1A",
+        viTriGheDat:ghetdat,
         TransactionId:i,
         GioiTinhId:1,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
       }
       users.push(user);
+      ghetdat = '3A';
+      if (i%2 == 0){
+        ghetdat = '5';
+      }
       user = {
         ten:"Lê Thành Công1",
         namSinh:1998,
-        viTriGheDat:"2A",
+        viTriGheDat:ghetdat,
         TransactionId:i,
         GioiTinhId:1,
         createdAt: Sequelize.literal('NOW()'),
