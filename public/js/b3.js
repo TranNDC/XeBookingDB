@@ -80,7 +80,7 @@ function getOppositeOrder(ord) {
 function getNewHref(pattern, url, hreff) {
     let href = hreff.substr(1);
     if (url.search('\\?')<0) return hreff;
-    let uri = url.substr(url.search('history?') + 6);
+    let uri = url.substr(url.search('history?') + 7);
     console.log(uri);
 
     if (uri.search(pattern) >= 0) {
@@ -102,9 +102,9 @@ function getNewHref(pattern, url, hreff) {
 function getPageNumber(pattern, url) {
     if (url.search('\\?')<0) return 1;
 
-    let uri = url.substr(url.search('history?') + 6);
+    let uri = url.substr(url.search('history?') + 7);
 
-    if (uri.search(pattern) > 1) {
+    if (uri.search(pattern) >=0 ) {
         let tmp = uri.substr(uri.search(pattern) + pattern.length + 1);
         tmp1 = tmp.search('&');
         let page;

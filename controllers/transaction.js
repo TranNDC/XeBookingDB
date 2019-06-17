@@ -75,7 +75,7 @@ controller.searchChuyen = function (chuyen_ID, callback) {
             },
             include: [{
                 model: TransactionDetails,
-                required: true,
+                // required: true,
                 attributes: ['viTriGheDat']
             }],
         })

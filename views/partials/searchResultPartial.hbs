@@ -4,8 +4,9 @@
     <div class="licensePlateData col-2">{{Xe.bienso}}</div>
     <div class="typeData col-2">{{Xe.LoaiXe.ten}}</div>
     <div class="departureData col-2">{{getDate chuyen.ngayGioKhoiHanh}}</div>
-    <div class="arrivalData col-2">{{getArrival chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}</div>
+    <div class="arrivalData col-2">{{getArrival1 chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}</div>
     <div class="priceData col-2">
+        
         {{#if hasVoucher}}
         ${{caculateNewPrice chuyen.Tuyen.KhuyenMais.0.phanTram chuyen.gia}}
         <p class="d-inline small text-primary"><i class="fa fa-arrow-down" aria-hidden="true"></i>{{chuyen.Tuyen.KhuyenMais.0.phanTram}}%</p>

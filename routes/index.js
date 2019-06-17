@@ -97,6 +97,7 @@ router.get('/search', function (req, res) {
             Chuyens.forEach(element => {
                 controllerTransaction.searchChuyen(element.id, (Transactions) => {
                     res.locals.Transactions.push(Transactions);
+                    console.log(Transactions);
                     count++;
                     if (count == Chuyens.length) {
                         filterFunc(req,res, Chuyens);
@@ -201,7 +202,7 @@ hbs.registerHelper("getDate", function (value, options) {
 });
 
 
-hbs.registerHelper("getArrival", function (departure, time, options) {
+hbs.registerHelper("getArrival1", function (departure, time, options) {
     let date = new Date(departure.getTime() + time * 60000);
     var options = {
         hour12: false,

@@ -7,10 +7,10 @@ module.exports = {
     var khuyenmais = [];
     var i = 1;
 
-    for (i = 1; i < 10; i++) {
+    for (i = 1; i < 5; i++) {
       var khuyenmai = {
         maKhuyenMai: `KM${i}`,
-        ngayBatDau: "2019-06-01",
+        ngayBatDau: "2019-06-15",
         ngayKetThuc: "2019-07-01",
         phanTram: 30,
         imagePath: `/img/A1/${i}.jpg`,

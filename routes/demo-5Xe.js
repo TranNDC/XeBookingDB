@@ -5,7 +5,8 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     let buses = [];
     let i;
-    for (i = 1; i <= 5; i++) {
+    let n=10;
+    for (i = 1; i <= n; i++) {
       let palaceLicense = "59-A1 01.12"+i;
       let bus = {
         bienso:palaceLicense,
@@ -14,10 +15,8 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       }
       buses.push(bus);
-    }
-    for (i = 1; i < 5; i++) {
-      let palaceLicense = "59-B1 01.12"+i;
-      let bus = {
+      palaceLicense = "59-B1 01.12"+i;
+      bus = {
         bienso:palaceLicense,
         LoaiXeId:2,
         createdAt: Sequelize.literal('NOW()'),

@@ -77,7 +77,7 @@ function getCurrentMinutes(){
   return ( today.getHours()*60) +today.getMinutes();
 }
 
-function timeRange(min,max) {
+function timeRange(min,max,minrange) {
   $('.noUi-handle').on('click', function () {
     $(this).width(50);
   });
@@ -91,7 +91,7 @@ function timeRange(min,max) {
     start: [min, max],
     step: 1,
     range: {
-      'min': [getCurrentMinutes()],
+      'min': [minrange],
       'max': [1439]
     },
     format: moneyFormat,
@@ -133,10 +133,10 @@ function getNewHref(pattern, url, hreff){
   return uri;
 }
 
-function getPageNumber(pattern, url){
+function getPatternValue(pattern, url, def=1){
   let uri = url.substr(url.search('search?')+6);
 
-  if (uri.search(pattern) > 1) {
+  if (uri.search(pattern) >= 0) {
     let tmp = uri.substr(uri.search(pattern)+pattern.length+1);
     tmp1  =tmp.search('&');
     let page;
@@ -144,10 +144,10 @@ function getPageNumber(pattern, url){
       page = tmp.substr(0,tmp1);
     else
       page = tmp;
-    return page;
+    return decodeURIComponent(page.replace(/\+/g, ' '));
   }
   else {
-    return 1;
+    return def;
   }
 }
 
@@ -175,7 +175,7 @@ $('#filterForm').submit(function() {
 
 function updateHeader(url){
   let type = ['departure','asc' ];
-  let query = getPageNumber('order',url);
+  let query = getPatternValue('order',url);
   if (query!=1)
     type = query.split('_');
 
@@ -236,13 +236,36 @@ function updateHeader(url){
 
 function getminutes(time){
   let tmp = time.split(':');
-  console.log(tmp);
   return parseInt(tmp[0])*60 +  parseInt(tmp[1]);
+}
+
+function isToday(date){
+  let d = new Date(date);
+  let d1 = new Date();
+  return (d.getFullYear() == d1.getFullYear() && d.getMonth() == d1.getMonth() && d.getDay() == d1.getDay());
+}
+
+function adjustMinDeparture(minDeparture, url){
+  date = getPatternValue('ngayKhoiHanh', url);
+  if (date == 1){
+    return minDeparture;
+  }
+  else {
+    if (isToday(date)){
+      return minDeparture<getCurrentMinutes()?getCurrentMinutes():minDeparture;
+    }
+    else return minDeparture;
+  }
+}
+
+function getMinRange(url){
+  date = getPatternValue('ngayKhoiHanh', url);
+    return isToday(date)?getCurrentMinutes():0;
 }
 
 $(document).ready(function () {
   let url = window.location.href
-  let nPage = getPageNumber('page',url);
+  let nPage = getPatternValue('page',url);
   let n = $('ul.pagination li a').length;
   let i = 0;
   $('ul.pagination li a').each(function () {
@@ -268,9 +291,12 @@ $(document).ready(function () {
     }
     i++;
   });
+  $('#fromInput').val(getPatternValue('xuatphatId',url));
+  $('#toInput').val(getPatternValue('ketthucId',url));
+  $('#searchform-departureday').val(getPatternValue('ngayKhoiHanh',url,''));
   updateHeader(url);
   let minPrice=1, maxPrice=500;
-  let minDeparture=getCurrentMinutes(), maxDeparture=23*60+59;
+  let minDeparture=0, maxDeparture=23*60+59;
   let uri = url.substr(url.search('search?')+6);
   lists = uri.substr(1).split('&');
   lists.forEach(element => {
@@ -298,9 +324,12 @@ $(document).ready(function () {
   if ( $("[name=bustype]:checked").length == 0){
     $("[name=bustype]").attr('checked',true);
   }
-  
+
+  minDeparture = adjustMinDeparture(minDeparture,url);
+  console.log(adjustMinDeparture(minDeparture,url));
   pricerange(minPrice,maxPrice);
-  timeRange(minDeparture,maxDeparture);
+  
+  timeRange(minDeparture,maxDeparture,getMinRange(url));
 });
 
 
