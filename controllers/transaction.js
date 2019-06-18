@@ -69,9 +69,9 @@ controller.getAllWithSortDateAndRevenue = (callback) => {
 
 controller.searchChuyen = function (chuyen_ID, callback) {
     Transactions.findAll({
-            attributes: ['ChuyenId'],
+            attributes: ['id','ChuyenId'],
             where: {
-                id: chuyen_ID
+                ChuyenId: chuyen_ID
             },
             include: [{
                 model: TransactionDetails,
@@ -332,5 +332,14 @@ controller.getAllWithSortDateAndRevenueBetweenDate = (datefrom, dateto, callback
             callback(result);
         });
 }
+
+controller.add = function (transation) {
+    return new Promise((resolve,reject)=>{
+        Transactions
+            .create(transation)
+            .then(newTransaction=> resolve(newTransaction)); 
+    });
+};
+
 
 module.exports = controller;

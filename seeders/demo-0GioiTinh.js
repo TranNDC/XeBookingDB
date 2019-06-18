@@ -24,7 +24,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     genders.push(gender);
-    console.log(genders);
     return queryInterface.bulkInsert('GioiTinhs', genders, {});
   },
 

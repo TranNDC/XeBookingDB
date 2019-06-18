@@ -20,7 +20,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     cartypes.push(cartype);
-    console.log(cartypes);
     return queryInterface.bulkInsert('LoaiXes', cartypes, {});
   },
 

@@ -137,6 +137,56 @@ router.post('/message', (req, res) => {
         });
 });
 
+router.post('/payment', (req, res) => {
+    let transactionController = require('../controllers/transaction');
+    let transactionDetailController = require('../controllers/transactiondetail');
+
+    transactionController
+        .add({
+            sdt: req.body.sdt,
+            email: req.body.email,
+            phone: req.body.phone,
+            ChuyenId: req.body.ChuyenId,
+            KhuyenMaiId: req.body.KhuyenMaiId,
+            UserId: req.body.UserId,
+            createAt: Date.now(),
+            updateAt: Date.now()
+        })
+        .then(transaction => {
+            console.log(transaction.id);
+            let count = parseInt(req.body.seatCount);
+            for (let i=0;i<count;i++){
+
+                console.log(req.body['passengerSeat'+(i+1)]);
+                console.log(req.body['passengerName'+(i+1)]);
+                console.log(req.body['passengerYOB'+(i+1)]);
+                console.log(req.body['passengerGender'+(i+1)]);
+                console.log(transaction.id);
+
+
+                transactionDetailController
+                .add({
+                    viTriGheDat: req.body['passengerSeat'+(i+1)],
+                    ten: decodeURI(req.body['passengerName'+(i+1)]),
+                    namSinh: parseInt(req.body['passengerYOB'+(i+1)]),
+                    GioiTinhId: parseInt(req.body['passengerGender'+(i+1)]),
+                    TransactionId: parseInt(transaction.id),
+                    createAt: Date.now(),
+                    updateAt: Date.now()
+                })
+                .then(transactionDetail => {
+                   if (i==count-1)
+                    { res.sendStatus(204);
+                    res.end();}
+                })
+            }
+           
+        });
+});
+
+
+
+
 // __________________________________________
 //
 // HANDLEBARS HELPER
@@ -201,7 +251,7 @@ hbs.registerHelper("getDate", function (value, options) {
 });
 
 
-hbs.registerHelper("getArrival", function (departure, time, options) {
+hbs.registerHelper("getArrival1", function (departure, time, options) {
     let date = new Date(departure.getTime() + time * 60000);
     var options = {
         hour12: false,
@@ -234,15 +284,21 @@ hbs.registerHelper("getTimeArrival", function (departure, time, options) {
     return date.toLocaleString('en-US', options);
 });
 
-hbs.registerHelper('list', function (transactions, index, options) {
-    if (!transactions[index][0]) {
-        return;
-    }
-    let details = transactions[index][0].TransactionDetails;
+hbs.registerHelper('list', function (transactions, chuyenid, options) {
     let res = "";
-    details.forEach(detail => {
-        res += detail.viTriGheDat + ";";
-    });
+    let n = transactions.length;
+    for (let i=0; i<n; i++){
+        if (transactions[i][0]){
+            if (transactions[i][0].ChuyenId == chuyenid){
+                transactions[i].forEach(element => {
+                    element.TransactionDetails.forEach(td => {
+                        res+=td.viTriGheDat+';';
+                    });
+                });
+            }
+        }
+    }
+        
     return (res);
 });
 

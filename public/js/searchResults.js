@@ -93,13 +93,14 @@ function loadSeats(btn, id, isUserSesstion) {
 
     changeID('genderDiv'+id, 'genderDiv'+id+'1');
     changeID('passengerName'+id, 'passengerName'+id+'1');
+    changeID('namSinh'+id, 'namSinh'+id+'1');
+
 
     changeRadioID('male'+id, 'male'+id+'1');
     changeRadioID('female'+id, 'female'+id+'1');
     changeRadioID('other'+id, 'other'+id+'1');
     $('#passengerDetail'+id+'1 #detailSeat').text(seats[0]);
     $('#passengerDetail'+id+'1 #number').text(1);
-
 
 
     for (let i = 1; i < seats.length; i++) {
@@ -109,11 +110,11 @@ function loadSeats(btn, id, isUserSesstion) {
         $('#passengerDetail'+ id+(i + 1)+ ' #number').text(i + 1);
         $('#genderDiv'+id+' input').attr('name','gender'+(i+1));
         changeID('passengerName'+id, 'passengerName'+id+(i+1));
+        changeID('namSinh'+id, 'namSinh'+id+(i+1));
 
         changeRadioID('male'+id, 'male'+id+(i+1));
         changeRadioID('female'+id, 'female'+id+(i+1));
         changeRadioID('other'+id, 'other'+id+(i+1));
-
         changeID('genderDiv'+id, 'genderDiv'+id+(i+1));
 
     }
@@ -142,7 +143,6 @@ function updateTotal(chuyenId) {
 
 function getDataToSumary(btn,chuyenId){
     let id = $(btn).closest('.modal').attr('id');
-    console.log(id);
 
     let fullname = $('#passengerName'+chuyenId+'1').val();
     let phone = $('#'+id + ' #ticketPhone').val();
@@ -163,6 +163,59 @@ function getDataToSumary(btn,chuyenId){
     $('#'+id + ' #sumarryTotal').text($(totalId).text());
 
 }
+
+function submitForm(chuyenId, userId){
+    let formId = '#form'+chuyenId;
+    let divId = '#menu2'+chuyenId;
+    let hiddenFormId = "#hiddenForm"+chuyenId;
+    $(formId+'Sdt').val($(divId+' #sumaryPhone').text());
+    $(formId+'Email').val($(divId+' #sumaryEmail').text());
+    $(formId+'ChuyenId').val(chuyenId);
+    $(formId+'UserId').val(userId);
+    let divs = $('#passengerDetailContainer'+chuyenId+' .passengerDetail');
+    for (let i=0; i<divs.length; i++){
+        let div = divs[i];
+        id = (div.id).substr(17);
+        let nameId = '#passengerName'+chuyenId+id; let name = encodeURI($(nameId).val());
+        let namSinhId = '#namSinh'+chuyenId+id; let namSinh = $(namSinhId).val();
+        let genderId =  '#genderDiv'+chuyenId+id+' input[name="gender'+id+'"]:checked';
+        let gender = $(genderId).val();
+        let seatId =  '#'+div.id+' #detailSeat';
+        let seat = $(seatId).text();
+
+        let htmlName='<input type="text" name="passengerName'+(i+1)+'" class="hidden" value="'+name+'">';
+        let htmlNamSinh='<input type="text" name="passengerYOB'+(i+1)+'" class="hidden" value="'+namSinh+'">';
+        let htmlGender='<input type="text" name="passengerGender'+(i+1)+'" class="hidden" value="'+gender+'">';
+        let htmlSeat='<input type="text" name="passengerSeat'+(i+1)+'" class="hidden" value="'+seat+'">';
+
+        $(hiddenFormId).append(htmlName);
+        $(hiddenFormId).append(htmlNamSinh);
+        $(hiddenFormId).append(htmlGender);
+        $(hiddenFormId).append(htmlSeat);
+    }
+
+    let htmlCount='<input type="text" name="seatCount" class="hidden" value="'+divs.length+'">';
+    $(hiddenFormId).append(htmlCount);
+
+
+    $(hiddenFormId).submit();
+}
+  
+
+// $('form.hiddenForm').submit(function() {
+//     // DO STUFF...
+//     event.preventDefault();
+//     $('#departure_min').val(($('#slider-range-time-value1').text()));
+//     $('#departure_max').val(($('#slider-range-time-value2').text())); 
+  
+//     $('#price_min').val(($('#slider-range-price-value1').text()).substr(1));
+//     $('#price_max').val(($('#slider-range-price-value2').text()).substr(1)); 
+//     if ( $("[name=bustype]:checked").length == 0){
+//       $('.alert').slideDown(100);
+//       return false;
+//     }
+//     return true; // return false to cancel form action
+// });
 
 
 $(document).ready(function () {
@@ -222,6 +275,7 @@ $(document).ready(function () {
 
 
 });
+
 
 
 

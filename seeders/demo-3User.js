@@ -5,7 +5,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     var users = [];
-
     var user = {
       name: `Lê Thành Công`,
       email: 'lecongpr98@gmail.com',
@@ -19,7 +18,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Nguyễn Đỗ Cát Trân`,
@@ -33,7 +31,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Lê Thành Công`,
@@ -47,7 +44,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Nguyễn Đỗ Cát Trân`,
@@ -61,7 +57,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Lê Thành Công`,
@@ -75,7 +70,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Nguyễn Đỗ Cát Trân`,
@@ -89,7 +83,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
 
     var user = {
@@ -104,7 +97,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Nguyễn Đỗ Cát Trân`,
@@ -118,7 +110,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
 
     var user = {
@@ -133,7 +124,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
     var user = {
       name: `Nguyễn Đỗ Cát Trân`,
@@ -147,7 +137,6 @@ module.exports = {
       updatedAt: Sequelize.literal('NOW()')
     }
     users.push(user);
-    console.log(users);
 
 
     return queryInterface.bulkInsert('Users', users, {});

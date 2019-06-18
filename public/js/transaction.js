@@ -1,7 +1,7 @@
 function getNewHref(pattern, url, hreff) {
     let href = hreff.substr(1);
     if (url.search('\\?')<0) return hreff;
-    let uri = url.substr(url.search('transaction?') + 10);
+    let uri = url.substr(url.search('transaction?') + 11);
 
     if (uri.search(pattern) >= 0) {
         lists = uri.substr(1).split('&');
@@ -20,12 +20,11 @@ function getNewHref(pattern, url, hreff) {
 }
 
 function getPageNumber(pattern, url) {
-    console.log(url);
     if (url.search('\\?')<0) return 1;
      
-    let uri = url.substr(url.search('transaction?') + 10);
-
-    if (uri.search(pattern) > 1) {
+    let uri = url.substr(url.search('transaction') + 11);
+    console.log(uri);
+    if (uri.search(pattern) >= 1) {
         let tmp = uri.substr(uri.search(pattern) + pattern.length + 1);
         tmp1 = tmp.search('&');
         let page;
@@ -33,6 +32,8 @@ function getPageNumber(pattern, url) {
             page = tmp.substr(0, tmp1);
         else
             page = tmp;
+        console.log(page);
+        
         return page;
     }
     else {
@@ -47,6 +48,7 @@ function getOppositeOrder(ord) {
 function updateHeader(url) {
     let type = ['time', 'desc'];
     let query = getPageNumber('order', url);
+    console.log(query);
     if (query != 1)
         type = query.split('_');
 

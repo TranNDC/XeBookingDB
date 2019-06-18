@@ -6,7 +6,7 @@ module.exports = {
     var users = [];
     var i = 1;
 
-    for (i = 1; i <= 100; i++) {
+    for (i = 1; i <= 240; i++) {
       let ghetdat = '1A';
       if (i%2 == 0){
         ghetdat = '4';
@@ -36,7 +36,7 @@ module.exports = {
       }
       users.push(user);
     }
-    console.log(users);
+
     return queryInterface.bulkInsert('TransactionDetails', users, {});
   },
 

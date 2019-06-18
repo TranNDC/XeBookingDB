@@ -7,7 +7,7 @@ module.exports = {
     var khuyenmais = [];
     var i = 1;
 
-    for (i = 1; i <= 4; i++) {
+    for (i = 1; i < 5; i++) {
       var khuyenmai = {
         maKhuyenMai: `KM${i}`,
         ngayBatDau: "2019-06-15",
@@ -20,7 +20,6 @@ module.exports = {
       }
       khuyenmais.push(khuyenmai);
     }
-    console.log(khuyenmais);
     return queryInterface.bulkInsert('KhuyenMais', khuyenmais, {});
   },
 

@@ -41,7 +41,6 @@ module.exports = {
     }
     stations.push(station);
 
-    console.log(stations);
     return queryInterface.bulkInsert('DiaDiems', stations, {});
   },
 

@@ -4,8 +4,9 @@
     <div class="licensePlateData col-2">{{Xe.bienso}}</div>
     <div class="typeData col-2">{{Xe.LoaiXe.ten}}</div>
     <div class="departureData col-2">{{getDate chuyen.ngayGioKhoiHanh}}</div>
-    <div class="arrivalData col-2">{{getArrival chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}</div>
+    <div class="arrivalData col-2">{{getArrival1 chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}</div>
     <div class="priceData col-2">
+        
         {{#if hasVoucher}}
         ${{caculateNewPrice chuyen.Tuyen.KhuyenMais.0.phanTram chuyen.gia}}
         <p class="d-inline small text-primary"><i class="fa fa-arrow-down" aria-hidden="true"></i>{{chuyen.Tuyen.KhuyenMais.0.phanTram}}%</p>
@@ -24,7 +25,7 @@
 </div>
 <div id="collapse{{@index}}" class="row container table-content collapse">
     {{#if (checkSeater Xe.LoaiXe.ten)}}
-    <div id="div{{chuyen.id}}" class="col-lg-6 busDiv mt-5" data-seats="{{list transactions @index}}">
+    <div id="div{{chuyen.id}}" class="col-lg-6 busDiv mt-5" data-seats="{{list transactions chuyen.id}}">
         <div id="sleeper-div-lower">
             <p>FRONT</p>
             <table id="seater-table">
@@ -252,7 +253,7 @@
     </div>
     
     {{else}}
-    <div id="div{{chuyen.id}}" class="col-lg-6 busDiv mt-0" data-seats="{{list transactions @index}}">
+    <div id="div{{chuyen.id}}" class="col-lg-6 busDiv mt-0" data-seats="{{list transactions chuyen.id}}">
             <p id="title">Upper</p>
             <div id="sleeper-div-lower">
                 <p>FRONT</p>
@@ -634,102 +635,113 @@
                 </li>
               </ul>
         <!-- Modal body -->
+            <div class="modal-body">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Passenger Information -->
+                    <div id="home{{chuyen.id}}" class="container tab-pane active">
+                        <form id="formhome{{chuyen.id}}" action="javascript:click1({{chuyen.id}});">
+                            <div id="passengerDetailContainer{{chuyen.id}}" class="container pl-5 pr-5">
+                                {{> passengerDetail id=chuyen.id}}
+                            </div>
+                            <div class="container pl-5 pr-5">
+                                <div class="row text-right pl-5 pr-5">
+                                    <button type="submit" class="btn btn-primary ml-auto mr-3" id="a2-btn-step-1"
+                                        data-dismiss="">Continue</button>
+                                </div>
+                            </div>
         
-        <div class="modal-body">
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <!-- Passenger Information -->
-                <div id="home{{chuyen.id}}" class="container tab-pane active">
-                    <form id="formhome{{chuyen.id}}" action="javascript:click1({{chuyen.id}});">
-                        <div id="passengerDetailContainer{{chuyen.id}}" class="container pl-5 pr-5">
-                           {{> passengerDetail id=chuyen.id}}
-                        </div>
-                        <div class="container pl-5 pr-5">
-                            <div class="row text-right pl-5 pr-5">
-                                 <button  type="submit" class="btn btn-primary ml-auto mr-3" id="a2-btn-step-1" data-dismiss="">Continue</button>
-                            </div>
-                        </div>
-                       
-                    </form>
-                </div>
-                <!-- Contact Details -->
-                <div id="menu1{{chuyen.id}}" class="container tab-pane fade">
-                    <form id="formmenu1{{chuyen.id}}" action="javascript:click2({{chuyen.id}});">
-                        <div class="container d-flex flex-column">
-                            <div class="row big-label align-self-center mb-1 text-primary">Your ticket will be sent to these details</div>
-                            <div class="row col-8 mb-1  align-self-center">
-                                <label for="usr">Phone</label>
-                                <input id="ticketPhone" type="tel" class="form-control" name="phone" placeholder="Phone" required data-mask="999 999 9999" maxlength="12" >
-                            </div>
-                            <div class="row col-8 mb-2  align-self-center">
-                                <label for="usr">Email</label>
-                                <input id="ticketEmail" type="email" class="form-control" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="row col-8 text-center mt-3 align-self-center custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="term"
-                                    value="customEx" required>
-                                <label class="custom-control-label" for="term">I agreed to the <a class="text-info"
-                                        href="/termsConditions" target="_blank">Terms and Conditions</a></label>
-                            </div>
-                        </div>
-                        <div class="container pl-5 pr-5">
-                            <div class="row text-right pl-5 pr-5">
-                                 <button onclick="getDataToSumary(this,{{chuyen.id}});" type="submit" class="btn btn-primary ml-auto mr-3 mb-4" id="a2-btn-step-2" data-dismiss="">Continue</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- Payment Details -->
-                <div id="menu2{{chuyen.id}}" class="container tab-pane fade">
-                    <h2 class="text-primary mb-4 text-center">10:00</h2>
-                    <div class="container">
-                        <div class="row  text-left">
-                            <div class="col-4 pl-5 pb-4">
-                                <p class="label p-0 mt-2 mb-1 text-left">Full name</p><p class="mb-2"  id="sumaryFullName"></p> 
-                                <p class="label p-0 mt-2 mb-1 text-left">Phone</p><p class="mb-2" id="sumaryPhone"></p>
-                                <p class="label p-0 mt-2 mb-1 text-left">Email</p><p class="mb-2" id="sumaryEmail"></p>
-                            </div>
-                            <div id="" class="container col-lg-6">
-                                <div class="row pt-0 d-flex justify-content-center">
-                                    <div class="col-4 text-left">
-                                        <p class="small m-0 p-0 label text-left">From</p>NewYork
-                                    </div>
-                                    <div class="col-2"></div>
-                                    <div class="col-4  text-right">
-                                        <p class="small m-0 p-0 label">To</p>Dallas
-                                    </div>
+                        </form>
+                    </div>
+                    <!-- Contact Details -->
+                    <div id="menu1{{chuyen.id}}" class="container tab-pane fade">
+                        <form id="formmenu1{{chuyen.id}}" action="javascript:click2({{chuyen.id}});">
+                            <div class="container d-flex flex-column">
+                                <div class="row big-label align-self-center mb-1 text-primary">Your ticket will be sent to these
+                                    details</div>
+                                <div class="row col-8 mb-1  align-self-center">
+                                    <label for="usr">Phone</label>
+                                    <input id="ticketPhone" type="tel" class="form-control" name="phone" placeholder="Phone"
+                                        required data-mask="999 999 9999" maxlength="12">
                                 </div>
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-4 text-left ">
-                                        <p class="small m-0 p-0 label text-left">Departure</p>{{getTimeDeparture chuyen.ngayGioKhoiHanh}}
+                                <div class="row col-8 mb-2  align-self-center">
+                                    <label for="usr">Email</label>
+                                    <input id="ticketEmail" type="email" class="form-control" name="email" placeholder="Email"
+                                        required>
+                                </div>
+                                <div class="row col-8 text-center mt-3 align-self-center custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="term" value="customEx" required>
+                                    <label class="custom-control-label" for="term">I agreed to the <a class="text-info"
+                                            href="/termsConditions" target="_blank">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                            <div class="container pl-5 pr-5">
+                                <div class="row text-right pl-5 pr-5">
+                                    <button onclick="getDataToSumary(this,{{chuyen.id}});" type="submit"
+                                        class="btn btn-primary ml-auto mr-3 mb-4" id="a2-btn-step-2"
+                                        data-dismiss="">Continue</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Payment Details -->
+                    <div id="menu2{{chuyen.id}}" class="container tab-pane fade">
+                        <h2 class="text-primary mb-4 text-center">10:00</h2>
+                        <div class="container">
+                            <div class="row  text-left">
+                                <div class="col-4 pl-5 pb-4">
+                                    <p class="label p-0 mt-2 mb-1 text-left">Full name</p>
+                                    <p class="mb-2" id="sumaryFullName"></p>
+                                    <p class="label p-0 mt-2 mb-1 text-left">Phone</p>
+                                    <p class="mb-2" id="sumaryPhone"></p>
+                                    <p class="label p-0 mt-2 mb-1 text-left">Email</p>
+                                    <p class="mb-2" id="sumaryEmail"></p>
+                                </div>
+                                <div id="" class="container col-lg-6">
+                                    <div class="row pt-0 d-flex justify-content-center">
+                                        <div class="col-4 text-left">
+                                            <p class="small m-0 p-0 label text-left">From</p>NewYork
+                                        </div>
+                                        <div class="col-2"></div>
+                                        <div class="col-4  text-right">
+                                            <p class="small m-0 p-0 label">To</p>Dallas
+                                        </div>
                                     </div>
-                                    <div class="col-2  text-right"><i class="fas fa-arrow-right"></i></div>
-                                    <div class="col-4   text-right">
-                                        <p class="small m-0 p-0 label text-right">Arrival</p>{{getTimeArrival chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-4 text-left ">
+                                            <p class="small m-0 p-0 label text-left">Departure</p>
+                                            {{getTimeDeparture chuyen.ngayGioKhoiHanh}}
+                                        </div>
+                                        <div class="col-2  text-right"><i class="fas fa-arrow-right"></i></div>
+                                        <div class="col-4   text-right">
+                                            <p class="small m-0 p-0 label text-right">Arrival</p>
+                                            {{getTimeArrival chuyen.ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}
+                                        </div>
                                     </div>
+                                    <div class="row mt-2 d-flex justify-content-center">
+                                        <div class="col-4 text-left">Seat(s)</div>
+                                        <div class="col-2  text-right"></div>
+                                        <div id="sumarrySeats" class="col-4  text-right"></div>
+                                    </div>
+                                    <hr>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-4 text-left">Total</div>
+                                        <div class="col-2"></div>
+                                        <div id="sumarryTotal" class="col-4 text-right"></div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3" onclick="submitForm({{chuyen.id}},{{user.id}})">Proceed To Pay</button>
                                 </div>
-                                <div class="row mt-2 d-flex justify-content-center">
-                                    <div class="col-4 text-left">Seat(s)</div>
-                                    <div class="col-2  text-right"></div>
-                                    <div id="sumarrySeats" class="col-4  text-right"></div>
-                                </div>
-                                <hr>
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-4 text-left">Total</div>
-                                    <div class="col-2"></div>
-                                    <div id="sumarryTotal" class="col-4 text-right"></div>
-                                </div>
-                                <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3"
-                                    data-dismiss="">Proceed To Pay</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <form id="hiddenForm{{chuyen.id}}" class="hiddenForm" action="/payment" method="post">
+                    <input type="text" name="sdt" id="form{{chuyen.id}}Sdt" class="hidden">
+                    <input type="text" name="email" id="form{{chuyen.id}}Email" class="hidden">
+                    <input type="text" name="ChuyenId" id="form{{chuyen.id}}ChuyenId" class="hidden" value="">
+                    <input type="text" name="UserId" id="form{{chuyen.id}}UserId" class="hidden" value="">
+                </form>
             </div>
-        <!-- </form> -->
-
-        </div>
-        
       </div>
     </div>
   </div>
