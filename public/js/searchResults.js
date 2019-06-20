@@ -164,39 +164,47 @@ function getDataToSumary(btn,chuyenId){
 
 }
 
-function submitForm(chuyenId, userId){
-    let formId = '#form'+chuyenId;
+function submitForm(Chuyen, userId){
+    let chuyenId = Chuyen.id;
+
     let divId = '#menu2'+chuyenId;
-    let hiddenFormId = "#hiddenForm"+chuyenId;
-    $(formId+'Sdt').val($(divId+' #sumaryPhone').text());
-    $(formId+'Email').val($(divId+' #sumaryEmail').text());
-    $(formId+'ChuyenId').val(chuyenId);
-    $(formId+'UserId').val(userId);
+    let transaction = {
+        "sdt": $(divId+' #sumaryPhone').text().trim(),
+        "email": $(divId+' #sumaryEmail').text(),
+        "total": $(divId+' #sumarryTotal').text().substr(1),
+        "UserId": userId,
+        "TransactionDetails": []
+    }
+
     let divs = $('#passengerDetailContainer'+chuyenId+' .passengerDetail');
     for (let i=0; i<divs.length; i++){
         let div = divs[i];
-        id = (div.id).substr(17);
-        let nameId = '#passengerName'+chuyenId+id; let name = encodeURI($(nameId).val());
-        let namSinhId = '#namSinh'+chuyenId+id; let namSinh = $(namSinhId).val();
+        let id = (div.id).substr(15+chuyenId.toString().length);
+        let nameId = '#passengerName'+chuyenId+id; 
+        let namSinhId = '#namSinh'+chuyenId+id; 
         let genderId =  '#genderDiv'+chuyenId+id+' input[name="gender'+id+'"]:checked';
-        let gender = $(genderId).val();
         let seatId =  '#'+div.id+' #detailSeat';
-        let seat = $(seatId).text();
+        console.log(id);
 
-        let htmlName='<input type="text" name="passengerName'+(i+1)+'" class="hidden" value="'+name+'">';
-        let htmlNamSinh='<input type="text" name="passengerYOB'+(i+1)+'" class="hidden" value="'+namSinh+'">';
-        let htmlGender='<input type="text" name="passengerGender'+(i+1)+'" class="hidden" value="'+gender+'">';
-        let htmlSeat='<input type="text" name="passengerSeat'+(i+1)+'" class="hidden" value="'+seat+'">';
-
-        $(hiddenFormId).append(htmlName);
-        $(hiddenFormId).append(htmlNamSinh);
-        $(hiddenFormId).append(htmlGender);
-        $(hiddenFormId).append(htmlSeat);
+        let transactionDetail = {
+            "ten":$(nameId).val(),
+            "namSinh":$(namSinhId).val(),
+            "GioiTinhId": $(genderId).val(),
+            "viTriGheDat":$(seatId).text()
+        }
+        transaction.TransactionDetails.push(transactionDetail);
     }
+    console.log(transaction);
+    let htmlChuyen='<input type="text" name="Chuyen" class="hidden" value="'+encodeURI(JSON.stringify(Chuyen))+'">';
+    let htmlUserId='<input type="text" name="UserId" class="hidden" value="'+userId+'">';
+    let htmlTransaction='<input type="text" name="Transaction" class="hidden" value="'+encodeURI(JSON.stringify(transaction))+'">';
 
-    let htmlCount='<input type="text" name="seatCount" class="hidden" value="'+divs.length+'">';
-    $(hiddenFormId).append(htmlCount);
+    let hiddenFormId = "#hiddenForm"+chuyenId;
 
+
+    $(hiddenFormId).append(htmlChuyen);
+    $(hiddenFormId).append(htmlUserId);
+    $(hiddenFormId).append(htmlTransaction);
 
     $(hiddenFormId).submit();
 }

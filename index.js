@@ -66,6 +66,9 @@ app.use(function (req, res, next) {
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
+var paymentRouter = require('./routes/payment');
+app.use('/payment', paymentRouter);
+
 var userRouter = require('./routes/users');
 app.use('/users', userRouter);
 

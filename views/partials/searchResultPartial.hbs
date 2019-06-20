@@ -20,7 +20,7 @@
         {{/if}}
     </div>
     <div class="col-2">
-        <a name="" id="openColaaps{{chuyen.id}}" class="btn btn-outline-secondary" href="#" role="button" data-toggle="collapse" data-target="#collapse{{@index}}">Select Seat</a>
+        <a name="" id="openCollapse{{chuyen.id}}" class="btn btn-outline-secondary" href="#" role="button" data-toggle="collapse" data-target="#collapse{{@index}}"  >Select Seat</a>
     </div>
 </div>
 <div id="collapse{{@index}}" class="row container table-content collapse">
@@ -729,17 +729,13 @@
                                         <div class="col-2"></div>
                                         <div id="sumarryTotal" class="col-4 text-right"></div>
                                     </div>
-                                    <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3" onclick="submitForm({{chuyen.id}},{{user.id}})">Proceed To Pay</button>
+                                    <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3" onclick="submitForm({{stringify chuyen}},{{user.id}})">Proceed To Pay</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <form id="hiddenForm{{chuyen.id}}" class="hiddenForm" action="/payment" method="post">
-                    <input type="text" name="sdt" id="form{{chuyen.id}}Sdt" class="hidden">
-                    <input type="text" name="email" id="form{{chuyen.id}}Email" class="hidden">
-                    <input type="text" name="ChuyenId" id="form{{chuyen.id}}ChuyenId" class="hidden" value="">
-                    <input type="text" name="UserId" id="form{{chuyen.id}}UserId" class="hidden" value="">
                 </form>
             </div>
       </div>

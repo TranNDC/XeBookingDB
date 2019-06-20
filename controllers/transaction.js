@@ -333,13 +333,25 @@ controller.getAllWithSortDateAndRevenueBetweenDate = (datefrom, dateto, callback
         });
 }
 
-controller.add = function (transation) {
-    return new Promise((resolve,reject)=>{
-        Transactions
-            .create(transation)
-            .then(newTransaction=> resolve(newTransaction)); 
-    });
+controller.add = function (transation,callback) {
+    Transactions
+    .create(transation)
+    .then(callback);
+    // return new Promise((resolve,reject)=>{
+    //     Transactions
+    //         .create(transation) 
+    //         .then(newTransaction=> resolve(newTransaction)); 
+    // });
 };
 
+controller.update = (transactionId,paymentDetailId,callback)=>{
+    Transactions
+    .update({
+        PaymentDetailId:paymentDetailId
+    },{
+        where: {id: transactionId}
+    })
+    .then(callback);
+}
 
 module.exports = controller;

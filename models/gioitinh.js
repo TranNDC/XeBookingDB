@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   GioiTinh.associate = function(models) {
     // associations can be defined here
-    GioiTinh.hasMany(models.Transaction);
+    GioiTinh.hasMany(models.TransactionDetail);
   };
   return GioiTinh;
 };

@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.associate = function(models) {
     // associations can be defined here
     Transaction.belongsTo(models.Chuyen);
-    Transaction.belongsTo(models.KhuyenMai);
     Transaction.belongsTo(models.User);
     Transaction.hasMany(models.TransactionDetail);
-    
+    Transaction.belongsTo(models.PaymentDetail);
+
   };
   return Transaction;
 };
