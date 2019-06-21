@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/c3.css">
 
 
-<link rel="stylesheet" href="/css/c1.css">
+{{!-- <link rel="stylesheet" href="/css/c1.css"> --}}
 
 
 <!-- font awsome -->
@@ -28,7 +28,8 @@
         </div>
     </div>
 </div>
-
+<div id="station-container" data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}" hidden></div>
+<form id='filterForm' action="" method="get">
 <div class="container-fluid pb-5" id="c2-filter-div">
     <div class="row mt-4 d-flex justify-content-center">
         <div class="col-3 pl-0 d-inline" style="height:850px !important; overflow: hidden;">
@@ -40,25 +41,26 @@
                         <div class="row ml-0 mr-0">
                             <div class="col-6 pl-0 pr-2 input-date">
                                 <!-- <label class="form-check-label" for="bday">From</label> -->
-                                <input placeholder="From" id="searchform-departureday" type="text"
-                                    class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                <input placeholder="From" id="transactionFrom" type="text"
+                                    class="datepicker-here my-date-time-picker form-control" data-language='en' name='transaction_min'
                                     data-timepicker="true" data-position="bottom left" />
                                 <i class="far fa-calendar-alt icon-date mr-3"></i>
                             </div>
                             <div class="col-6 pr-0 pl-2 input-date">
                                 <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
-                                <input placeholder="To" id="searchform-departureday" type="text"
-                                    class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                <input placeholder="To" id="transactionTo" type="text"
+                                    class="datepicker-here my-date-time-picker form-control" data-language='en' name='transaction_max'
                                     data-timepicker="true" data-position="bottom right" />
                                 <i class="far fa-calendar-alt icon-date mr-3"></i>
                             </div>
                         </div>
                         <div class="row ml-0 mr-0 mt-3">
-                            <select class="c3-my-select" id="sel1">
-                                <option class="c3-my-option">Today</optionc3-my-option>
-                                <option class="c3-my-option">Last 7 days</option>
-                                <option class="c3-my-option">Last 3 days</option>
-                                <option class="c3-my-option">All time</option>
+                            <select class="c3-my-select" id="selectTransaction" >
+                                <option value="1" class="c3-my-option">Last 24h</optionc3-my-option>
+                                <option value="3"  class="c3-my-option">Last 3 days</option>
+                                <option value="7" class="c3-my-option">Last 7 days</option>
+                                <option value="0" class="c3-my-option" selected>All time</option>
+                                <option value="-1" class="c3-my-option" hidden id="transactionCustomSelect">Custom</option>
                             </select>
                         </div>
                     </div>
@@ -71,25 +73,26 @@
                         <div class="row ml-0 mr-0">
                             <div class="col-6 pl-0 pr-2 input-date">
                                 <!-- <label class="form-check-label" for="bday">From</label> -->
-                                <input placeholder="From" id="searchform-departureday" type="text"
-                                    class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                <input placeholder="From" id="departureTimeFrom" type="text"
+                                    class="datepicker-here my-date-time-picker form-control" data-language='en' name='departure_min'
                                     data-timepicker="true" data-position='top left' />
                                 <i class="far fa-calendar-alt icon-date mr-3"></i>
                             </div>
                             <div class="col-6 pr-0 pl-2 input-date">
                                 <!-- <label class="form-check-label ml-3" for="bday">To</label> -->
-                                <input placeholder="From" id="searchform-departureday" type="text"
-                                    class="datepicker-here my-date-time-picker form-control" data-language='en'
+                                <input placeholder="To" id="departureTimeTo" type="text"
+                                    class="datepicker-here my-date-time-picker form-control" data-language='en' name='departure_max'
                                     data-timepicker="true" data-position='top left' />
                                 <i class="far fa-calendar-alt icon-date mr-3"></i>
                             </div>
                         </div>
                         <div class="row ml-0 mr-0 mt-3">
-                            <select class="c3-my-select" id="sel1">
-                                <option class="c3-my-option">Next 24h</option>
-                                <option class="c3-my-option">Next 7 days</option>
-                                <option class="c3-my-option">Next 3 days</option>
-                                <option class="c3-my-option">All time</option>
+                            <select class="c3-my-select" id="selectDeparture">
+                                <option class="c3-my-option" value="1">Next 24h</option>
+                                <option class="c3-my-option" value="3">Next 3 days</option>
+                                <option class="c3-my-option" value="7">Next 7 days</option>
+                                <option class="c3-my-option" value="0" selected>All time</option>
+                                <option class="c3-my-option" value="-1" hidden>Custom</option>
                             </select>
 
                         </div>
@@ -99,7 +102,7 @@
                 <div id="client-filter-div" class="filter-div m-3">
                     <div class="container mt-3">
                         <label for="usr">Client's phone number</label>
-                        <input type="text" class="form-control" id="usr" placeholder="Phone">
+                        <input id="ticketPhone" type="tel" class="form-control" name="phone" placeholder="Phone" data-mask="999 999 9999" maxlength="12">
                     </div>
                 </div>
 
@@ -108,29 +111,27 @@
                 <div id="bus-filter-div" class="filter-div m-3">
                     <div class="container mt-3">
                         <div class="row ml-0 mr-0">
-                            <div class="col-6 pl-0 input-date d-flex align-items-center">
-                                <!-- <label class="form-check-label" for="bday">Time</label> -->
-                                <input placeholder="Time" id="searchform-departureday" type="text"
-                                    class="datepicker-here my-date-time-picker form-control" data-language='en'
-                                    data-timepicker="true" data-position='top left' />
-                                <i class="far fa-calendar-alt icon-date mr-3"></i>
-                            </div>
+                            <label for="usr">Bus's Palace Liscene</label>
+                            <input type="text" name="palaceLiscene" class="form-control" id="usr" placeholder="Palace Liscene">
                         </div>
 
                         <div class="row ml-0 mr-0 mt-3 d-flex align-items-center">
                             <div class="col-5 pl-0">
-                                <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                                <input type="text" class="form-control-plaintext control-inline my-inpyt-text" id="fromInput" name="from"
                                     placeholder="From">
                             </div>
                             <div class="col-1 pl-0 text-centur p-0 pl-xs-0">
                                 <i style="margin:auto 2px" class="fas fa-exchange-alt" aria-hidden="true"></i>
                             </div>
-                            <div class="col-5   pl-xs-0">
-                                <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                            <div class="col-6   pl-xs-0">
+                                <input type="text"  id="toInput" name="to" class="form-control-plaintext control-inline my-inpyt-text"
                                     placeholder="To">
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row d-flex  w-100 mt-5 ">
+                    <button type="submit" class="btn btn-primary m-auto h-100">Apply Filter</button>
                 </div>
             </div>
         </div>
@@ -139,7 +140,7 @@
         </div>
     </div>
 </div>
-
+</form>
 
 <script src="/js/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -149,4 +150,6 @@
 <link href="/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
 <script src="/dist/js/datepicker.min.js"></script>
 <!-- Include English language -->
+
 <script src="/dist/js/i18n/datepicker.en.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>

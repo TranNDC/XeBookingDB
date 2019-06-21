@@ -146,9 +146,9 @@ function autocomplete(inp, arrMain) {
 
 var listName = $('#searchform-container').data('station');
 
-var tmp = listName.split(";");
+var transaction[0] = listName.split(";");
 var stations = [];
-tmp.forEach(element => {
+transaction[0].forEach(element => {
   let tmp2 = element.split('-');
   let station = { ten: tmp2[0], id: tmp2[1] }
   stations.push(station);
@@ -159,6 +159,7 @@ stationstmp = stations;
 
 autocomplete(document.getElementById("fromInput"), stations);
 autocomplete(document.getElementById("toInput"), stations);
+
 
 // function DoSubmit(){
 //   if($('#fromInput').val($('#fromInput').data("id");

@@ -11,6 +11,8 @@ var DiaDiems = models.DiaDiem;
 var Users = models.User;
 var LoaiXes = models.LoaiXe;
 var GioiTinh = models.GioiTinh;
+var PaymentDetails = models.PaymentDetail;
+
 
 
 
@@ -116,7 +118,7 @@ controller.searchUser = function (user_ID, callback) {
 
 controller.getTransactions = function (callback) {
     Transactions.findAll({
-        attributes: ['id', 'createdAt', 'sdt', 'email'],
+        attributes: ['id', 'createdAt', 'sdt', 'email','PaymentDetailId'],
         include: [
             { model: Users, attributes: ['id'] },
             {
@@ -144,7 +146,8 @@ controller.getTransactions = function (callback) {
                 attributes: ['ten', 'namSinh', 'viTriGheDat'],
                 include: [{ model: GioiTinh, attributes: ['ten'] }]
             },
-            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] }
+            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] },
+            { model: PaymentDetails}
         ]
     })
         .then((Transactions) => {
