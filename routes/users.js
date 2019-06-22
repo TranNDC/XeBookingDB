@@ -286,7 +286,7 @@ hbs.registerHelper("getDay", function (value, options) {
     return date.toLocaleString('en-US', options);
 });
 
-hbs.registerHelper("getTime", function (value, options) {
+hbs.registerHelper("getTimeC", function (value, options) {
     let date = new Date(value);
     var options = {
         hour12: false,
