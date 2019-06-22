@@ -92,10 +92,8 @@ controller.searchWithVoucher = function(xuatphatTen,ketthucTen,maKhuyenMai, call
 }
 
 //------------------------------------------------------------------------------
-controller.getAllForMasterdata = function (page,limit,callback) {
-    Chuyens.findAndCountAll({
-        limit:limit,
-        offset:limit*(page-1),
+controller.getAllForMasterdata = function (callback) {
+    Chuyens.findAll({
         include: [{
             model: Tuyens,
             required: true,

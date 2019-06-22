@@ -1,27 +1,29 @@
 <div class="container-fluid  text-center d-flex flex-column my-table b3-table" id="search-table-result">
         <div class="row table-header big-label">
-                <div class="col-2 active-filter"><a class="action-sm" href="#">
-                                <i class="far fa-circle"></i>
-                        </a> Departure <i class="fas fa-arrow-down"></i></div>
-                <div class="col-2">Minute moving</div>
-                <div class="col-2">Bus Route</div>
-                <div class="col-2">Bus ID</div>
-                <div class="col-2">Price</div>
+                <div class="col-2"><a id="headerdeparture" class="listHeader" href="?order=departure_desc">Departure</a>
+                </div>
+                <div class="col-2"><a id="headerminutemove" class="listHeader" href="?order=minutemove_asc">Minute
+                                move</a></div>
+                <div class="col-2"><a id="headerbusroute" class="listHeader" href="?order=busroute_asc">Bus route</a>
+                </div>
+                <div class="col-2"><a id="headerlicenseplate" class="listHeader" href="?order=licenseplate_asc">License
+                                Plate</a></div>
+                <div class="col-2"><a id="headerprice" class="listHeader" href="?order=price_asc">Price</a></div>
                 <div class="col-2">Action</div>
         </div>
         <div class="b3-content-containter">
                 {{#each results}}
 
                 <div class="row table-content">
-                        <div class="col-2  active-filter"><a class="action" href="#">
+                        <div class="departureData col-2  active-filter"><a class="action" href="#">
                                         <i class="far fa-circle"></i>
                                 </a>
                                 {{prettifyDate ngayGioKhoiHanh}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{getTime ngayGioKhoiHanh}}
                         </div>
-                        <div class="col-2">{{Tuyen.soPhutDiChuyen}}</div>
-                        <div class="col-2">{{Tuyen.xuatphat.ten}}-{{Tuyen.ketthuc.ten}}</div>
-                        <div class="col-2">{{Xe.bienso}}</div>
-                        <div class="col-2">{{gia}}</div>
+                        <div class="minuteMovingData col-2">{{Tuyen.soPhutDiChuyen}}</div>
+                        <div class="busRouteData col-2">{{Tuyen.xuatphat.ten}}-{{Tuyen.ketthuc.ten}}</div>
+                        <div class="licensePlateData col-2">{{Xe.bienso}}</div>
+                        <div class="priceData col-2">{{gia}}</div>
                         <div class="col-2">
                                 <a class="action" href="#">
                                         <i class="fas fa-eye"></i>
@@ -41,6 +43,8 @@
 
 
         <nav class="d-flex">
-                {{{paginateHelper pagination}}}
+                {{#if hasPagination}}
+                {{{paginate pagination}}}
+                {{/if}}
         </nav>
 </div>

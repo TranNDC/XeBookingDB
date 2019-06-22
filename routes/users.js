@@ -28,6 +28,9 @@ router.get('/signup', (req, res) => {
 var userRouter = require('./profile');
 router.use('/profile', userRouter);
 
+var masterDataRouter = require('./masterdata');
+router.use('/masterdata', masterDataRouter);
+
 
 
 let allusers = require('../controllers/users');
@@ -174,23 +177,6 @@ router.get('/history', userController.isLoggedIn, (req, res) => {
 });
 
 
-
-let allchuyen = require('../controllers/chuyen');
-router.get('/masterdata', userController.isAdmin, (req, res) => {
-    let page = req.query.page || 1;
-    let limit = 7;
-    allchuyen.getAllForMasterdata(page,limit,results => {
-        res.locals.results = results.rows;
-        //res.send(results[0]);
-        res.locals.pagination={
-            page:parseInt(page),
-            limit:7,
-            totalRows:results.count
-        }
-        res.render('masterdata');
-        
-    });
-});
 
 router.post('/login', function (req, res) {
     var email = req.body.email;
