@@ -400,6 +400,15 @@ $('#transactionTo').on('blur', function() {
 });
 
 $(document).ready(function () {
+  $('#swapbutton').click(()=>{
+    let tempText = $('#fromInput').val();
+    let tempId = $('#fromInput').data("id");
+    $('#fromInput').val( $('#toInput').val());
+    $('#toInput').val(tempText);
+    $('#fromInput').data("id", $('#toInput').data("id"));
+    $('#toInput').data("id",tempId);
+});
+
     var listName = $('#station-container').data('station');
 
     var tmp = listName.split(";");
