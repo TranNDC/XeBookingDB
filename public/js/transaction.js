@@ -406,55 +406,6 @@ $('#transactionTo').on('blur', function () {
 });
 
 $(document).ready(function () {
-<<<<<<< HEAD
-  var listName = $('#station-container').data('station');
-
-  var tmp = listName.split(";");
-  var stations = [];
-  tmp.forEach(element => {
-    let tmp2 = element.split('-');
-    let station = {
-      ten: tmp2[0],
-      id: tmp2[1]
-    }
-    stations.push(station);
-  });
-  stations.splice(-1, 1);
-
-  stationstmp = stations;
-
-  autocomplete(document.getElementById("fromInput"), stations);
-  autocomplete(document.getElementById("toInput"), stations);
-
-  let url = window.location.href
-  let nPage = getPageNumber('page', url);
-  let n = $('ul.pagination li a').length;
-  let i = 0;
-  $('ul.pagination li a').each(function () {
-    let text = 0;
-    if (i == 0) {
-      if (nPage == 1) {
-        $(this).parent().addClass('disabled');
-        text = 0;
-      } else text = nPage - 1;
-    } else if (i == n - 1) {
-      if (nPage == n - 1) {
-        $(this).parent().addClass('disabled');
-        text = 0;
-      } else text = parseInt(nPage) + 1;
-    } else
-      text = i;
-    if (text != 0) {
-      let href = '?page=' + text;
-      let newhref = getNewHref('page', url, href);
-      $(this).attr('href', newhref);
-    }
-    i++;
-  });
-  updateHeader(url);
-
-});
-=======
   $('#swapbutton').click(()=>{
     let tempText = $('#fromInput').val();
     let tempId = $('#fromInput').data("id");
@@ -513,4 +464,3 @@ $(document).ready(function () {
     updateHeader(url);
     
   });
->>>>>>> 61565fd9f8f92bf9f768fc9f3abd6e1218b40863

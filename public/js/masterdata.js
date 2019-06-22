@@ -262,6 +262,15 @@ function getPageNumber(pattern, url) {
 
 
 $(document).ready(function () {
+    $('#swapbutton').click(()=>{
+        let tempText = $('#fromInputM').val();
+        let tempId = $('#fromInputM').data("id");
+        $('#fromInputM').val( $('#toInputM').val());
+        $('#toInputM').val(tempText);
+        $('#fromInputM').data("id", $('#toInputM').data("id"));
+        $('#toInputM').data("id",tempId);
+    });
+
     var listName = $('#station-container').data('station');
 
     var tmp = listName.split(";");
