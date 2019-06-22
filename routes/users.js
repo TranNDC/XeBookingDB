@@ -333,6 +333,19 @@ hbs.registerHelper("inc", function (x, options) {
     return ++x;
 });
 
+hbs.registerHelper("getTime", function (array, id, options) {
+    var options = {month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' };
+    if (array && array[id])
+        return (new Date(array[id])).toLocaleString('en-US',options);
+    return '';
+});
+
+hbs.registerHelper("isCustomOption", function (array, options) {
+    if (array[0] || array[1])
+        return true;
+    return false;
+});
+
 
 
 function getData(type, transaction){
@@ -399,6 +412,12 @@ function filterFunc(req, res, Chuyens) {
     let xuatphat = req.query.from;
     let ketthuc = req.query.to;
 
+    res.locals.departureRange = departureRange;
+    res.locals.transactionRange = transactionRange;
+    res.locals.phone = phone;
+    res.locals.palaceLiscene = palaceLiscene;
+    res.locals.xuatphat = xuatphat;
+    res.locals.ketthuc = ketthuc;
 
     let foundEr = true;
     while (foundEr) {
@@ -413,35 +432,41 @@ function filterFunc(req, res, Chuyens) {
     }
 }
 
-function filterTransactionRange(transactionRange, transaction){
-    if (transactionRange[0]){
-        transactionRange[0] = new Date(transactionRange[0]);
-        transactionRange[0].setHours(0);
-        transactionRange[0].setMinutes(0);
-        transactionRange[0].setSeconds(0);
-        
-        if (transaction.createdAt < transactionRange[0]) return false;
+function filterTransactionRange(Range, transaction){
+    if (Range[0]&&Range[1]){
+        if (new Date(Range[0]) > new Date(Range[1])){
+            tmp = Range[0];
+            Range[0]=Range[1]; Range[1]=tmp;
+        }
     }
-    if (transactionRange[1]){
+    if (Range[0]){
+        Range[0] = new Date(Range[0]);
         
-        transactionRange[1] = new Date(transactionRange[1]);
-        transactionRange[1].setHours(23);
-        transactionRange[1].setMinutes(59);
-        transactionRange[1].setSeconds(59);
-        if (transaction.createdAt > transactionRange[1]) return false;
+        if (transaction.createdAt < Range[0]) return false;
+    }
+    if (Range[1]){
+        
+        Range[1] = new Date(Range[1]);
+        if (transaction.createdAt > Range[1]) return false;
     }
     return true;
 }
 
-function filterDeparture(departureRange,transaction){
-    let date = transaction.Chuyen.ngayGioKhoiHanh;
-    if (departureRange[0]){
-        departureRange[0] = new Date(departureRange[0]);
-        if (date < departureRange[0]) return false;
+function filterDeparture(Range,transaction){
+    if (Range[0]&&Range[1]){
+        if (new Date(Range[0]) > new Date(Range[1])){
+            tmp = Range[0];
+            Range[0]=Range[1]; Range[1]=tmp;
+        }
     }
-    if (departureRange[1]){
-        departureRange[1] = new Date(departureRange[1]);
-        if (date > departureRange[1]) return false;
+    let date = transaction.Chuyen.ngayGioKhoiHanh;
+    if (Range[0]){
+        Range[0] = new Date(Range[0]);
+        if (date < Range[0]) return false;
+    }
+    if (Range[1]){
+        Range[1] = new Date(Range[1]);
+        if (date > Range[1]) return false;
     }
     return true;
 }
@@ -454,7 +479,7 @@ function filterPhone(phone,transaction) {
 
 function filterPalaceLiscene(palaceLiscene,transaction) {
     if (!palaceLiscene) return true;
-    palaceLiscene = palaceLiscene.trim();
+    palaceLiscene = palaceLiscene.trim().toUpperCase();
     let tphone = transaction.Chuyen.Xe.bienso.trim();
     return tphone.search(palaceLiscene) >=0;
 }
