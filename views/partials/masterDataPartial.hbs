@@ -23,9 +23,9 @@
                         <div class="minuteMovingData col-2">{{Tuyen.soPhutDiChuyen}}</div>
                         <div class="busRouteData col-2">{{Tuyen.xuatphat.ten}}-{{Tuyen.ketthuc.ten}}</div>
                         <div class="licensePlateData col-2">{{Xe.bienso}}</div>
-                        <div class="priceData col-2">{{gia}}</div>
+                        <div class="priceData col-2">${{gia}}</div>
                         <div class="col-2">
-                                <a class="action" href="#">
+                                <a class="cursor-pointer action" data-toggle="modal" data-target="#modal{{@index}}">
                                         <i class="fas fa-eye"></i>
                                 </a>
                                 <a class="action" href="#">
@@ -38,6 +38,190 @@
                 </div>
 
                 <hr>
+
+
+                <div class="modal fade" id="modal{{@index}}">
+                        <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header pb-0">
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <ul class="nav nav-tabs pb-4 pt-0 d-flex align-items-end mb-3" role="tablist"
+                                                style="margin:0 15%">
+                                                <li class="nav-item">
+                                                        <a id="ahome" class="nav-link a2-nav-link active"
+                                                                data-toggle="tab"
+                                                                href="#modalGeneral{{@index}}">General</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <a id="amenu1" class="nav-link a2-nav-link" data-toggle="tab"
+                                                                href="#modalPassengerContact{{@index}}">Other
+                                                                details</a>
+                                                </li>
+                                        </ul>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body   pl-5 pb-5 pr-5">
+                                                <div class="tab-content text-left">
+                                                        <!-- General Information -->
+                                                        <div id="modalGeneral{{@index}}"
+                                                                class="container tab-pane active">
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure ID</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{id}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Created at
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{prettifyDate createdAt}} -
+                                                                                {{getTimeC createdAt}} </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Bus
+                                                                                ID</div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Xe.id}}</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{getArrival ngayGioKhoiHanh 0}}
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Arrival
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{getArrival ngayGioKhoiHanh Tuyen.soPhutDiChuyen}}
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Palace Liscene
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Xe.bienso}}
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">Bus
+                                                                                Route
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.xuatphat.ten}} -
+                                                                                {{Tuyen.ketthuc.ten}}</div>
+                                                                </div>
+                                                                <hr>
+
+                                                                <div class="row">
+                                                                        
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Bus type
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Xe.LoaiXe.ten}}
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Number of slots
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Xe.LoaiXe.socho}}
+                                                                        </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Price per slot</div>
+                                                                        <div class="col-lg-3 col-sm-6">${{gia}}</div>
+                                                                        
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Saleoff ID
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Tuyen.KhuyenMais.0.maKhuyenMai}}
+                                                                        </div>
+
+                                                                         <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Saleoff percent
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{Tuyen.KhuyenMais.0.phanTram}}%
+                                                                        </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Date starts saleoff
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{getArrival Tuyen.KhuyenMais.0.ngayBatDau 0}}
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Date ends saleoff
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">{{getArrival Tuyen.KhuyenMais.0.ngayKetThuc 0}}
+                                                                        </div>
+
+                                                                </div>
+                                                        </div>
+
+                                                        <div id="modalPassengerContact{{@index}}"
+                                                                class="container tab-pane">
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure station
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.xuatphat.ten}}</div>
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Arrival station
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.ketthuc.ten}}</div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure address
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.xuatphat.diachi}}</div>
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Arrival address
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.ketthuc.diachi}}</div>
+
+
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Departure phone
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.xuatphat.sdt}}</div>
+
+                                                                        <div class="col-lg-3 col-sm-4 lighter-text">
+                                                                                Arrival phone
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                                {{Tuyen.ketthuc.sdt}}</div>
+                                                                </div>
+                                                                <hr>
+
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+
                 {{/each}}
         </div>
 

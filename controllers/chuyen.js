@@ -100,11 +100,11 @@ controller.getAllForMasterdata = function (callback) {
             include: [{
                 model: DiaDiems,
                 as: "xuatphat",
-                attributes: ['ten'],
+                attributes: ['ten','diachi','sdt'],
             }, {
                 model: DiaDiems,
                 as: "ketthuc",
-                attributes: ['ten'],
+                attributes: ['ten','diachi','sdt'],
             }, {
                 model: KhuyenMais,
                 attributes: ['maKhuyenMai','phanTram','ngayBatDau','ngayKetThuc'],
@@ -113,13 +113,15 @@ controller.getAllForMasterdata = function (callback) {
         {
             model: Xes,
             include: {
-                model: LoaiXes
+                model: LoaiXes,
+                attributes:['ten','socho']
             }
         }
         ],
 
     })
         .then((Chuyens) => {
+            console.log(Chuyens[0].Tuyen.KhuyenMais);
             callback(Chuyens);
         });
 }
