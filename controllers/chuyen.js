@@ -94,9 +94,11 @@ controller.searchWithVoucher = function(xuatphatTen,ketthucTen,maKhuyenMai, call
 //------------------------------------------------------------------------------
 controller.getAllForMasterdata = function (callback) {
     Chuyens.findAll({
+        where:{
+            deleted:0
+        },
         include: [{
             model: Tuyens,
-            required: true,
             include: [{
                 model: DiaDiems,
                 as: "xuatphat",
@@ -121,9 +123,23 @@ controller.getAllForMasterdata = function (callback) {
 
     })
         .then((Chuyens) => {
-            console.log(Chuyens[0].Tuyen.KhuyenMais);
+            //console.log(Chuyens[0].Tuyen.KhuyenMais);
             callback(Chuyens);
         });
+}
+
+controller.deleteById = (chuyenId, callback) =>{ 
+    Chuyens.findOne(
+        {
+            where: {id :chuyenId}
+        }
+    ).then((result)=>{
+        result.update({
+            deleted: 1
+        }).then(()=>{
+            callback(result)
+        })
+    })
 }
 
 

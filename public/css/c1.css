@@ -163,3 +163,13 @@ a:hover{
 #nav-tab .nav-link.active{
     border-bottom: 3px solid #494949 !important;
 }
+
+.btn-dark{
+    background-color:#DCDCDC;
+    color: #494949 !important;
+    border-color: #DCDCDC !important;
+    
+}
+.btn-dark:hover{
+    color: white !important;
+}

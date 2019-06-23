@@ -50,6 +50,14 @@ function sort(type, isAsc, res) {
     }
 }
 
+router.get('/delete/:chuyenId',userController.isAdmin,(req,res)=>{
+    chuyenId = req.params.chuyenId;
+    
+    allchuyen.deleteById(chuyenId, (result)=>{
+        res.redirect("/users/masterdata");
+    });
+});
+
 router.get('/', userController.isAdmin, (req, res) => {
     allchuyen.getAllForMasterdata(results => {
 
