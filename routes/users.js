@@ -113,27 +113,27 @@ router.get('/admin', userController.isAdmin, (req, res) => {
 });
 
 router.get('/transaction', userController.isAdmin, (req, res) => {
-    controllerTransaction.getTransactions((Transactions)=>{
-       
+    controllerTransaction.getTransactions((Transactions) => {
+
         var order = req.query.order;
-        if (!order){
-            order= "time_desc";
+        if (!order) {
+            order = "time_desc";
         }
         let tmp = order.split('_');
         filterFunc(req, res, Transactions);
-        sort(tmp[0],tmp[1]=='asc',Transactions);
+        sort(tmp[0], tmp[1] == 'asc', Transactions);
         var page = parseInt(req.query.page);
         var limit = 13;
         page = isNaN(page) ? 1 : page;
         let numPage = Math.ceil(Transactions.length / limit);
-        page = (page<=numPage&&page>=1)?page:numPage;
+        page = (page <= numPage && page >= 1) ? page : numPage;
         var pagination = {
             limit: limit,
             page: page,
             totalRows: Transactions.length
         }
         var offset = (page - 1) * limit;
-    
+
         res.locals.Transactions = Transactions.slice(offset, offset + limit);;
         res.locals.pagination = pagination;
         res.locals.hasPagination = (pagination.totalRows / limit > 1);
@@ -147,31 +147,31 @@ router.get('/transaction', userController.isAdmin, (req, res) => {
 
 
 router.get('/history', userController.isLoggedIn, (req, res) => {
-    res.locals.isInfo= false
-    controllerTransaction.searchUser(res.locals.user.id, (Transactions)=>{
+    res.locals.isInfo = false
+    controllerTransaction.searchUser(res.locals.user.id, (Transactions) => {
 
         var page = parseInt(req.query.page);
         var limit = 9;
         page = isNaN(page) ? 1 : page;
         let numPage = Math.ceil(Transactions.length / limit);
-        page = (page<=numPage&&page>=1)?page:numPage;
+        page = (page <= numPage && page >= 1) ? page : numPage;
         var pagination = {
             limit: limit,
             page: page,
             totalRows: Transactions.length
         }
         var offset = (page - 1) * limit;
-    
+
         var order = req.query.order;
-        if (!order){
-            order= "departure_asc";
+        if (!order) {
+            order = "departure_asc";
         }
         let tmp = order.split('_');
-        sort(tmp[0],tmp[1]=='asc',Transactions);
+        sort(tmp[0], tmp[1] == 'asc', Transactions);
         res.locals.Transactions = Transactions.slice(offset, offset + limit);;
         // res.locals.Transactions = Transactions;
         res.locals.pagination = pagination;
-    res.locals.hasPagination = (pagination.totalRows / limit > 1);
+        res.locals.hasPagination = (pagination.totalRows / limit > 1);
         res.render('profile');
     })
 });
@@ -267,6 +267,23 @@ router.post('/signup', function (req, res) {
 });
 
 
+router.put('/updateinfo', function (req, res) {
+    var user = {
+        password: req.body.pasw,
+        phone: req.body.phone,
+        name: req.body.fullname,
+        email: req.body.email,
+        location: req.body.location
+    }
+    userID = req.body.userID;
+    userController.modify(userID, user, function (err,userUpdate) {
+        if (err) throw err;
+        req.session.user=userUpdate;
+        res.redirect('/users/profile');
+    });
+
+});
+
 router.get('/logout', function (req, res) {
     req.session.user = null;
 
@@ -297,14 +314,14 @@ hbs.registerHelper("getTimeC", function (value, options) {
 });
 
 hbs.registerHelper("checkStatus", function (value, options) {
-    return value!=null;
+    return value != null;
 });
 
 hbs.registerHelper("getTotal", function (price, tds, voucher, options) {
     let pc = 0;
     if (voucher) pc = voucher.phanTram;
-    
-    return (Math.ceil((1-pc/100)*price))*tds.length;
+
+    return (Math.ceil((1 - pc / 100) * price)) * tds.length;
 });
 
 hbs.registerHelper("getArrival", function (departure, time, options) {
@@ -321,7 +338,7 @@ hbs.registerHelper("getArrival", function (departure, time, options) {
 });
 
 hbs.registerHelper("getSeats", function (details, options) {
-    let res =[];
+    let res = [];
     details.forEach(element => {
         res.push(element.viTriGheDat);
     });
@@ -334,9 +351,15 @@ hbs.registerHelper("inc", function (x, options) {
 });
 
 hbs.registerHelper("getTime", function (array, id, options) {
-    var options = {month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' };
+    var options = {
+        month: 'numeric',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+    };
     if (array && array[id])
-        return (new Date(array[id])).toLocaleString('en-US',options);
+        return (new Date(array[id])).toLocaleString('en-US', options);
     return '';
 });
 
@@ -348,7 +371,7 @@ hbs.registerHelper("isCustomOption", function (array, options) {
 
 
 
-function getData(type, transaction){
+function getData(type, transaction) {
     switch (type) {
         case 'licensePlate': {
             return (transaction.Chuyen.Xe.bienso)
@@ -370,15 +393,15 @@ function getData(type, transaction){
         }
         case 'departure': {
             let date = new Date(transaction.Chuyen.ngayGioKhoiHanh);
-            return (date.getHours()*60 + date.getMinutes())
+            return (date.getHours() * 60 + date.getMinutes())
         }
         case 'price': {
-            let km =1;
-            if (transaction.KhuyenMai) km =1- transaction.KhuyenMai.phanTram /100;
-            return (transaction.Chuyen.gia*km * transaction.TransactionDetails.length);
+            let km = 1;
+            if (transaction.KhuyenMai) km = 1 - transaction.KhuyenMai.phanTram / 100;
+            return (transaction.Chuyen.gia * km * transaction.TransactionDetails.length);
         }
         case 'status': {
-            return (transaction.PaymentDetail?transaction.PaymentDetail.createdAt:0)
+            return (transaction.PaymentDetail ? transaction.PaymentDetail.createdAt : 0)
         }
 
         default:
@@ -387,14 +410,14 @@ function getData(type, transaction){
 }
 
 
-function sort(type, isAsc, Transactions){
+function sort(type, isAsc, Transactions) {
     let n = Transactions.length;
 
-    for (let i = 0; i<n ; i++){
-        for (let j=0; j<i; j++){
-            let xi = getData(type,Transactions[i]);
-            let xj = getData(type,Transactions[j]);
-            if (!isAsc?xi>xj:xi<xj){
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < i; j++) {
+            let xi = getData(type, Transactions[i]);
+            let xj = getData(type, Transactions[j]);
+            if (!isAsc ? xi > xj : xi < xj) {
                 let tmp = Transactions[i];
                 Transactions[i] = Transactions[j];
                 Transactions[j] = tmp;
@@ -424,7 +447,7 @@ function filterFunc(req, res, Chuyens) {
         foundEr = false;
         Chuyens.forEach((item, index, object) => {
             departureRange = [req.query.departure_min, req.query.departure_max];
-            if (!filerTransaction(transactionRange,departureRange,phone,palaceLiscene,xuatphat,ketthuc,item)) {
+            if (!filerTransaction(transactionRange, departureRange, phone, palaceLiscene, xuatphat, ketthuc, item)) {
                 object.splice(index, 1);
                 foundEr = true;
             }
@@ -432,79 +455,84 @@ function filterFunc(req, res, Chuyens) {
     }
 }
 
-function filterTransactionRange(Range, transaction){
-    if (Range[0]&&Range[1]){
-        if (new Date(Range[0]) > new Date(Range[1])){
+function filterTransactionRange(Range, transaction) {
+    if (Range[0] && Range[1]) {
+        if (new Date(Range[0]) > new Date(Range[1])) {
             tmp = Range[0];
-            Range[0]=Range[1]; Range[1]=tmp;
+            Range[0] = Range[1];
+            Range[1] = tmp;
         }
     }
-    if (Range[0]){
+    if (Range[0]) {
         Range[0] = new Date(Range[0]);
-        
+
         if (transaction.createdAt < Range[0]) return false;
     }
-    if (Range[1]){
-        
+    if (Range[1]) {
+
         Range[1] = new Date(Range[1]);
         if (transaction.createdAt > Range[1]) return false;
     }
     return true;
 }
 
-function filterDeparture(Range,transaction){
-    if (Range[0]&&Range[1]){
-        if (new Date(Range[0]) > new Date(Range[1])){
+function filterDeparture(Range, transaction) {
+    if (Range[0] && Range[1]) {
+        if (new Date(Range[0]) > new Date(Range[1])) {
             tmp = Range[0];
-            Range[0]=Range[1]; Range[1]=tmp;
+            Range[0] = Range[1];
+            Range[1] = tmp;
         }
     }
     let date = transaction.Chuyen.ngayGioKhoiHanh;
-    if (Range[0]){
+    if (Range[0]) {
         Range[0] = new Date(Range[0]);
         if (date < Range[0]) return false;
     }
-    if (Range[1]){
+    if (Range[1]) {
         Range[1] = new Date(Range[1]);
         if (date > Range[1]) return false;
     }
     return true;
 }
-function filterPhone(phone,transaction) {
+
+function filterPhone(phone, transaction) {
     if (!phone) return true;
     phone = phone.trim();
     let tphone = transaction.sdt.trim();
-    return tphone.search(phone) >=0;
+    return tphone.search(phone) >= 0;
 }
 
-function filterPalaceLiscene(palaceLiscene,transaction) {
+function filterPalaceLiscene(palaceLiscene, transaction) {
     if (!palaceLiscene) return true;
     palaceLiscene = palaceLiscene.trim().toUpperCase();
     let tphone = transaction.Chuyen.Xe.bienso.trim();
-    return tphone.search(palaceLiscene) >=0;
+    return tphone.search(palaceLiscene) >= 0;
 }
-function filterXuatphat(ten,transaction) {
+
+function filterXuatphat(ten, transaction) {
     if (!ten) return true;
     ten = ten.trim();
     let tphone = transaction.Chuyen.Tuyen.xuatphat.ten.trim();
     return tphone.search(ten) >= 0;
 }
-function filterKetthuc(ten,transaction) {
+
+function filterKetthuc(ten, transaction) {
     if (!ten) return true;
     ten = ten.trim();
     let tphone = transaction.Chuyen.Tuyen.ketthuc.ten.trim();
-    return tphone.search(ten) >=0;
+    return tphone.search(ten) >= 0;
 }
 
 
 
-function filerTransaction(transactionRange,departureRange,phone,palaceLiscene,xuatphat,ketthuc,transaction) {
-    return filterDeparture(departureRange,transaction)&&
-    filterTransactionRange(transactionRange,transaction)&&
-    filterKetthuc(ketthuc,transaction)&&
-    filterXuatphat(xuatphat,transaction)&&
-    filterPhone(phone,transaction)&&
-    filterPalaceLiscene(palaceLiscene,transaction);
+function filerTransaction(transactionRange, departureRange, phone, palaceLiscene, xuatphat, ketthuc, transaction) {
+    return filterDeparture(departureRange, transaction) &&
+        filterTransactionRange(transactionRange, transaction) &&
+        filterKetthuc(ketthuc, transaction) &&
+        filterXuatphat(xuatphat, transaction) &&
+        filterPhone(phone, transaction) &&
+        filterPalaceLiscene(palaceLiscene, transaction);
 }
 
 

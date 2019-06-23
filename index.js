@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var expressHbs = require('express-handlebars');
 var paginateHelper = require('express-handlebars-paginate');
+const methodOverride = require('method-override');
 
 // Set Public Folder
 app.use(express.static(__dirname + '/public'));
@@ -17,6 +18,8 @@ var hbs = expressHbs.create({
     }
 
 });
+
+app.use(methodOverride('_method'));
 
 hbs.handlebars.registerHelper('paginateHelper',paginateHelper.createPagination);
 

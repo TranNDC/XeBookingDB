@@ -71,11 +71,15 @@ controller.comparePassword = function (password, hash, callback) {
     });
 };
 
-controller.getUserById = function (id, callback) {
+controller.getUserById = function (userid, callback) {
     models.User
-        .findById(id)
+        .findOne({
+            where: {
+                id: userid
+            }
+        })
         .then(function (user) {
-            callback(false, user);
+            callback(user);
         });
 }
 
@@ -96,5 +100,33 @@ controller.isAdmin = (req, res, next) => {
         //res.end();
     }
 };
+
+
+controller.modify = (userID, user, callback) => {
+
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            user.password = hash;
+
+            models.User
+                .findOne({
+                    where: {
+                        id: userID
+                    }
+                })
+                .then(function (result) {
+                    result.update({
+                        name: user.name || result.name,
+                        password: user.password || result.password,
+                        phone: user.phone || result.phone,
+                        email: user.email || result.email,
+                        location:user.location||result.location
+                    }).then(()=>{
+                        callback(err,result);
+                    });
+                })
+        });
+    });
+}
 
 module.exports = controller;
