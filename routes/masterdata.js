@@ -3,6 +3,8 @@ var router = express.Router();
 
 var userController = require('../controllers/users');
 var controllerDiaDiem = require('../controllers/diadiem');
+var controllerTuyen = require('../controllers/tuyen');
+var controllerXe = require('../controllers/xe');
 var controllerKhuyenMai = require('../controllers/khuyenmai');
 var controllerChuyen = require('../controllers/chuyen');
 var controllerTransaction = require('../controllers/transaction');
@@ -55,6 +57,74 @@ router.get('/delete/:chuyenId',userController.isAdmin,(req,res)=>{
     
     allchuyen.deleteById(chuyenId, (result)=>{
         res.redirect("/users/masterdata");
+    });
+});
+
+router.get('/create',userController.isAdmin,(req,res)=>{
+    controllerTuyen.getAll(function (tuyens) {
+        controllerXe.getAll(function(xes){
+            res.locals.stations = tuyens;
+            res.locals.xes = xes;
+            res.render("createDeparture");
+        })
+        
+    })
+    
+});
+
+router.put('/edit/:chuyenId/put',userController.isAdmin,(req,res)=>{
+    var date = new Date(req.body.timedeparture);
+    var tuyenidt = req.body.busrouteid.split("-");
+    var tuyenid = parseInt(tuyenidt[0]);
+    var chuyen={
+        ngayGioKhoiHanh:date,
+        gia:req.body.price,
+        deleted:0,
+        TuyenId:tuyenid,
+        XeId:parseInt(req.body.busid.split("-")[0])
+    }
+    chuyenId = req.params.chuyenId;;
+    allchuyen.modifyById(chuyenId, chuyen, function (chuyenUpdate) {
+        if (!chuyenUpdate)
+            res.send("failed to edit");
+        res.render("successRespond",{info:"Update "});
+    });
+});
+
+router.get('/edit/:chuyenId',userController.isAdmin,(req,res)=>{
+    controllerTuyen.getAll(function (tuyens) {
+        controllerXe.getAll(function(xes){
+            res.locals.stations = tuyens;
+            res.locals.xes = xes;
+            res.locals.chuyenId = req.params.chuyenId;
+            
+            allchuyen.getById(res.locals.chuyenId, (result)=>{
+                res.locals.result=result;
+                res.render("editDeparture");
+            })
+            
+        })
+        
+    })
+    
+});
+
+router.post('/create/post',userController.isAdmin,(req,res)=>{
+    
+    var date = new Date(req.body.timedeparture);
+    var tuyenidt = req.body.busrouteid.split("-");
+    var tuyenid = parseInt(tuyenidt[0]);
+    var chuyen={
+        ngayGioKhoiHanh:date,
+        gia:req.body.price,
+        deleted:0,
+        TuyenId:tuyenid,
+        XeId:parseInt(req.body.busid.split("-")[0])
+    }
+    allchuyen.createChuyen(chuyen,(result)=>{
+        if (!result)
+            res.send("failed to create");
+        res.render("successRespond",{info:"Create "});
     });
 });
 
