@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <form role="form" method="POST" action="/users/updateinfo">
+                <form role="form" method="POST" action="/users/updateinfo?_method=PUT">
                     <div class="container b3-form-edit">
 
                         <div class="row justify-content-center align-content-center">
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Password</div>
-                                    <input type="password" name="pasw" value="abcxyz" readonly>
+                                    <input type="password" name="pasw" value="leai" readonly>
                                     <img id="b3-icon-edit-password" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
                                 <div class="p-relative">
@@ -83,15 +83,16 @@
                                 </div>
                             </div>
                             <div class="col-md-5 col-sm-12">
+                                
+                                <div class="p-relative">
+                                    <div class="b3-title-form-opts">Email address</div>
+                                    <input type="text" name="email" readonly value={{user.email}} >
+                                </div>
+
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Full name</div>
                                     <input type="text" id="nameID" name="fullname" readonly value="{{user.name}}">
                                     <img id="b3-icon-edit-fullname" src="/img/icon/baseline-create-24px-grey.svg" alt="">
-                                </div>
-                                <div class="p-relative">
-                                    <div class="b3-title-form-opts">Email address</div>
-                                    <input type="text" name="email" readonly value={{user.email}} >
-                                    <img id="b3-icon-edit-email" src="/img/icon/baseline-create-24px-grey.svg" alt="">
                                 </div>
 
                                 <div class="p-relative">

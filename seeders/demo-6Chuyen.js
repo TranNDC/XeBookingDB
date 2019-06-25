@@ -16,6 +16,7 @@ module.exports = {
         var chuyen = {
           ngayGioKhoiHanh: date,
           gia: Math.floor(Math.random() * 401) + 100,
+          deleted:0,
           TuyenId: Math.floor(Math.random() * 4)+1,
           XeId: xe+1,
           createdAt: Sequelize.literal('NOW()'),

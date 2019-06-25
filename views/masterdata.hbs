@@ -14,7 +14,7 @@
         <div class="col-6">
             <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-home-tab" href="#">Master Data</a>
+                    <a class="nav-item nav-link active" id="nav-home-tab" href="/masterdata">Master Data</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" href="/transaction">Transaction</a>
                     <a class="nav-item nav-link " id="nav-contact-tab" href="/admin">Report</a>
                 </div>
@@ -32,122 +32,105 @@
                     <div class="c3-form">
                         <h4>TOOL</h4>
                         <div class="tools">
-                            <a href="#" id="create" class="btn btn-custom">Create</a>
+                            <a href="/users/masterdata/create" id="create" class="btn btn-custom">Create</a>
                             <a href="#" id="import" class="btn btn-custom">Import</a>
                             <br>
                             <a href="#" id="export" class="btn btn-custom">Export</a>
                             <a href="#" id="delete" class="btn btn-custom">Delete</a>
                         </div>
                     </div>
-                    <div class="c3-form">
-                        <h4>FILTER</h4>
-                        <div class="btn-group" id="btn-group-dropdown">
-                            <button type="button" id="btn-dropdown" class="btn btn-danger">Booking database</button>
-                            <button type="button" id="toggle"
-                                class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                    <a class=" dropdown-item" href="/users/masterdata">Booking database</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/users/masterdata">Employee database</a>
-                            </div>
-                        </div>
-
-                        <div class="bus-route-search">
-                            <h5>Bus route</h5>
-                            <div class="row row-custom">
-                                <div class="col-5">
-                                    <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                        placeholder="From" id="fromInput">
-                                </div>
-                                <div class="col-2" id="icon-trans">
-                                    <i style="margin:auto 1px" class="fas fa-exchange-alt" aria-hidden="true"></i>
-                                </div>
-                                <div class="col-5">
-                                    <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
-                                        placeholder="To" id="toInput">
+                    <div id="station-container" data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}" hidden></div>
+                    <form action="" method="get">
+                        <div class="c3-form">
+                            <h4>FILTER</h4>
+                            <div class="btn-group" id="btn-group-dropdown">
+                                <button type="button" id="btn-dropdown" class="btn btn-danger">Departure database</button>
+                                <button type="button" id="toggle"
+                                    class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class=" dropdown-item" href="/users/masterdata">Departure database</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/users/masterdata">Busroute database</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/users/masterdata">Saleoff database</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/users/masterdata">Bus database</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/users/masterdata">Bustype database</a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="bus-route-search">
-                            <h5>Time</h5>
-                            <div class="row row-custom">
-                                <div class="col-6">
-                                    <div class="input-date">
-                                        <input placeholder="From" id="searchform-departureday" type="text"
-                                            class="datepicker-here form-control" data-language='en'
-                                            data-multiple-dates="3" data-multiple-dates-separator=", "
-                                            data-position='top left' />
-                                        <i class="far fa-calendar-alt icon-date"></i>
+                            <div class="bus-route-search">
+                                <h5>Bus route</h5>
+                                <div class="row row-custom">
+                                    <div class="col-5">
+                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                                            placeholder="From" autocomplete="off" name="from" id="fromInputM">
                                     </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="input-date">
-                                        <input placeholder="To" id="searchform-returnday" type="text"
-                                            class="datepicker-here form-control" data-language='en'
-                                            data-multiple-dates="3" data-multiple-dates-separator=", "
-                                            data-position='top left' />
-                                        <i class="far fa-calendar-alt icon-date"></i>
+                                    <div class="col-2" id="icon-trans">
+                                        <i id="swapbutton" style="margin:auto 1px" class="fas fa-exchange-alt"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" class="form-control-plaintext control-inline my-inpyt-text"
+                                            placeholder="To" id="toInputM" autocomplete="off" name="to">
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-
-                        <div class="bus-route-search">
-                            <h5>Price</h5>
-                            <div class="container">
-                                <div class="container row">
-                                    <div class="slider-lables col-2 caption p-0">
-                                        <span id="slider-range-price-value1"></span>
+                            <div class="bus-route-search">
+                                <h5>Time</h5>
+                                <div class="row row-custom">
+                                    <div class="col-6">
+                                        <div class="input-date">
+                                            <input autocomplete="off" name="departure_min" placeholder="From"
+                                                id="searchform-departureday" type="text"
+                                                class="datepicker-here form-control" data-language='en'
+                                                data-multiple-dates="3" data-multiple-dates-separator=", "
+                                                data-position='top left' />
+                                            <i class="far fa-calendar-alt icon-date"></i>
+                                        </div>
                                     </div>
 
-                                    <div class="col-sm-8 m-auto">
-                                        <div id="slider-range-price"></div>
-                                    </div>
-                                    <div class="slider-lables text-right col-2 caption p-0">
-                                        <span id="slider-range-price-value2"></span>
+                                    <div class="col-6">
+                                        <div class="input-date">
+                                            <input name="departure_max" autocomplete="off" placeholder="To"
+                                                id="searchform-returnday" type="text"
+                                                class="datepicker-here form-control" data-language='en'
+                                                data-multiple-dates="3" data-multiple-dates-separator=", "
+                                                data-position='top left' />
+                                            <i class="far fa-calendar-alt icon-date"></i>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <form>
-                                            <input type="hidden" name="min-value" value="">
-                                            <input type="hidden" name="max-value" value="">
-                                        </form>
+                            </div>
+
+                            <div class="bus-route-search">
+                                <h5>License Plate</h5>
+                                <div class="row row-custom">
+                                    <div class="col-10">
+                                        <input name="palaceLiscene" type="text" id="bus-id"
+                                            placeholder="Example: 59-B1">
+                                    </div>
+
+                                    <div class="col-2" id="icon-search">
+                                        <button type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
+                            <br>
                         </div>
-
-
-                        <div class="bus-route-search">
-                            <h5>Bus ID</h5>
-                            <div class="row row-custom">
-                                <div class="col-10">
-                                    <input type="text" id="bus-id" placeholder="Example: B190303">
-                                </div>
-
-                                <div class="col-2" id="icon-search">
-                                    <button type="submit">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="c3-form">
                         <div id="masterData-container">
-                            <script id="masterData-template" type="text/x-handlebars-template">
-                                {{> masterDataPartial}}
-                                </script>
+                            {{> masterDataPartial}}
                         </div>
                     </div>
                 </div>
@@ -176,5 +159,5 @@
 <!-- Include English language -->
 <script src="/dist/js/i18n/datepicker.en.js"></script>
 <script src="/js/a2.js"></script>
-<script src="/js/master-data.js"></script>
+<script src="/js/masterdata.js"></script>
 <script src="/js/search.js"></script>

@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Chuyen = sequelize.define('Chuyen', {
     ngayGioKhoiHanh: DataTypes.DATE,
-    gia: DataTypes.INTEGER
+    gia: DataTypes.INTEGER,
+    deleted:DataTypes.INTEGER
   }, {});
   Chuyen.associate = function(models) {
     // associations can be defined here
