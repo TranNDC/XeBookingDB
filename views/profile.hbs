@@ -21,7 +21,8 @@
 
                 </a>
 
-                <a id="b3-link-history" class="b3-choice {{#unless isInfo}}b3-chosen{{/unless}}" href="/users/profile/history">
+                <a id="b3-link-history" class="b3-choice {{#unless isInfo}}b3-chosen{{/unless}}"
+                    href="/users/profile/history">
                     <img class="b3-icon" src="/img/icon/baseline-restore-24px.svg" alt="">
                     <div class="b3-textOpt">History</div>
                 </a>
@@ -43,20 +44,51 @@
 
         <!-- pannel right -->
         <!-- profile -->
-        <div id="b3-userprofile" class="col-md-8 col-sm-10 panel-right b3-fixed-height {{#unless isInfo}}hidden{{/unless}}">
+        <div id="b3-userprofile"
+            class="col-md-8 col-sm-10 panel-right b3-fixed-height {{#unless isInfo}}hidden{{/unless}}">
             <div class="a3-form">
                 <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                     <div class="b3-avatar">
                         <img id="b3-header-avatar" src={{{user.imagePath}}} alt="">
                         <div class="box">
-                            <a href="#"><img class="b3-icon-edit" src="/img/icon/baseline-create-24px.svg" alt=""></a>
-                            <input type="file" class="chooser" onchange="readURL(this);">
+                            <a class="cursor-pointer" data-toggle="modal" data-target="#yesnoModal"><img
+                                    class="b3-icon-edit" src="/img/icon/baseline-create-24px.svg" alt=""></a>
+                            {{!-- <input type="file" class="chooser" onchange="readURL(this);"> --}}
                             <!-- <div class="b3-cursorpointer"></div> -->
                         </div>
                     </div>
                     <div class="pl-5">
                         <div class="b3-title-name">{{user.name}}</div>
                         <div class="b3-title-location">{{user.location}}</div>
+                    </div>
+                </div>
+
+                <!-- YesnoModal -->
+                <div class="modal fade" id="yesnoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Change avatar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/users/profile/info/upload" enctype="multipart/form-data" method="POST">
+                            <div class="modal-body">
+                                <!--  SINGLE FILE -->
+
+                                <input type="file" name="myFile" />
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-dark"
+                                    data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -73,32 +105,35 @@
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Password</div>
                                     <input type="password" name="pasw" value="leai" readonly>
-                                    <img id="b3-icon-edit-password" src="/img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <img id="b3-icon-edit-password" src="/img/icon/baseline-create-24px-grey.svg"
+                                        alt="">
                                 </div>
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Phone number</div>
-                                    <input type="text" name="phone" readonly value={{user.phone}} >
+                                    <input type="text" name="phone" readonly value={{user.phone}}>
                                     <img id="b3-icon-edit-phone" src="/img/icon/baseline-create-24px-grey.svg" alt="">
 
                                 </div>
                             </div>
                             <div class="col-md-5 col-sm-12">
-                                
+
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Email address</div>
-                                    <input type="text" name="email" readonly value={{user.email}} >
+                                    <input type="text" name="email" readonly value={{user.email}}>
                                 </div>
 
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Full name</div>
                                     <input type="text" id="nameID" name="fullname" readonly value="{{user.name}}">
-                                    <img id="b3-icon-edit-fullname" src="/img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <img id="b3-icon-edit-fullname" src="/img/icon/baseline-create-24px-grey.svg"
+                                        alt="">
                                 </div>
 
                                 <div class="p-relative">
                                     <div class="b3-title-form-opts">Location</div>
-                                    <input type="text" name="location" readonly value="{{user.location}}" >
-                                    <img id="b3-icon-edit-location" src="/img/icon/baseline-create-24px-grey.svg" alt="">
+                                    <input type="text" name="location" readonly value="{{user.location}}">
+                                    <img id="b3-icon-edit-location" src="/img/icon/baseline-create-24px-grey.svg"
+                                        alt="">
                                 </div>
                             </div>
 

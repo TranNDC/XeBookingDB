@@ -7,7 +7,8 @@ var controllerKhuyenMai = require('../controllers/khuyenmai');
 var controllerChuyen = require('../controllers/chuyen');
 var controllerTransaction = require('../controllers/transaction');
 
-
+var uploadRouter = require('./upload');
+router.use('/info/upload',uploadRouter);
 
 function getData(type, transaction){
     switch (type) {
