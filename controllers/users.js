@@ -7,11 +7,7 @@ const Op = require('../models').Sequelize.Op;
 let user = models.User;
 controller.getAll = (callback) => {
     user
-        .findAll({
-            where: {
-                isAdmin: false
-            }
-        })
+        .findAll()
         .then(result => {
             callback(result);
         });
