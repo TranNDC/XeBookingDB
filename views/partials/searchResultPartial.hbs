@@ -686,7 +686,7 @@
                     </div>
                     <!-- Payment Details -->
                     <div id="menu2{{chuyen.id}}" class="container tab-pane fade">
-                        <h2 class="text-primary mb-4 text-center">10:00</h2>
+                        <h2 id="countDown{{chuyen.id}}" class="text-primary mb-4 text-center">10:00</h2>
                         <div class="container">
                             <div class="row  text-left">
                                 <div class="col-4 pl-5 pb-4">
@@ -729,16 +729,16 @@
                                         <div class="col-2"></div>
                                         <div id="sumarryTotal" class="col-4 text-right"></div>
                                     </div>
-                                    <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3" onclick="submitForm({{stringify chuyen}},{{user.id}})">Proceed To Pay</button>
+                                    <button type="button" class="btn btn-primary float-right mt-4" id="a2-btn-step-3" onclick="submitForm({{stringify chuyen}},{{user.id}},this)">Pay with PayPal</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form id="hiddenForm{{chuyen.id}}" class="hiddenForm" action="/payment" method="post">
+                <form id="hiddenForm{{chuyen.id}}" class="hiddenForm" target="_blank" action="/payment" method="post">
                 </form>
             </div>
       </div>
     </div>
   </div>
-</div>
+</div> 

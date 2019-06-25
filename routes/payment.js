@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var paypal = require('paypal-rest-sdk');
 
-var controllerDiaDiem = require('../controllers/diadiem');
-var controllerKhuyenMai = require('../controllers/khuyenmai');
-var controllerChuyen = require('../controllers/chuyen');
-var controllerTransaction = require('../controllers/transaction');
+var waitSecond = 60;
+
+
+var transactionController = require('../controllers/transaction');
+var transactionDetailController = require('../controllers/transactiondetail');
+var paymentdetailController = require('../controllers/paymentdetail');
 
 var return_url="http://localhost:5000/payment/success";
 var cancel_url="http://localhost:5000/payment/error";
@@ -20,12 +22,11 @@ paypal.configure({
 router.post('/', (req, res) => {
     let Chuyen = JSON.parse(decodeURI(req.body.Chuyen));
     let Transaction = JSON.parse(decodeURI(req.body.Transaction));
-    let UserId = req.body.UserId;
-
+    let UserId = req.body.UserId;   
     let count = Transaction.TransactionDetails.length;
     let newTransaction = getNewTransaction(Chuyen, Transaction, UserId);
     let newTransactionDetails = getNewTransactionDetails(Transaction);
-    console.log(Transaction);
+    // console.log(Transaction);
     PostTransaction(res, count, newTransaction, newTransactionDetails,
         () =>{
             let paypalItems = getPayPalItem(Chuyen,Transaction);
@@ -33,7 +34,7 @@ router.post('/', (req, res) => {
             
             paypal.payment.create(create_payment_json, function (error, payment) {
                 if (error) {
-                    console.log(error.response)
+                    console.log(error.response);
                     res.render('paymentError');
                 } else {
                     for (let i = 0; i < payment.links.length; i++) {
@@ -50,6 +51,7 @@ router.post('/', (req, res) => {
 
 
 router.get('/success', function (req, res) {
+    res.locals.note = "Payment Error";
     let TransactionId = req.query.ID;
     let PaymentId = req.query.paymentId;
     let PayerId = req.query.PayerID;
@@ -59,8 +61,11 @@ router.get('/success', function (req, res) {
         "PayerId":PayerId,
         "Token":Token
     }
-    let transactionController = require('../controllers/transaction');
-    let paymentdetailController = require('../controllers/paymentdetail');
+
+
+    transactionController.getOne(parseInt(TransactionId), transaction =>{
+        deleteWaitQueue(transaction[0].ChuyenId,getViTris(transaction[0].TransactionDetails));
+    });
     paymentdetailController
         .add(newPaymentDetail ,paymentdetail => {
             transactionController
@@ -75,10 +80,88 @@ router.get('/error', function (req, res) {
     res.render('paymentError');
 });
 
+function getViTris(newTransactionDetails){
+    let  vitris = [];
+    newTransactionDetails.forEach(element => {
+        vitris.push(element.viTriGheDat);
+    });
+    return vitris;
+}
+
+var TransactionNow = [];
+
+function addToWaitQueue(chuyenId, vitris) {
+    for (let i = 0; i < TransactionNow.length; i++) {
+        if (TransactionNow[i].ChuyenId == chuyenId) {
+            vitris.forEach(element => {
+                var index = TransactionNow[i].vitris.indexOf(element);
+                if (index > -1) {
+                    TransactionNow[i].vitris.splice(index, 1);
+                }
+            });
+
+            // tat paypal
+            // xoa trong dtb
+
+            // setTimeout((chuyenId, vitris) => {
+            //     transactionDetailController.detele(parseInt(chuyenId), () => {
+            //         transactionController.detele(parseInt(chuyenId));
+            //     })
+            // }, waitSecond)
+        }
+    }
+
+}
+
+function checkEmtyWaitQueue(ChuyenId, vitris){
+    console.log(ChuyenId,vitris);
+    let checkExistBooking = false;
+    let checkExistChuyenId = false;
+
+    for (let i = 0; i< TransactionNow.length; i++){
+        if (TransactionNow[i].ChuyenId == ChuyenId){
+            for (let j =0; j< vitris.length;j++){
+                if (TransactionNow[i].vitris.indexOf(vitris[j])>=0){
+                    checkExistBooking = true;
+                    break;
+                }
+            }
+            checkExistChuyenId = true;
+            if (!checkExistBooking){
+                addToWaitQueue(ChuyenId,vitris);
+            }
+        }
+    }
+    if (!checkExistChuyenId){
+        let item = {
+            'ChuyenId':ChuyenId,
+            'vitris':[]
+
+        }
+        TransactionNow.push(item);
+        addToWaitQueue(ChuyenId,vitris);
+    }
+    return !checkExistBooking;
+}
+
+
+function deleteWaitQueue(ChuyenId, vitris){
+    for (let i = 0; i< TransactionNow.length; i++){
+        if (TransactionNow[i].ChuyenId == ChuyenId){
+            for (let j =0; j< vitris.length;j++){
+                if (TransactionNow[i].vitris.indexOf(vitris[j])>=0){
+                    TransactionNow[i].vitris.splice(TransactionNow[i].vitris.indexOf(vitris[j]), 1);
+                }
+
+            }
+        }
+    }
+}
+
 function PostTransaction(res, count, newTransaction, newTransactionDetails,callback){
-    let transactionController = require('../controllers/transaction');
-    let transactionDetailController = require('../controllers/transactiondetail');
-    transactionController
+
+    if (checkEmtyWaitQueue(newTransaction.ChuyenId,getViTris(newTransactionDetails))){
+        transactionController
         .add(newTransaction ,transaction => {
             return_url += "?ID="+transaction.id;
             for (let i = 0; i < count; i++) {
@@ -93,6 +176,12 @@ function PostTransaction(res, count, newTransaction, newTransactionDetails,callb
                     });
             }
         });
+    }
+    else{
+        res.locals.note =":( You are a little bit late! Please try again!"
+        res.render('paymentError');
+    }
+
 }
 
 

@@ -164,7 +164,7 @@ function getDataToSumary(btn,chuyenId){
 
 }
 
-function submitForm(Chuyen, userId){
+function submitForm(Chuyen, userId, element){
     let chuyenId = Chuyen.id;
 
     let divId = '#menu2'+chuyenId;
@@ -207,6 +207,35 @@ function submitForm(Chuyen, userId){
     $(hiddenFormId).append(htmlTransaction);
 
     $(hiddenFormId).submit();
+    $(element).hide();
+    var now = 10*60;
+    var x = setInterval(function() {
+
+        // Get today's date and time
+          
+        // Find the distance between now and the count down date
+       now--;
+        // Time calculations for days, hours, minutes and seconds
+      
+        var minutes = Math.floor(now/60);
+        var seconds = Math.floor(now%60);
+          
+        // Output the result in an element with id="demo"
+        document.getElementById("countDown"+chuyenId).innerText=  minutes + " : " + seconds;
+          
+        // If the count down is over, write some text 
+        if (now < 0) {
+          clearInterval(x);
+          
+          // close paypal
+
+          if ( !localStorage["reloaded"] ){
+            localStorage["reloaded"] = true
+            location.reload()
+        }
+        
+        }
+      }, 1000);
 }
   
 

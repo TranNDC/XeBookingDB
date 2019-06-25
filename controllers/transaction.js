@@ -26,6 +26,23 @@ controller.getAll = (callback) => {
         });
 }
 
+controller.getOne = (id, callback) => {
+    Transactions
+        .findAll({
+            where: {
+                id:id
+            },
+            include: [{
+                model: TransactionDetails,
+                required: true,
+                attributes: ['viTriGheDat']
+            }]
+        })
+        .then(result => {
+            callback(result);
+        });
+}
+
 controller.getAllBetweenDate = (datefrom, dateto, callback) => {
     Transactions
         .findAll({
@@ -79,7 +96,12 @@ controller.searchChuyen = function (chuyen_ID, callback) {
                 model: TransactionDetails,
                 required: true,
                 attributes: ['viTriGheDat']
-            }],
+            },
+            {
+                model: PaymentDetails,
+                required: true
+            }
+        ],
         })
         .then((Transactions) => {
             callback(Transactions);
@@ -356,5 +378,14 @@ controller.update = (transactionId,paymentDetailId,callback)=>{
     })
     .then(callback);
 }
+
+controller.detele = (transactionId,callback)=>{
+    Transactions
+    .detele({
+        where: {id: transactionId}
+    })
+    .then(callback);
+}
+
 
 module.exports = controller;
