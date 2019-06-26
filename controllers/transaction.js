@@ -60,9 +60,14 @@ controller.getAllWithSortDateAndRevenue = (callback) => {
             ],
             include: [{
                 model: Chuyens,
-                required: true,
                 attributes: ['id', 'gia']
-            }]
+            },
+            {
+                model: TransactionDetails,
+                attributes: ['ten', 'namSinh', 'viTriGheDat'],
+                include: [{ model: GioiTinh, attributes: ['ten'] }]
+            },
+            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] }]
         })
         .then(result => {
             callback(result);
@@ -161,9 +166,15 @@ controller.getAllMoney = function (callback) {
             attributes: ['id', 'sdt', 'email', 'ChuyenId', 'UserId'],
             include: [{
                 model: Chuyens,
-                required: true,
                 attributes: ['id', 'gia']
-            }]
+            },
+            {
+                model: TransactionDetails,
+                attributes: ['ten', 'namSinh', 'viTriGheDat'],
+                include: [{ model: GioiTinh, attributes: ['ten'] }]
+            },
+            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] }
+        ]
         })
         .then((Transactions) => {
             callback(Transactions);
@@ -181,7 +192,13 @@ controller.getAllMoneyBetweenDate = function (datefrom, dateto, callback) {
                 model: Chuyens,
                 required: true,
                 attributes: ['id', 'gia']
-            }]
+            },
+            {
+                model: TransactionDetails,
+                attributes: ['ten', 'namSinh', 'viTriGheDat'],
+                include: [{ model: GioiTinh, attributes: ['ten'] }]
+            },
+            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] }]
         })
         .then((Transactions) => {
             callback(Transactions);
@@ -329,7 +346,13 @@ controller.getAllWithSortDateAndRevenueBetweenDate = (datefrom, dateto, callback
                 model: Chuyens,
                 required: true,
                 attributes: ['id', 'gia']
-            }]
+            },
+            {
+                model: TransactionDetails,
+                attributes: ['ten', 'namSinh', 'viTriGheDat'],
+                include: [{ model: GioiTinh, attributes: ['ten'] }]
+            },
+            { model: KhuyenMais, attributes: ['maKhuyenMai', 'phanTram'] }]
         })
         .then(result => {
             callback(result);

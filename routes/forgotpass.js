@@ -19,7 +19,7 @@ router.get('/sendmail', (req, res) => {
 
     userController.getUserByEmail(req.query.email, (result) => {
         if (!result) {
-            res.send("Email is not registered")
+            res.render("paymentError",{info:"email is not registered"})
         } else {
             crypto.randomBytes(48, function (err, buffer) {
                 if (err) throw err;

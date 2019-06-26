@@ -131,8 +131,13 @@ router.get('/chart_col', (req, res) => {
             for (let i = 0; i < n; i++) {
                 var data = {};
                 data["day"] = results[i].dataValues.createdAt.toDateString();
-                data["revenue"] = results[i].dataValues.Chuyen.dataValues.gia;
-
+                
+                var numOfTransactionDetails = results[i].TransactionDetails.length;
+                var pc = 0;
+                if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
+                var price = results[i].Chuyen.gia;
+                data["revenue"] = (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
+                
                 if (obj.Revenue.length == 0) {
                     obj.Revenue.push(data);
                 } else {
@@ -156,7 +161,13 @@ router.get('/chart_col', (req, res) => {
             for (let i = 0; i < n; i++) {
                 var data = {};
                 data["day"] = results[i].dataValues.createdAt.toDateString();
-                data["revenue"] = results[i].dataValues.Chuyen.dataValues.gia;
+                
+                var numOfTransactionDetails = results[i].TransactionDetails.length;
+                var pc = 0;
+                if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
+                var price = results[i].Chuyen.gia;
+                data["revenue"] = (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
+                
 
                 if (obj.Revenue.length == 0) {
                     obj.Revenue.push(data);

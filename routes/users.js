@@ -39,14 +39,14 @@ let allbooking = require('../controllers/transaction');
 
 //query chartjs with datefrom and date
 router.get('/admin/refresh', userController.isAdmin, function (req, res) {
-    parts = req.query.datefrom.split('/');
+    partsFrom = req.query.datefrom.split('/');
 
-    datefrom = new Date(parts[2], parts[0] - 1, parts[1]);
+    datefrom = new Date(partsFrom[2], partsFrom[0] - 1, partsFrom[1]);
 
-    parts = req.query.dateto.split('/');
+    partsTo = req.query.dateto.split('/');
 
-    dateto = new Date(parts[2], parts[0] - 1, parts[1]);
-
+    dateto = new Date(partsTo[2], partsTo[0] - 1, partsTo[1]);   
+    
     res.locals.datefrom = datefrom.toDateString();
     res.locals.dateto = dateto.toDateString();
 
@@ -54,7 +54,7 @@ router.get('/admin/refresh', userController.isAdmin, function (req, res) {
     req.session.dateto = dateto;
     req.session.loadBetweenDate = true;
 
-    if (datefrom > dateto) {
+    if (datefrom >= dateto) {
         res.redirect("/admin");
     } else {
         allusers.getAllWithDate(datefrom, dateto, results => {
@@ -66,10 +66,15 @@ router.get('/admin/refresh', userController.isAdmin, function (req, res) {
                     allbooking.getAllMoneyBetweenDate(datefrom, dateto, results => {
                         var num = Object.keys(results).length;
                         var sum = 0;
+                    
                         for (i = 0; i < num; i++) {
-                            sum = sum + results[i].dataValues.Chuyen.dataValues.gia;
-                            //console.log(results[i].dataValues.Chuyen.dataValues.gia);
-                        }
+                        var numOfTransactionDetails = results[i].TransactionDetails.length;
+                        var pc = 0;
+                        if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
+                        var price = results[i].Chuyen.gia;
+                        sum = sum + (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
+        
+                    }
                         res.locals.revenue = sum;
                         res.render('admin');
                     })
@@ -96,9 +101,14 @@ router.get('/admin', userController.isAdmin, (req, res) => {
                 allbooking.getAllMoney(results => {
                     var num = Object.keys(results).length;
                     var sum = 0;
+                    
                     for (i = 0; i < num; i++) {
-                        sum = sum + results[i].dataValues.Chuyen.dataValues.gia;
-                        //console.log(results[i].dataValues.Chuyen.dataValues.gia);
+                        var numOfTransactionDetails = results[i].TransactionDetails.length;
+                        var pc = 0;
+                        if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
+                        var price = results[i].Chuyen.gia;
+                        sum = sum + (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
+        
                     }
                     res.locals.revenue = sum;
                     req.session.loadBetweenDate = false;
