@@ -49,8 +49,8 @@ var session = require('express-session');
 app.use(session({
 	cookie: {
 		httpOnly: true,
-		maxAge: 30 * 24 * 60 * 60 * 1000
-	}, //30 days
+		maxAge: 5 * 60 * 1000
+	}, //5 min
 	secret: 'Secret',
 	saveUninitialized: false,
 	resave: false
@@ -68,6 +68,9 @@ app.use(function (req, res, next) {
 
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
+
+var fotgotpassRouter = require('./routes/forgotpass');
+app.use('/forgotpass', fotgotpassRouter);
 
 var paymentRouter = require('./routes/payment');
 app.use('/payment', paymentRouter);
