@@ -296,8 +296,10 @@ router.put('/updateinfo', function (req, res) {
 
 router.get('/logout', function (req, res) {
     req.session.user = null;
-
-    res.redirect('/users/login');
+    req.session.destroy(function(e){
+        req.logout();
+        res.redirect('/users/login');
+    });
 });
 
 var hbs = require('handlebars');

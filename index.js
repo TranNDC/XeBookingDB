@@ -2,26 +2,28 @@ var express = require('express');
 var app = express();
 var expressHbs = require('express-handlebars');
 var paginateHelper = require('express-handlebars-paginate');
-const methodOverride = require('method-override');
+var methodOverride = require('method-override');
+var passport = require('./passport');
+
 
 // Set Public Folder
 app.use(express.static(__dirname + '/public'));
 // Use View Engine
 var expressHbs = require('express-handlebars');
 var hbs = expressHbs.create({
-	extname			: 'hbs',
-	defaultLayout	: 'layout', 
-	layoutsDir		: __dirname + '/views/layouts/',
-	partialsDir		: __dirname + '/views/partials/',
+	extname: 'hbs',
+	defaultLayout: 'layout',
+	layoutsDir: __dirname + '/views/layouts/',
+	partialsDir: __dirname + '/views/partials/',
 	helpers: {
-        paginate: paginateHelper.createPagination,
-    }
+		paginate: paginateHelper.createPagination,
+	}
 
 });
 
 app.use(methodOverride('_method'));
 
-hbs.handlebars.registerHelper('paginateHelper',paginateHelper.createPagination);
+hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -55,6 +57,10 @@ app.use(session({
 	saveUninitialized: false,
 	resave: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //use express validator
 var expressValidator = require('express-validator');
@@ -109,6 +115,26 @@ app.get('/profile', function (req, res) {
 app.get('/masterdata', function (req, res) {
 	res.redirect('users/masterdata');
 });
+
+app.get('/auth/google',
+	passport.authenticate('google', {
+		scope: ['profile', 'email']
+	})
+);
+app.get('/auth/google/callback', passport.authenticate('google', {
+	successRedirect: '/',
+	failureRedirect: '/login'
+}));
+
+app.get('/auth/facebook',
+	passport.authenticate('facebook',{ scope : ['email'] }));
+
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {
+		successRedirect: '/',
+		failureRedirect: '/login'
+    }));
+
 
 app.listen(app.get('port'), function () {
 	console.log('Server is listening at port ' + app.get('port'));
