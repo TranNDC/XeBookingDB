@@ -10,6 +10,11 @@ var controllerTransaction = require('../controllers/transaction');
 var _stations = null;
 
 router.get('/', function (req, res) {
+    if (req.user) {
+        req.session.user = req.user;
+        res.locals.user = req.user;
+        res.locals.isLoggedIn = true;
+    }
 
     let visitController = require('../controllers/logvisit');
     visitController

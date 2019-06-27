@@ -33,10 +33,9 @@
                         <h4>TOOL</h4>
                         <div class="tools">
                             <a href="/users/masterdata/create" id="create" class="btn btn-custom">Create</a>
-                            <a href="#" id="import" class="btn btn-custom">Import</a>
+                            <a href="/users/masterdata/export" id="import" class="btn btn-custom">Export</a>
                             <br>
-                            <a href="#" id="export" class="btn btn-custom">Export</a>
-                            <a href="#" id="delete" class="btn btn-custom">Delete</a>
+                            
                         </div>
                     </div>
                     <div id="station-container" data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}" hidden></div>
@@ -53,13 +52,10 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class=" dropdown-item" href="/users/masterdata">Departure database</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/users/masterdata">Busroute database</a>
-                                    <div class="dropdown-divider"></div>
+                                
                                     <a class="dropdown-item" href="/users/masterdata">Saleoff database</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/users/masterdata">Bus database</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/users/masterdata">Bustype database</a>
+                
+                                    
                                 </div>
                             </div>
 
@@ -150,14 +146,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script src="/js/handlebars-v4.1.2.js"></script>
-<script src="/js/a1.js"></script>
-<script src="/js/b3.js"></script>
+
 <script src="/js/nav-admin-input.js"></script>
 
 <link href="/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
 <script src="/dist/js/datepicker.min.js"></script>
 <!-- Include English language -->
 <script src="/dist/js/i18n/datepicker.en.js"></script>
-<script src="/js/a2.js"></script>
+
 <script src="/js/masterdata.js"></script>
-<script src="/js/search.js"></script>
