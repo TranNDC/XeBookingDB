@@ -6,9 +6,10 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 var userController = require('./controllers/users');
 passport.use(
     new GoogleStrategy({
-        clientID: '620132546669-0aodvq102d418k8uehkhuut6g5dlb5ma.apps.googleusercontent.com',
-        clientSecret: 'hRI5HAXoxQ3toyUUOl9gGMvb',
-        callbackURL: '/auth/google/callback'
+        clientID: '626006363343-nml4fuhofnochvj65fmrh91fpu4c3hai.apps.googleusercontent.com',
+        clientSecret: 'tzHaJ2RGLbIsomWMz5NgIIKC',
+        callbackURL: '/auth/google/callback',
+        proxy:true
     }, function (accessToken, refreshToken, profile, cb) {
         userController.findOrCreate(profile, function (user) {
 
@@ -18,9 +19,10 @@ passport.use(
 );
 
 passport.use(new FacebookStrategy({
-        clientID: "201698827414594",
-        clientSecret: "884ead5b05b881d96b69799e97d108a9",
+        clientID: "901895663494148",
+        clientSecret: "df7ccecc5b070ee134619de69adecf5b",
         callbackURL: "/auth/facebook/callback",
+        proxy:true,
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
     function (accessToken, refreshToken, profile, cb) {
