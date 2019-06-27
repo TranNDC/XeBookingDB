@@ -1,14 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var nodeMailer = require('nodemailer');
 var paypal = require('paypal-rest-sdk');
 
-var controllerDiaDiem = require('../controllers/diadiem');
-var controllerKhuyenMai = require('../controllers/khuyenmai');
-var controllerChuyen = require('../controllers/chuyen');
-var controllerTransaction = require('../controllers/transaction');
+var waitSecond = 60;
 
-var return_url="http://localhost:5000/payment/success";
-var cancel_url="http://localhost:5000/payment/error";
+
+var transactionController = require('../controllers/transaction');
+var transactionDetailController = require('../controllers/transactiondetail');
+var paymentdetailController = require('../controllers/paymentdetail');
+
+var return_url="/payment/success";
+var cancel_url="/payment/error";
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -18,14 +21,17 @@ paypal.configure({
 
 
 router.post('/', (req, res) => {
+    var fullUrl = req.protocol + '://' + req.get('host');
+    return_url = fullUrl + return_url;
+    cancel_url = fullUrl + cancel_url;
+
     let Chuyen = JSON.parse(decodeURI(req.body.Chuyen));
     let Transaction = JSON.parse(decodeURI(req.body.Transaction));
-    let UserId = req.body.UserId;
-
+    let UserId = req.body.UserId;   
     let count = Transaction.TransactionDetails.length;
     let newTransaction = getNewTransaction(Chuyen, Transaction, UserId);
     let newTransactionDetails = getNewTransactionDetails(Transaction);
-    console.log(Transaction);
+    // console.log(Transaction);
     PostTransaction(res, count, newTransaction, newTransactionDetails,
         () =>{
             let paypalItems = getPayPalItem(Chuyen,Transaction);
@@ -33,7 +39,8 @@ router.post('/', (req, res) => {
             
             paypal.payment.create(create_payment_json, function (error, payment) {
                 if (error) {
-                    console.log(error.response)
+                    console.log(error.response);
+                    deleteWaitQueue(newTransaction.ChuyenId,getViTris(newTransactionDetails));
                     res.render('paymentError');
                 } else {
                     for (let i = 0; i < payment.links.length; i++) {
@@ -44,12 +51,77 @@ router.post('/', (req, res) => {
                 }
             });
         });
-    
-
 });
 
+function getEmail(transaction,paymentID){
+    return `
+    <div>
+        <h3>XEBOOKING</h3>
+        <hr>
+        <p>From: `+transaction.Chuyen.Tuyen.xuatphat.ten+`</p>
+        <p>To:`+transaction.Chuyen.Tuyen.ketthuc.ten+` </p>
+        <hr>
+        <p>Departure:`+getDate(transaction.Chuyen.ngayGioKhoiHanh)+`</p>
+        <p>Bus:`+ transaction.Chuyen.Xe.LoaiXe.ten + ' - ' +transaction.Chuyen.Xe.bienso+`</p>
+        <p>Seats:`+getSeatsString(transaction)+`</p>
+        <p>Payment ID:`+paymentID+`</p>
+    </div>`;
+}
+
+function getSeatsString (transaction){
+    let res='';
+    transaction.TransactionDetails.forEach(transactionDetail => {
+        res += transactionDetail.viTriGheDat +' ';
+    });
+    return res;
+}
+
+function senEmail(transaction, paymentdetail){
+    console.log(transaction.Chuyen.ngayGioKhoiHanh)
+    let email = transaction.email;
+    let sdt = transaction.sdt;
+    let ten = transaction.TransactionDetails[0].ten;
+    let ngayGioKhoiHanh = getDate (transaction.Chuyen.ngayGioKhoiHanh);
+    let xe = transaction.Chuyen.Xe.LoaiXe.ten + ' - ' +transaction.Chuyen.Xe.bienso;
+    let PaymentID = paymentdetail.PaymentId;
+
+    let htmlEmailContail = getEmail(transaction,PaymentID)
+
+    console.log(htmlEmailContail);
+
+    let transporter = nodeMailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'cattran.9a1pct@gmail.com',
+            pass: 'minkiisme'
+        }
+    }); 
+
+    let mailOptions = {
+        from: 'CNTN2016@XeBooking.com', // sender address
+        to: email, // list of receivers
+        subject: "[XeBooking] Booking Complete", // Subject line
+        html: htmlEmailContail // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s -sent- %s', info.messageId, info.response);
+
+        res.render("successRespond", {
+            info: "Email was sent "
+        });
+    });
+}
 
 router.get('/success', function (req, res) {
+    res.locals.note = "Payment Error";
+    if (!req.query.ID){
+        res.render('paymentSuccess');
+        return;
+    }
     let TransactionId = req.query.ID;
     let PaymentId = req.query.paymentId;
     let PayerId = req.query.PayerID;
@@ -59,26 +131,123 @@ router.get('/success', function (req, res) {
         "PayerId":PayerId,
         "Token":Token
     }
-    let transactionController = require('../controllers/transaction');
-    let paymentdetailController = require('../controllers/paymentdetail');
-    paymentdetailController
-        .add(newPaymentDetail ,paymentdetail => {
-            transactionController
-            .update(TransactionId,paymentdetail.id,()=>{
-                res.render('paymentSuccess');
-            });
+
+    paymentdetailController.find(PaymentId, (Payment)=>{
+        if (Payment) {
+            res.render('paymentSuccess');
+            return;
+        }
+        transactionController.getOne(parseInt(TransactionId), transaction =>{
+            senEmail(transaction[0], newPaymentDetail);
             
+            let email = transaction.email;
+    
         });
+        paymentdetailController
+            .add(newPaymentDetail ,paymentdetail => {
+                transactionController
+                .update(TransactionId,paymentdetail.id,()=>{
+                    res.render('paymentSuccess');
+                });
+                
+            });
+    })
+    
+
+    
 });
 
 router.get('/error', function (req, res) {
     res.render('paymentError');
 });
 
+function getViTris(newTransactionDetails){
+    let  vitris = [];
+    newTransactionDetails.forEach(element => {
+        vitris.push(element.viTriGheDat);
+    });
+    return vitris;
+}
+
+var TransactionIsBeingPaid = [];
+
+function addToWaitQueue(chuyenId, vitris) {
+    for (let i = 0; i < TransactionIsBeingPaid.length; i++) {
+        if (TransactionIsBeingPaid[i].ChuyenId == chuyenId) {
+            vitris.forEach(vitri => {
+                TransactionIsBeingPaid[i].vitris.push(vitri);
+            });
+        }
+    }
+    console.log(chuyenId,vitris);
+    setTimeOutWaitQueueElement(chuyenId, vitris);
+}
+
+function setTimeOutWaitQueueElement(chuyenId, vitris){
+    setTimeout(function(){
+        for (let i = 0; i < TransactionIsBeingPaid.length; i++) {
+            if (TransactionIsBeingPaid[i].ChuyenId == chuyenId) {
+                vitris.forEach(vitri => {
+                    let indexOfVitri = TransactionIsBeingPaid[i].vitris.indexOf(vitri);
+                    if (indexOfVitri>=0){
+                        TransactionIsBeingPaid[i].vitris.splice(indexOfVitri,1);
+                    }
+                });
+            }
+        }
+        console.log('TIME OUT '+ chuyenId + vitris);
+    }, waitSecond);
+}
+
+function checkEmtyWaitQueue(ChuyenId, vitris){
+    console.log(ChuyenId,vitris);
+    let checkExistBooking = false;
+    let checkExistChuyenId = false;
+
+    for (let indexBeingPaid = 0; indexBeingPaid< TransactionIsBeingPaid.length; indexBeingPaid++){
+        if (TransactionIsBeingPaid[indexBeingPaid].ChuyenId == ChuyenId){
+            for (let indexViTri =0; indexViTri< vitris.length;indexViTri++){
+                if (TransactionIsBeingPaid[indexBeingPaid].vitris.indexOf(vitris[indexViTri])>=0){
+                    checkExistBooking = true;
+                    break;
+                }
+            }
+            checkExistChuyenId = true;
+            if (!checkExistBooking){
+                addToWaitQueue(ChuyenId,vitris);
+            }
+        }
+    }
+    if (!checkExistChuyenId){
+        let item = {
+            'ChuyenId':ChuyenId,
+            'vitris':[]
+
+        }
+        TransactionIsBeingPaid.push(item);
+        addToWaitQueue(ChuyenId,vitris);
+    }
+    return !checkExistBooking;
+}
+
+
+function deleteWaitQueue(ChuyenId, vitris){
+    for (let i = 0; i< TransactionIsBeingPaid.length; i++){
+        if (TransactionIsBeingPaid[i].ChuyenId == ChuyenId){
+            for (let j =0; j< vitris.length;j++){
+                if (TransactionIsBeingPaid[i].vitris.indexOf(vitris[j])>=0){
+                    TransactionIsBeingPaid[i].vitris.splice(TransactionIsBeingPaid[i].vitris.indexOf(vitris[j]), 1);
+                }
+
+            }
+        }
+    }
+}
+
 function PostTransaction(res, count, newTransaction, newTransactionDetails,callback){
-    let transactionController = require('../controllers/transaction');
-    let transactionDetailController = require('../controllers/transactiondetail');
-    transactionController
+
+    if (checkEmtyWaitQueue(newTransaction.ChuyenId,getViTris(newTransactionDetails))){
+        transactionController
         .add(newTransaction ,transaction => {
             return_url += "?ID="+transaction.id;
             for (let i = 0; i < count; i++) {
@@ -86,13 +255,18 @@ function PostTransaction(res, count, newTransaction, newTransactionDetails,callb
                 transactionDetailController
                     .add(newTransactionDetails[i], transactionDetail => {
                         if (i == count - 1) {
-                            // res.sendStatus(204);
                             console.log("complete Write To Server");
                             callback();
                         }
                     });
             }
         });
+    }
+    else{
+        res.locals.note =":( You are a little bit late! Please try again!"
+        res.render('paymentError');
+    }
+
 }
 
 
@@ -103,6 +277,27 @@ function getDate(value){
         year: 'numeric',
         month: 'short',
         day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    };
+    return date.toLocaleString('en-US', options);
+}
+
+function getDay(value){
+    let date = new Date(value);
+    var options = {
+        hour12: false,
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    };
+    return date.toLocaleString('en-US', options);
+}
+
+function getHour(value){
+    let date = new Date(value);
+    var options = {
+        hour12: false,
         hour: 'numeric',
         minute: 'numeric'
     };

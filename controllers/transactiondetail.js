@@ -10,4 +10,14 @@ controller.add = (transationDetail,callback)=>{
     .create(transationDetail)
     .then(callback);
 }
+
+controller.detele = (transactionId,callback)=>{
+    TransactionDetails
+    .detele({
+        where: {TransactionID: transactionId}
+    })
+    .then(callback);
+}
+
+
 module.exports = controller;

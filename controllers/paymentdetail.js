@@ -8,7 +8,15 @@ controller.add = (paymentDetail,callback)=>{
     .then(callback);
 }
 
-
+controller.find = (paymentId, callback)=>{
+    PaymentDetail.findOne({
+        where: {
+            PaymentId: paymentId
+        }
+    }).then((result)=>{
+        callback(result);
+    });
+}
 
 
 module.exports = controller;

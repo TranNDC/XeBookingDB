@@ -313,6 +313,9 @@ hbs.registerHelper("getDay", function (value, options) {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
+        hour12: false,
+        hour: 'numeric',
+        minute: 'numeric'
     };
     return date.toLocaleString('en-US', options);
 });

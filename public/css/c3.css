@@ -244,20 +244,6 @@ a {
     width: 95%;
 }
 
-.subtitle-donut,
-.btn-primary {
-    font-size: 14px;
-    margin-left: 50%;
-    color: #999999;
-    margin-bottom: 3px;
-}
-
-.btn-primary {
-    font-size: 12px !important;
-    color: white !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
 
 
 .c3-my-select {
