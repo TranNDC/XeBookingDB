@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     ngayBatDau: DataTypes.DATE,
     ngayKetThuc: DataTypes.DATE,
     phanTram: DataTypes.INTEGER,
-    imagePath: DataTypes.STRING
+    imagePath: DataTypes.STRING,
+    deleted: DataTypes.INTEGER
   }, {});
   KhuyenMai.associate = function(models) {
     // associations can be defined here

@@ -51,8 +51,8 @@ var session = require('express-session');
 app.use(session({
 	cookie: {
 		httpOnly: true,
-		maxAge: 5 * 60 * 1000
-	}, //5 min
+		maxAge: 10 * 60 * 1000
+	}, //10 min
 	secret: 'Secret',
 	saveUninitialized: false,
 	resave: false

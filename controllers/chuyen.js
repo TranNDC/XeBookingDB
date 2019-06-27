@@ -18,6 +18,9 @@ controller.getAll = function (callback) {
 
 controller.search = function (xuatphatTen, ketthucTen, ngayKhoiHanh, callback) {
     Chuyens.findAll({
+            where: {
+                deleted: 0
+            },
             attributes: ['id', 'ngayGioKhoiHanh', 'gia'],
             include: [{
                     model: Tuyens,
@@ -58,6 +61,9 @@ controller.search = function (xuatphatTen, ketthucTen, ngayKhoiHanh, callback) {
 
 controller.searchWithVoucher = function (xuatphatTen, ketthucTen, maKhuyenMai, callback) {
     Chuyens.findAll({
+            where: {
+                deleted: 0
+            },
             attributes: ['id', 'ngayGioKhoiHanh', 'gia'],
             include: [{
                     model: Tuyens,

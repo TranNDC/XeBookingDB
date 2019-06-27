@@ -89,7 +89,8 @@ router.post('/reset/:email/:token/changepass', (req, res) => {
                     password: newpass
                 }, {
                     where: {
-                        email: req.params.email
+                        email: req.params.email,
+                        profileId: null
                     }
                 })
                 .then(function () {
