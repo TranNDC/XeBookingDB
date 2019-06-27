@@ -156,7 +156,13 @@ function getOppositeOrder(ord){
 }
 
 function hideDanger(){
-  $('.alert').slideUp(100);
+  $('.alertDanger').slideUp(100);
+}
+function hideError(){
+  $('.alertError').slideUp(100);
+}
+function hideSucess(){
+  $('.alertSucess').slideUp(100);
 }
 
 $('#filterForm').submit(function() {

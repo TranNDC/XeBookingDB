@@ -30,12 +30,32 @@ controller.getOne = (id, callback) => {
     Transactions
         .findAll({
             where: {
-                id:id
+                id: id
             },
             include: [{
                 model: TransactionDetails,
                 required: true,
-                attributes: ['viTriGheDat']
+                attributes: ['ten','viTriGheDat']
+            }, {
+                model: Chuyens,
+                attributes: ['ngayGioKhoiHanh', 'gia'],
+                include: [
+                    {
+                        model: Tuyens,
+                        attributes: ['soPhutDiChuyen'],
+                        include: [{ model: DiaDiems, as: "xuatphat", attributes: ['ten'] }
+                            , { model: DiaDiems, as: "ketthuc", attributes: ['ten'] }
+                        ]
+                    },
+                    {
+                        model: Xes, attributes: ['id', 'bienso'], include: {
+                            model: LoaiXes,
+                            attributes: ['ten']
+                        }
+                    },
+                ]
+            }, {
+                model: PaymentDetails
             }]
         })
         .then(result => {
@@ -110,7 +130,7 @@ controller.searchChuyen = function (chuyen_ID, callback) {
 
 controller.searchUser = function (user_ID, callback) {
     Transactions.findAll({
-        attributes: ['id', 'createdAt'],
+        attributes: ['id', 'createdAt','PaymentDetailId'],
         include: [
             { model: Users, attributes: ['id'], where: { id: user_ID } },
             {

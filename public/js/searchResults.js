@@ -1,3 +1,4 @@
+
 // $("#searchResultPartialDiv").data("Chuyens");
 
 
@@ -164,6 +165,14 @@ function getDataToSumary(btn,chuyenId){
 
 }
 
+var windowPayment = null;
+  
+function parent_disable() {
+    if(windowPayment && !windowPayment.closed)
+    windowPayment.focus();
+    }
+
+
 function submitForm(Chuyen, userId, element){
     let chuyenId = Chuyen.id;
 
@@ -184,7 +193,6 @@ function submitForm(Chuyen, userId, element){
         let namSinhId = '#namSinh'+chuyenId+id; 
         let genderId =  '#genderDiv'+chuyenId+id+' input[name="gender'+id+'"]:checked';
         let seatId =  '#'+div.id+' #detailSeat';
-        console.log(id);
 
         let transactionDetail = {
             "ten":$(nameId).val(),
@@ -194,7 +202,6 @@ function submitForm(Chuyen, userId, element){
         }
         transaction.TransactionDetails.push(transactionDetail);
     }
-    console.log(transaction);
     let htmlChuyen='<input type="text" name="Chuyen" class="hidden" value="'+encodeURI(JSON.stringify(Chuyen))+'">';
     let htmlUserId='<input type="text" name="UserId" class="hidden" value="'+userId+'">';
     let htmlTransaction='<input type="text" name="Transaction" class="hidden" value="'+encodeURI(JSON.stringify(transaction))+'">';
@@ -205,57 +212,70 @@ function submitForm(Chuyen, userId, element){
     $(hiddenFormId).append(htmlChuyen);
     $(hiddenFormId).append(htmlUserId);
     $(hiddenFormId).append(htmlTransaction);
-
+    $(hiddenFormId).attr('target', 'payment');
+    windowPayment = window.open("/payment","payment","width=750,height=800,toolbar=0");
     $(hiddenFormId).submit();
+    $("#unactivateDiv").removeClass("hidden");
     $(element).hide();
     var now = 10*60;
     var x = setInterval(function() {
-
-        // Get today's date and time
-          
-        // Find the distance between now and the count down date
+        //block page
+        // tao page 
        now--;
-        // Time calculations for days, hours, minutes and seconds
       
         var minutes = Math.floor(now/60);
         var seconds = Math.floor(now%60);
           
-        // Output the result in an element with id="demo"
         document.getElementById("countDown"+chuyenId).innerText=  minutes + " : " + seconds;
-          
-        // If the count down is over, write some text 
-        if (now < 0) {
-          clearInterval(x);
-          
-          // close paypal
 
-          if ( !localStorage["reloaded"] ){
-            localStorage["reloaded"] = true
-            location.reload()
+        if (windowPayment.closed){
+            callError()
         }
+          // time out
+        if (now <= 0) {
+          clearInterval(x);
+          windowPayment.close();
+          callError();
+            
+        //   if ( !localStorage["reloaded"] ){
+        //     localStorage["reloaded"] = true
+        //     location.reload()
+        // }
         
         }
       }, 1000);
 }
-  
 
-// $('form.hiddenForm').submit(function() {
-//     // DO STUFF...
-//     event.preventDefault();
-//     $('#departure_min').val(($('#slider-range-time-value1').text()));
-//     $('#departure_max').val(($('#slider-range-time-value2').text())); 
-  
-//     $('#price_min').val(($('#slider-range-price-value1').text()).substr(1));
-//     $('#price_max').val(($('#slider-range-price-value2').text()).substr(1)); 
-//     if ( $("[name=bustype]:checked").length == 0){
-//       $('.alert').slideDown(100);
-//       return false;
-//     }
-//     return true; // return false to cancel form action
-// });
+
+function callSuccess() {
+    localStorage["paymentStatus"] = 1;
+    if (!windowPayment.closed){
+        windowPayment.close();
+    }
+    location.reload();
+}
+
+function callError() {
+    localStorage["paymentStatus"] = -1;
+    if (!windowPayment.closed){
+        windowPayment.close();
+    }
+    location.reload();
+
+}
 
 
 $(document).ready(function () {
+    console.log(localStorage["paymentStatus"]);
+    if (localStorage["paymentStatus"]!=0){
+        if (localStorage["paymentStatus"] == 1){
+            $('.alertSuccess').slideDown(100);
+        }
+        if (localStorage["paymentStatus"] == -1){
+            $('.alertError').slideDown(100);
+        }
+        localStorage["paymentStatus"] =0;
+    }
     let Chuyens = $("#searchResultPartialDiv").data("chuyens");
     let idChuyens = Chuyens.split(";");
     idChuyens.splice(-1, 1);
@@ -282,6 +302,7 @@ $(document).ready(function () {
         divChange(chuyenId);
         updateTotal(chuyenId);
     });
+
 
 
 
