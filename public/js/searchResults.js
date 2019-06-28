@@ -278,9 +278,7 @@ $(document).ready(function () {
         if (localStorage["paymentStatus"] == 1){
             $('.alertSuccess').slideDown(100);
         }
-        if (localStorage["paymentStatus"] == -1){
-            $('.alertError').slideDown(100);
-        }
+
         localStorage["paymentStatus"] =0;
     }
     let Chuyens = $("#searchResultPartialDiv").data("chuyens");

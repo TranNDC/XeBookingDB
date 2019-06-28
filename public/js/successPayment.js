@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         if (now <= 0) {
           clearInterval(x);
-          opener.callSuccess();
+          opener.callSuccess(); 
         
         //   if ( !localStorage["reloaded"] ){
         //     localStorage["reloaded"] = true
