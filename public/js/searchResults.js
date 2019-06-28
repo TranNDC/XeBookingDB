@@ -172,6 +172,12 @@ function parent_disable() {
     windowPayment.focus();
     }
 
+function popupwindow(url, title, w, h) {
+    var left = (screen.width / 2) - (w / 2);
+    var top = (screen.height / 2) - (h / 2);
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+}
+
 
 function submitForm(Chuyen, userId, element){
     let chuyenId = Chuyen.id;
@@ -213,7 +219,8 @@ function submitForm(Chuyen, userId, element){
     $(hiddenFormId).append(htmlUserId);
     $(hiddenFormId).append(htmlTransaction);
     $(hiddenFormId).attr('target', 'payment');
-    windowPayment = window.open("/payment","payment","width=750,height=800,toolbar=0");
+    windowPayment = popupwindow("/payment","payment",800,800);
+    // windowPayment = window.open("/payment","payment","width=750,height=800,toolbar=0");
     $(hiddenFormId).submit();
     $("#unactivateDiv").removeClass("hidden");
     $(element).hide();
