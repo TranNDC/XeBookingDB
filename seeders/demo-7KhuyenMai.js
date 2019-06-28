@@ -15,6 +15,7 @@ module.exports = {
         phanTram: 30,
         imagePath: `/img/A1/${i}.jpg`,
         TuyenId: i,
+        deleted:0,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
       }

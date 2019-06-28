@@ -272,12 +272,6 @@ router.get('/export', userController.isAdmin, (req, res) => {
                 headerStyle: styles.headerDark,
                 cellStyle: styles.cellPink, // <- Cell style
                 width: 120 // <- width in pixels
-            },
-            deleted: {
-                displayName: 'Deleted',
-                headerStyle: styles.headerDark,
-                cellStyle: styles.cellPink, // <- Cell style
-                width: 100 // <- width in pixels
             }
         }
 
@@ -294,8 +288,7 @@ router.get('/export', userController.isAdmin, (req, res) => {
                 ketthuc:results[i].Tuyen.ketthuc.ten,
                 minutemove:results[i].Tuyen.soPhutDiChuyen,
                 busType:results[i].Xe.LoaiXe.ten,
-                numSlot:results[i].Xe.LoaiXe.socho,
-                deleted:results[i].deleted
+                numSlot:results[i].Xe.LoaiXe.socho
             }  
             dataset.push(chuyen);
         }

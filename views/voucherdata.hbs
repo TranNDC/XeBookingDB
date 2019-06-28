@@ -32,10 +32,10 @@
                     <div class="c3-form">
                         <h4>TOOL</h4>
                         <div class="tools">
-                            <a href="/users/masterdata/create" id="create" class="btn btn-custom">Create</a>
-                            <a href="/users/masterdata/export" id="import" class="btn btn-custom">Export</a>
+                            <a href="/users/voucherdata/create" id="create" class="btn btn-custom">Create</a>
+                            <a href="/users/voucherdata/export" id="import" class="btn btn-custom">Export</a>
                             <br>
-                            
+
                         </div>
                     </div>
                     <div id="station-container" data-station="{{#each stations}}{{ten}}-{{id}};{{/each}}" hidden></div>
@@ -43,7 +43,8 @@
                         <div class="c3-form">
                             <h4>FILTER</h4>
                             <div class="btn-group" id="btn-group-dropdown">
-                                <button type="button" id="btn-dropdown" class="btn btn-danger">Departure database</button>
+                                <button type="button" id="btn-dropdown" class="btn btn-danger">Voucher
+                                    database</button>
                                 <button type="button" id="toggle"
                                     class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
@@ -52,10 +53,10 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class=" dropdown-item" href="/users/masterdata">Departure database</a>
                                     <div class="dropdown-divider"></div>
-                                
+
                                     <a class="dropdown-item" href="/users/voucherdata">Voucher database</a>
-                
-                                    
+
+
                                 </div>
                             </div>
 
@@ -78,7 +79,7 @@
                             </div>
 
                             <div class="bus-route-search">
-                                <h5>Time</h5>
+                                <h5>Time start voucher</h5>
                                 <div class="row row-custom">
                                     <div class="col-6">
                                         <div class="input-date">
@@ -103,13 +104,13 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="bus-route-search">
-                                <h5>License Plate</h5>
+                                <h5>Voucher name</h5>
                                 <div class="row row-custom">
                                     <div class="col-10">
-                                        <input name="palaceLiscene" type="text" id="bus-id"
-                                            placeholder="Example: 59-B1">
+                                        <input name="voucher" type="text" id="bus-id"
+                                            placeholder="Example: KM1">
                                     </div>
 
                                     <div class="col-2" id="icon-search">
@@ -120,13 +121,14 @@
                                 </div>
                             </div>
                             <br>
+
                         </div>
                     </form>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="c3-form">
                         <div id="masterData-container">
-                            {{> masterDataPartial}}
+                            {{> voucherDataPartial}}
                         </div>
                     </div>
                 </div>
@@ -154,4 +156,4 @@
 <!-- Include English language -->
 <script src="/dist/js/i18n/datepicker.en.js"></script>
 
-<script src="/js/masterdata.js"></script>
+<script src="/js/voucherdata.js"></script>

@@ -44,13 +44,13 @@ router.post('/', (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             if (err.code === 'LIMIT_FILE_SIZE') {
-                req.session.msgProfile = "Kích cỡ ảnh đại diện vượt quá 2MB!";
-                res.redirect('/users/profile/info');
+                res.locals.isInfo=true;
+                res.render('profile',{msgProfile : "Kích cỡ ảnh đại diện vượt quá 2MB!"});
             }
         } else {
             if (req.file == undefined) {
-                req.session.msgProfile = "Không có file ảnh đại diện nào được chọn!";
-                res.redirect('/users/profile/info');
+                res.locals.isInfo=true;
+                res.render('profile',{msgProfile : "Không có file ảnh đại diện nào được chọn!"});
             } else {
                 //Sau khi có ảnh RAW, ta tiến hành tạo ảnh kích thước nhỏ hơn vào buffer. 
                 //Kích thước mới ở đây là width: 400px, height: 400px
@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
                         imagePath: filename
                     }, {
                         where: {
-                            email: req.session.user.email
+                            id: req.session.user.id,
                         }
                     })
                     .then(function () {
@@ -85,9 +85,11 @@ router.post('/', (req, res) => {
                         }
 
                         //Cập nhật ảnh mới của user. Sau đó redirect về trang Profile
-                        req.session.msgProfile = "Cập nhật ảnh đại diện thành công!";
+                        
                         req.session.user.imagePath = filename;
-                        res.redirect('/users/profile/info');
+                        
+                        res.locals.isInfo=true;
+                        res.render('profile',{msgProfileSuccess : "Cập nhật ảnh đại diện thành công!"});
                     });
             }
         }

@@ -31,6 +31,8 @@ router.use('/profile', userRouter);
 var masterDataRouter = require('./masterdata');
 router.use('/masterdata', masterDataRouter);
 
+var voucherDataRouter = require('./voucherdata');
+router.use('/voucherdata', voucherDataRouter);
 
 
 let allusers = require('../controllers/users');

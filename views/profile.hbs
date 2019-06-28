@@ -8,6 +8,7 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
+
 <div id="b3-container" class="container-fluid p-sm-0 b3-container mt-4">
     <div class="row d-flex justify-content-center b3-table">
         <!-- pannel left -->
@@ -47,6 +48,23 @@
         <div id="b3-userprofile"
             class="col-md-8 col-sm-10 panel-right b3-fixed-height {{#unless isInfo}}hidden{{/unless}}">
             <div class="a3-form">
+
+                {{#if msgProfileSuccess}}
+                <div class="form-control-feedback alert alert-success ">
+                    <span class="align-middle">
+                        {{msgProfileSuccess}}
+                    </span>
+                </div>
+                {{/if}}
+
+                {{#if msgProfile}}
+                <div class="form-control-feedback alert alert-danger ">
+                    <span class="align-middle">
+                        {{msgProfile}}
+                    </span>
+                </div>
+                {{/if}}
+
                 <div class="b3-header-profile mt-5 d-flex align-items-center justify-content-center">
                     <div class="b3-avatar">
                         <img id="b3-header-avatar" src={{{user.imagePath}}} alt="">
@@ -75,18 +93,18 @@
                                 </button>
                             </div>
                             <form action="/users/profile/info/upload" enctype="multipart/form-data" method="POST">
-                            <div class="modal-body">
-                                <!--  SINGLE FILE -->
+                                <div class="modal-body">
+                                    <!--  SINGLE FILE -->
 
-                                <input type="file" name="myFile" />
+                                    <input type="file" name="myFile" />
 
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary btn-dark"
-                                    data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-dark"
+                                        data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>
