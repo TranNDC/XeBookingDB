@@ -22,8 +22,8 @@ paypal.configure({
 
 router.post('/', (req, res) => {
     var fullUrl = req.protocol + '://' + req.get('host');
-    return_url = fullUrl + return_url;
-    cancel_url = fullUrl + cancel_url;
+    return_url = fullUrl + "/payment/success";
+    cancel_url = fullUrl + "/payment/error";
 
     let Chuyen = JSON.parse(decodeURI(req.body.Chuyen));
     let Transaction = JSON.parse(decodeURI(req.body.Transaction));
