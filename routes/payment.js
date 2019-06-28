@@ -92,8 +92,8 @@ function senEmail(transaction, paymentdetail){
     let transporter = nodeMailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'cattran.9a1pct@gmail.com',
-            pass: 'minkiisme'
+            user: 'lecongpr98@gmail.com',
+            pass: '11081998'
         }
     }); 
 
