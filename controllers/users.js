@@ -46,7 +46,7 @@ controller.createUser = function (user, callback) {
 controller.getUserByEmail = function (email, callback) {
     let Obj = {
         email: email,
-        profileId:null
+        profileId: null
     }
     models.User
         .findOne({
@@ -101,25 +101,25 @@ controller.isAdmin = (req, res, next) => {
 controller.findOrCreate = (profile, callback) => {
     models.User
         .findOne({
-            where: {profileId:profile.id}
+            where: {
+                profileId: profile.id
+            }
         })
         .then(function (user) {
             var newUser = {
-                name:profile.displayName,
-                profileId:profile.id,
-                email:profile.emails[0].value,
-                imagePath:profile.photos[0].value,
-                isAdmin:0
+                name: profile.displayName,
+                profileId: profile.id,
+                email: profile.emails[0].value,
+                imagePath: profile.photos[0].value,
+                isAdmin: 0
             }
             if (user)
-                user.update(
-                    {
-                        name:profile.displayName||user.name,
-                        profileId:profile.id||user.profileId,
-                        imagePath:profile.photos[0].value||user.imagePath,
-                        email:profile.emails[0].value||user.email
-                    }
-                ).then(function () {
+                user.update({
+                    name: profile.displayName || user.name,
+                    profileId: profile.id || user.profileId,
+                    imagePath: profile.photos[0].value || user.imagePath,
+                    email: profile.emails[0].value || user.email
+                }).then(function () {
                     callback(user);
                 });
             else {
@@ -133,30 +133,22 @@ controller.findOrCreate = (profile, callback) => {
 }
 
 controller.modify = (userID, user, callback) => {
-
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, function (err, hash) {
-            user.password = hash;
-
-            models.User
-                .findOne({
-                    where: {
-                        id: userID
-                    }
-                })
-                .then(function (result) {
-                    result.update({
-                        name: user.name || result.name,
-                        password: user.password || result.password,
-                        phone: user.phone || result.phone,
-                        email: user.email || result.email,
-                        location: user.location || result.location
-                    }).then(() => {
-                        callback(err, result);
-                    });
-                })
-        });
-    });
+    models.User
+        .findOne({
+            where: {
+                id: userID
+            }
+        })
+        .then(function (result) {
+            result.update({
+                name: user.name || result.name,
+                phone: user.phone || result.phone,
+                email: user.email || result.email,
+                location: user.location || result.location
+            }).then(() => {
+                callback(result);
+            });
+        })
 }
 
 module.exports = controller;

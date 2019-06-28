@@ -3,10 +3,10 @@ var router = express.Router();
 
 var userController = require('../controllers/users');
 var controllerDiaDiem = require('../controllers/diadiem');
-var controllerKhuyenMai = require('../controllers/khuyenmai');
-var controllerChuyen = require('../controllers/chuyen');
-var controllerTransaction = require('../controllers/transaction');
 
+var controllerTransaction = require('../controllers/transaction');
+var bcrypt = require('bcryptjs');
+var models = require('../models');
 
 router.get('/login', (req, res) => {
     req.session.returnURL = req.query.returnURL;
@@ -47,8 +47,8 @@ router.get('/admin/refresh', userController.isAdmin, function (req, res) {
 
     partsTo = req.query.dateto.split('/');
 
-    dateto = new Date(partsTo[2], partsTo[0] - 1, partsTo[1]);   
-    
+    dateto = new Date(partsTo[2], partsTo[0] - 1, partsTo[1]);
+
     res.locals.datefrom = datefrom.toDateString();
     res.locals.dateto = dateto.toDateString();
 
@@ -68,15 +68,15 @@ router.get('/admin/refresh', userController.isAdmin, function (req, res) {
                     allbooking.getAllMoneyBetweenDate(datefrom, dateto, results => {
                         var num = Object.keys(results).length;
                         var sum = 0;
-                    
+
                         for (i = 0; i < num; i++) {
-                        var numOfTransactionDetails = results[i].TransactionDetails.length;
-                        var pc = 0;
-                        if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
-                        var price = results[i].Chuyen.gia;
-                        sum = sum + (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
-        
-                    }
+                            var numOfTransactionDetails = results[i].TransactionDetails.length;
+                            var pc = 0;
+                            if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
+                            var price = results[i].Chuyen.gia;
+                            sum = sum + (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
+
+                        }
                         res.locals.revenue = sum;
                         res.render('admin');
                     })
@@ -103,14 +103,14 @@ router.get('/admin', userController.isAdmin, (req, res) => {
                 allbooking.getAllMoney(results => {
                     var num = Object.keys(results).length;
                     var sum = 0;
-                    
+
                     for (i = 0; i < num; i++) {
                         var numOfTransactionDetails = results[i].TransactionDetails.length;
                         var pc = 0;
                         if (results[i].KhuyenMai) pc = results[i].KhuyenMai.phanTram;
                         var price = results[i].Chuyen.gia;
                         sum = sum + (Math.ceil((1 - pc / 100) * price)) * numOfTransactionDetails;
-        
+
                     }
                     res.locals.revenue = sum;
                     req.session.loadBetweenDate = false;
@@ -281,24 +281,69 @@ router.post('/signup', function (req, res) {
 
 router.put('/updateinfo', function (req, res) {
     var user = {
-        password: req.body.pasw,
         phone: req.body.phone,
         name: req.body.fullname,
         email: req.body.email,
         location: req.body.location
     }
     userID = req.body.userID;
-    userController.modify(userID, user, function (err,userUpdate) {
-        if (err) throw err;
-        req.session.user=userUpdate;
+    userController.modify(userID, user, function (userUpdate) {
+        req.session.user = userUpdate;
         res.redirect('/users/profile');
     });
 
 });
 
+router.get('/changepass', (req, res) => {
+    res.render('enterpass');
+});
+
+router.post('/changepass/newpass', (req, res) => {
+    passInput = req.body.password;
+    userController.getUserById(req.session.user.id, (result) => {
+        userController.comparePassword(passInput, result.password, function (isMatch) {
+            if (!isMatch) {
+                res.render('enterpass', {
+                    error: 'Incorrect Password'
+                });
+            } else {
+                res.render('changePass');
+            }
+        });
+    })
+});
+
+router.post('/changepass/newpass/put', (req, res) => {
+   
+    var newpass = req.body.passwordForReset;
+
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(newpass, salt, function (err, hash) {
+            newpass = hash;
+
+            models.User
+                .update({
+                    password: newpass
+                }, {
+                    where: {
+                        id:req.session.user.id
+                    }
+                })
+                .then(function () {
+                    res.render("successRespond", {
+                        info: "Password was changed "
+                    });
+                });
+        });
+    });
+
+
+
+})
+
 router.get('/logout', function (req, res) {
     req.session.user = null;
-    req.session.destroy(function(e){
+    req.session.destroy(function (e) {
         req.logout();
         res.redirect('/users/login');
     });
