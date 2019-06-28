@@ -394,7 +394,7 @@ function changeSelectTransaction() {
 $('#transactionFrom').on('click', function () {
   changeSelectTransaction();
 });
-$('#departureTimeFrom').on('blur', function () {
+$('#transactionFrom').on('blur', function () {
   changeSelectTransaction();
 });
 $('#transactionFrom').on('click', function () {

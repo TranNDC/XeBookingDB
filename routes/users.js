@@ -159,33 +159,7 @@ router.get('/transaction', userController.isAdmin, (req, res) => {
 
 
 router.get('/history', userController.isLoggedIn, (req, res) => {
-    res.locals.isInfo = false
-    controllerTransaction.searchUser(res.locals.user.id, (Transactions) => {
-
-        var page = parseInt(req.query.page);
-        var limit = 9;
-        page = isNaN(page) ? 1 : page;
-        let numPage = Math.ceil(Transactions.length / limit);
-        page = (page <= numPage && page >= 1) ? page : numPage;
-        var pagination = {
-            limit: limit,
-            page: page,
-            totalRows: Transactions.length
-        }
-        var offset = (page - 1) * limit;
-
-        var order = req.query.order;
-        if (!order) {
-            order = "departure_asc";
-        }
-        let tmp = order.split('_');
-        sort(tmp[0], tmp[1] == 'asc', Transactions);
-        res.locals.Transactions = Transactions.slice(offset, offset + limit);;
-        // res.locals.Transactions = Transactions;
-        res.locals.pagination = pagination;
-        res.locals.hasPagination = (pagination.totalRows / limit > 1);
-        res.render('profile');
-    })
+    res.redirect('/users/profile/history');
 });
 
 
@@ -474,7 +448,6 @@ function getData(type, transaction) {
 
 function sort(type, isAsc, Transactions) {
     let n = Transactions.length;
-
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < i; j++) {
             let xi = getData(type, Transactions[i]);

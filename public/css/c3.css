@@ -311,6 +311,26 @@ select.form-control {
     z-index: 1151 !important;
 }
 
+.subtitle-donutC,
+.btn-primaryC {
+    font-size: 14px;
+    margin-left: 50%;
+    color: #999999;
+    margin-bottom: 3px;
+}
+
+.btn-primaryC {
+    font-size: 12px ;
+    color: white ;
+    background-color: #D70303;
+    padding-top: 2px ;
+    padding-bottom: 2px ;
+}
+
+.btn-primaryC:hover{
+    color:white;
+}
+
 #title-date-choose{
     font-size: 20px;
 }

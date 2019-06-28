@@ -72,6 +72,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
+
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
@@ -135,6 +136,16 @@ app.get('/auth/facebook/callback',
 		failureRedirect: '/login'
     }));
 
+app.use((req,res)=>{
+	res.locals.message = "Error: Request Not Found!";
+	res.status(404).render('error');
+})
+
+app.use((err,req,res,next)=>{
+	res.locals.message = "Error: Internal Server Error!";
+	res.status(500).render('error');
+})
+	
 
 app.listen(app.get('port'), function () {
 	console.log('Server is listening at port ' + app.get('port'));
