@@ -14,7 +14,7 @@ function readURL(input) {
 
 
 function updateHeader(url) {
-    let type = ['date', 'desc'];
+    let type = ['time', 'desc'];
     let query = getPageNumber('order', url);
     if (query != 1)
         type = query.split('_');
@@ -43,10 +43,10 @@ function updateHeader(url) {
             $('.licensePlateData').addClass('active-filter');
             break;
         }
-        case 'date': {
+        case 'time': {
             $('.active-filter').removeClass('active-filter');
-            $('#headerdate').addClass('active-filter');
-            $('.dateData').addClass('active-filter');
+            $('#headertime').addClass('active-filter');
+            $('.timeData').addClass('active-filter');
             break;
         }
         case 'departure': {

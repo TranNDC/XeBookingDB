@@ -15,12 +15,12 @@ function getData(type, transaction){
         case 'licensePlate': {
             return (transaction.Chuyen.Xe.bienso)
         }
-        case 'date': {
-            return (transaction.Chuyen.ngayGioKhoiHanh)
+        case 'time': {
+            return (transaction.createdAt)
         }
         case 'departure': {
-            let date = new Date(transaction.Chuyen.ngayGioKhoiHanh);
-            return (date.getHours()*60 + date.getMinutes())
+            // let date = new Date(transaction.Chuyen.ngayGioKhoiHanh);
+            return new Date(transaction.Chuyen.ngayGioKhoiHanh);
         }
         case 'information': {
             return transaction.Chuyen.Tuyen.xuatphat.ten + '-' + transaction.Chuyen.Tuyen.ketthuc.ten; 
@@ -81,7 +81,7 @@ router.get('/history', userController.isLoggedIn, (req, res) => {
     
         var order = req.query.order;
         if (!order){
-            order= "date_desc";
+            order= "time_desc";
         }
         let tmp = order.split('_');
         sort(tmp[0],tmp[1]=='asc',Transactions);
